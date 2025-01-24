@@ -13,7 +13,7 @@ const Navbar = () => {
       <nav className="flex flex-col sm:flex-row justify-between items-center w-full p-5">
         <div className="flex order-2 gap-4 sm:order-none  sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2">
           <NavigationLink
-            href="\"
+            href="/"
             className="block p-3 text-center font-medium hover:bg-accent rounded-md"
           >
             {t("home")}
