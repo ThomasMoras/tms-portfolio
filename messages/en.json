@@ -1,0 +1,10 @@
+{
+  "Navbar": {
+    "about": "About",
+    "home": "Home"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, fr {Français} en {English} other {Unknown}}"
+  }
+}

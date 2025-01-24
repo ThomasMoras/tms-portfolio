@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Layout from "@/components/shared/Layout";
-import { ThemeProvider } from "next-themes";
 import { Inter, Roboto_Mono } from "next/font/google";
 
 export const metadata: Metadata = {
@@ -22,23 +20,10 @@ const robotoMono = Roboto_Mono({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${inter.className} ${robotoMono.className} antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Layout>{children}</Layout>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+}) {
+  return children;
 }
+
+export { inter, robotoMono };

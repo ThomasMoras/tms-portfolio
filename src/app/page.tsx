@@ -1,17 +1,6 @@
-import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <div className=" flex flex-col justify-center items-center">
-      <h1>Work In Progress</h1>
-      <div className="justify-center items-center">
-        <Image
-          src="/images/work_in_progress.jpg"
-          width={500}
-          height={500}
-          alt="Work In Progress"
-        />
-      </div>
-    </div>
-  );
+// This page only renders when the app is built statically (output: 'export')
+export default function RootPage() {
+  redirect("/en");
 }
