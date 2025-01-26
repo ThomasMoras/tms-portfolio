@@ -1,9 +1,9 @@
+import { useTranslations } from "next-intl";
+
 const Footer = () => {
-  return (
-    <footer className="footer">
-      All rights reserved &copy; Thomas Moras {new Date().getFullYear()}
-    </footer>
-  );
+  const t = useTranslations("Footer");
+
+  return <footer className="footer">{t("description")}</footer>;
 };
 
 export default Footer;

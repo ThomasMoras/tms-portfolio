@@ -1,7 +1,13 @@
 {
   "Navbar": {
     "about": "About",
-    "home": "Home"
+    "home": "Home",
+    "work": "Work",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "description": "All rights reserved © Thomas Moras 2025"
   },
   "LocaleSwitcher": {
     "label": "Change language",

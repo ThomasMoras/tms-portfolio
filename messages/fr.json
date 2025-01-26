@@ -1,14 +1,20 @@
 {
   "Navbar": {
     "about": "À propos",
-    "home": "Accueil"
+    "home": "Accueil",
+    "work": "Travail",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "description": "Tous droits réservés © Thomas Moras 2025"
   },
   "LocaleSwitcher": {
     "label": "Changer de langue",
     "locale": "{locale, select, fr {Français} en {English} other {Unknown}}"
   },
   "PathnamesPage": {
-    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
+    "description": "",
     "title": "Pathnames"
   }
 }
