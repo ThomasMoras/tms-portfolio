@@ -4,7 +4,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto mt-5">
       <AboutSection />
       <StudiesTimeLine />
     </div>

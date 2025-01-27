@@ -6,7 +6,7 @@ import {
 import { GraduationCap, Book, Award, School } from "lucide-react";
 import "react-vertical-timeline-component/style.min.css";
 
-const StudiesTimeLine = () => {
+const WorkTimeLine = () => {
   const studies = [
     {
       title: "Master's in Computer Science",
@@ -44,9 +44,9 @@ const StudiesTimeLine = () => {
   ];
 
   return (
-    <div className="space-y-6 mt-12">
+    <div className="space-y-6">
       <h3 className="text-2xl font-bold text-center">
-        Education & Certifications
+        Professional Experiences
       </h3>
       <VerticalTimeline className="custom-timeline" animate={true}>
         {studies.map((study, index) => (
@@ -69,4 +69,4 @@ const StudiesTimeLine = () => {
   );
 };
 
-export default StudiesTimeLine;
+export default WorkTimeLine;

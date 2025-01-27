@@ -3,7 +3,6 @@
 import React, { JSX } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  Terminal,
   Code,
   Boxes,
   Globe,
@@ -19,6 +18,7 @@ import {
 import { FaReact } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiTypescript } from "react-icons/si";
+import { PiGearDuotone } from "react-icons/pi";
 
 type ExpertiseItem = {
   name: string;
@@ -88,7 +88,7 @@ const ExpertiseCard = ({
 const ExpertiseSection = () => {
   return (
     <div>
-      <h3 className="text-2xl font-bold mb-12 text-center">Expertises</h3>
+      <h3 className="text-2xl font-bold mb-12 text-center">My Expertise</h3>
       <div className="grid md:grid-cols-3 gap-8">
         <ExpertiseCard
           title="Blockchain"
@@ -103,7 +103,7 @@ const ExpertiseSection = () => {
         <ExpertiseCard
           title="Backend"
           items={expertises.backend}
-          icon={<Terminal />}
+          icon={<PiGearDuotone />}
         />
       </div>
     </div>

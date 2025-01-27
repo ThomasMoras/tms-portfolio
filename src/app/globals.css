@@ -120,3 +120,62 @@ body {
   opacity: 1.0;
   transform: rotate(3deg) translate(0px, -4px);
 }
+
+/* Timeline customization */
+/* components/studies/TimelineStyles.css */
+.custom-timeline.vertical-timeline::before {
+  background: hsl(var(--border));
+  width: 3px;
+}
+
+.custom-timeline .vertical-timeline-element {
+  margin: 2em 0;
+}
+
+.custom-timeline .vertical-timeline-element-content {
+  box-shadow: none;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+}
+
+.custom-timeline .vertical-timeline-element-content-arrow {
+  border-right: 7px solid hsl(var(--border));
+}
+
+.custom-timeline .vertical-timeline-element-icon {
+  box-shadow: 0 0 0 4px hsl(var(--border)), 
+              inset 0 2px 0 rgba(0, 0, 0, 0.08), 
+              0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.custom-timeline .vertical-timeline-element-date {
+  color: hsl(var(--muted-foreground));
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.custom-timeline .timeline-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.custom-timeline .timeline-location {
+  color: hsl(var(--muted-foreground));
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.custom-timeline .timeline-description {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+@media only screen and (min-width: 1170px) {
+  .custom-timeline.vertical-timeline--two-columns:before {
+    left: 50%;
+  }
+}

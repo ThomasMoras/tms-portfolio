@@ -2,11 +2,12 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ExpertiseSection from "@/components/shared/Expertise";
+import DownloadButton from "@/components/shared/DownloadButton";
+import { BiSolidUserDetail } from "react-icons/bi";
 
 const HomePage = () => {
   return (
@@ -61,12 +62,21 @@ const HomePage = () => {
               </CardContent>
             </Card>
 
-            <Button asChild size="lg" className="mt-5 gap-2">
-              <Link href="/about">
-                More detail
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
+            <div className="flex justify-center mt-5 space-x-5">
+              <DownloadButton />
+              <Button
+                asChild
+                size="lg"
+                className="bg-cyan-500 hover:bg-cyan-600 text-white shadow-lg flex items-center gap-2"
+              >
+                <Link href="/about" className="flex items-center gap-2">
+                  <span>More detail</span>
+                  <BiSolidUserDetail
+                    style={{ height: "24px", width: "24px" }}
+                  />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
 

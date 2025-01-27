@@ -24,17 +24,17 @@ import {
   SiRust,
   SiVercel,
   SiLinux,
+  SiEthers,
 } from "react-icons/si";
 import { FaEthereum } from "react-icons/fa";
-import { Trophy, Brain, Rocket, Target } from "lucide-react";
-import StudiesTimeLine from "./StudiesTimeLine";
+import { Trophy, Brain, Rocket, Target, HardHat } from "lucide-react";
 
 const technologies = {
   blockchain: [
     { name: "Solidity", icon: <SiSolidity className="h-6 w-6" /> },
     { name: "Ethereum", icon: <FaEthereum className="h-6 w-6" /> },
-    { name: "Web3.js", icon: <SiWeb3Dotjs className="h-6 w-6" /> },
-    { name: "Smart Contracts", icon: <SiEthereum className="h-6 w-6" /> },
+    { name: "Web3.js", icon: <HardHat className="h-6 w-6" /> },
+    { name: "Ethers.js", icon: <SiEthers className="h-6 w-6" /> },
   ],
   frontend: [
     { name: "React", icon: <SiReact className="h-6 w-6" /> },
