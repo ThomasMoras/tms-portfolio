@@ -18,8 +18,8 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        resume: "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg", // Add this new variant
-
+        resume:
+          "bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg flex items-center gap-2",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

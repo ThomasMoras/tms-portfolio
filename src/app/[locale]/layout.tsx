@@ -5,6 +5,7 @@ import { Locale, routing } from "@/i18n/routing";
 import { ThemeProvider } from "next-themes";
 import Layout from "@/components/shared/Layout";
 import { inter, robotoMono } from "../fonts";
+import { Toaster } from "@/components/ui/toaster";
 
 export default async function LocaleLayout({
   children,
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
             <Layout>{children}</Layout>
           </ThemeProvider>
         </NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   );
