@@ -2,10 +2,24 @@
   "Navbar": {
     "about": "À propos",
     "home": "Accueil",
-    "work": "Travail",
+    "career": "Carrière",
     "projects": "Projets",
     "contact": "Contact"
   },
+  "Home": {
+    "citation": "Nous ne pouvons pas prédire l’avenir, mais nous pouvons créer les outils pour le construire",
+    "resumeButton": "Mon CV",
+    "detailButton": "Mon parcours & Compétences",
+    "titleExpertises": "Ma spécialisation"
+  },
+  "About": {
+    "title": "À propos de moi",
+    "description": "👋 Bonjour à tous, je suis Thomas Moras, ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀",
+    "expertiseTitle": "Compétences"
+  },
+  "Career": {},
+  "Projects": {},
+  "Contact": {},
   "Footer": {
     "description": "Tous droits réservés © Thomas Moras 2025"
   },

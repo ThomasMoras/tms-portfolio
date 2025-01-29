@@ -1,4 +1,4 @@
-import WorkTimeLine from "@/components/shared/WorkTimeLine";
+import WorkTimeLine from "@/components/shared/GlobalTimeLine";
 import React from "react";
 
 const page = () => {

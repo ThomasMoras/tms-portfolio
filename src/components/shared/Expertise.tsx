@@ -19,6 +19,9 @@ import { FaReact } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiTypescript } from "react-icons/si";
 import { PiGearDuotone } from "react-icons/pi";
+import { SiSolidity } from "react-icons/si";
+import { FaHardHat } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 type ExpertiseItem = {
   name: string;
@@ -33,10 +36,10 @@ type ExpertiseData = {
 
 const expertises: ExpertiseData = {
   blockchain: [
-    { name: "Smart Contracts", icon: <Binary className="h-6 w-6" /> },
-    { name: "Web3", icon: <Globe className="h-6 w-6" /> },
-    { name: "DeFi", icon: <Wallet className="h-6 w-6" /> },
-    { name: "Crypto", icon: <Bitcoin className="h-6 w-6" /> },
+    { name: "EVM", icon: <Binary className="h-6 w-6" /> },
+    { name: "Solidity", icon: <SiSolidity className="h-6 w-6" /> },
+    { name: "Hardhat", icon: <FaHardHat className="h-6 w-6" /> },
+    { name: "DeFi User", icon: <FaUser className="h-6 w-6" /> },
   ],
   frontend: [
     { name: "React", icon: <FaReact className="h-6 w-6" /> },
@@ -85,10 +88,14 @@ const ExpertiseCard = ({
   </Card>
 );
 
-const ExpertiseSection = () => {
+type ExpertiseSection = {
+  name: string;
+};
+
+const ExpertiseSection = ({ name }: ExpertiseSection) => {
   return (
     <div>
-      <h3 className="text-2xl font-bold mb-12 text-center">My Expertise</h3>
+      <h3 className="text-2xl font-bold mb-12 text-center">{name}</h3>
       <div className="grid md:grid-cols-3 gap-8">
         <ExpertiseCard
           title="Blockchain"

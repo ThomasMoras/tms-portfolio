@@ -2,10 +2,24 @@
   "Navbar": {
     "about": "About",
     "home": "Home",
-    "work": "Work",
+    "career": "Career",
     "projects": "Projets",
     "contact": "Contact"
   },
+  "Home": {
+    "citation": "We cannot predict the future, but we can create the tools to build it",
+    "resumeButton": "My Resume",
+    "detailButton": "Experience & Skills",
+    "titleExpertises": "My Specialization"
+  },
+  "About": {
+    "title": "About Me",
+    "description": "👋 Hello everyone, I'm Thomas Moras, a software engineer and full-stack developer with six years of experience. Recently transitioned into blockchain development, I'm passionate about emerging technologies such as AI and blockchain 🤖. Originally from France, I currently live in Toronto and am looking for new opportunities in Web3, either in Toronto or remotely 🚀",
+    "expertiseTitle": "Stack"
+  },
+  "Career": {},
+  "Projects": {},
+  "Contact": {},
   "Footer": {
     "description": "All rights reserved © Thomas Moras 2025"
   },

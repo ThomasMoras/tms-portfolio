@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             animate={animate}
             exit={exit}
             transition={transition}
-            className="w-full"
+            className="w-full h-full"
           >
             {children}
           </motion.div>

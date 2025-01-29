@@ -2,7 +2,11 @@
 import { Button } from "../ui/button";
 import { FaDownload } from "react-icons/fa";
 
-const DownloadButton = () => {
+type DownloadButtonProps = {
+  name: string;
+};
+
+const DownloadButton = ({ name }: DownloadButtonProps) => {
   return (
     <Button asChild size="lg" variant="resume">
       <a
@@ -10,7 +14,7 @@ const DownloadButton = () => {
         download="Resume.pdf"
         className="flex items-center"
       >
-        Resume
+        {name}
         <FaDownload className="h-5 w-5 ml-2" />
       </a>
     </Button>

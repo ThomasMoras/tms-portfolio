@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import NavigationLink from "./NavigationLink";
 import LocaleSwitcher from "./LocalSwitcher";
 import { useState, useEffect } from "react";
-import { SiAircanada } from "react-icons/si";
 import { FaEthereum } from "react-icons/fa";
 
 const Navbar = () => {
@@ -38,31 +37,31 @@ const Navbar = () => {
             <FaEthereum color="#627EEA" className="h-5 w-5" />
             <NavigationLink
               href="/"
-              className="block p-3 text-center font-medium hover:bg-accent rounded-md"
+              className="block p-3 text-center font-medium rounded-md transition-transform hover:scale-125"
             >
               {t("home")}
             </NavigationLink>
             <NavigationLink
               href="/about"
-              className="block p-3 text-center font-medium hover:bg-accent rounded-md"
+              className="block p-3 text-center font-medium rounded-md transition-transform hover:scale-125"
             >
               {t("about")}
             </NavigationLink>
             <NavigationLink
-              href="/work"
-              className="block p-3 text-center font-medium hover:bg-accent rounded-md"
+              href="/career"
+              className="block p-3 text-center font-medium rounded-md transition-transform hover:scale-125"
             >
-              {t("work")}
+              {t("career")}
             </NavigationLink>
             <NavigationLink
               href="/projects"
-              className="block p-3 text-center font-medium hover:bg-accent rounded-md"
+              className="block p-3 text-center font-medium rounded-md transition-transform hover:scale-125"
             >
               {t("projects")}
             </NavigationLink>
             <NavigationLink
               href="/contact"
-              className="block p-3 text-center font-medium hover:bg-accent rounded-md"
+              className="block p-3 text-center font-medium rounded-md transition-transform hover:scale-125"
             >
               {t("contact")}
             </NavigationLink>
@@ -76,7 +75,7 @@ const Navbar = () => {
             </div>
           </div>
         </nav>
-        <div className="w-full h-px bg-gray-200" />
+        {/* <div className="w-full h-px bg-gray-200" /> */}
       </div>
     </>
   );
