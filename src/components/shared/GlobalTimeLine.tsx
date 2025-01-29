@@ -54,7 +54,7 @@ const GlobalTimeLine = () => {
         "Full Stack Developer for the compagny, Pegasus developpement",
       date: "2017-2018",
       icon: <Book className="h-6 w-6" />,
-      iconBg: "#8b5cf6",
+      iconBg: "#0b5cf6",
     },
     {
       title: "Bachelor's Degree",
