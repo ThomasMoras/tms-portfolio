@@ -62,10 +62,15 @@ export default function ContactPage() {
 
       form.reset();
     } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred.";
+
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: `Failed to send message: ${errorMessage}`,
       });
     } finally {
       setIsSubmitting(false);

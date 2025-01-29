@@ -5,10 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Code,
   Boxes,
-  Globe,
-  Wallet,
   Binary,
-  Bitcoin,
   Share2,
   Layout,
   Server,

@@ -17,7 +17,6 @@ import {
   ExternalLink,
   Calendar,
   Laptop,
-  Brain,
   Code,
   Palette,
 } from "lucide-react";

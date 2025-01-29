@@ -19,7 +19,9 @@ const HomePage = () => {
         <div className="flex flex-col md:flex-row justify-center gap-12 mb-20">
           {/* Profile Section */}
           <div className="shrink-0 text-center md:sticky md:top-20">
-            <h1 className="text-4xl md:text-4xl font-bold mb-8">John Doe</h1>
+            <h1 className="text-4xl md:text-4xl font-bold mb-8">
+              Thomas Moras
+            </h1>
             <div className="w-56 h-56 md:w-64 md:h-64 relative mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/50 rounded-full animate-pulse" />
               <Image
@@ -47,7 +49,7 @@ const HomePage = () => {
           <div className="flex-1 text-center max-w-4xl pl-10">
             <div className="flex flex-col items-center gap-2 mb-16">
               <h2 className="text-2xl md:text-3xl text-muted-foreground font-bold">
-                I'm a
+                I&apos;m a
               </h2>
               <TypeWriter
                 strings={[
