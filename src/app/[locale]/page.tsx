@@ -14,15 +14,15 @@ const HomePage = () => {
   const t = useTranslations("Home");
 
   return (
-    <div className="min-h-screen bg-background flex flex-col justify-center">
-      <div className="container max-w-10xl mx-auto flex-1 flex flex-col justify-center">
-        <div className="flex flex-col md:flex-row justify-center gap-12 mb-20">
+    <div className="min-h-screen bg-background flex flex-col justify-start pt-4">
+      <div className="container max-w-7xl mx-auto flex-1 flex flex-col">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Profile Section */}
-          <div className="shrink-0 text-center md:sticky md:top-20">
-            <h1 className="text-4xl md:text-4xl font-bold mb-8">
-              Thomas Moras
+          <div className="w-full md:w-auto shrink-0 text-center md:sticky md:top-20">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+              aaa bbb
             </h1>
-            <div className="w-56 h-56 md:w-64 md:h-64 relative mx-auto">
+            <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 relative mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/50 rounded-full animate-pulse" />
               <Image
                 src="/images/profile.jpg"
@@ -32,13 +32,13 @@ const HomePage = () => {
                 className="rounded-full object-cover border-4 border-background relative z-10 transition-transform hover:scale-105"
               />
             </div>
-            <div className="flex gap-4 justify-center mt-6">
+            <div className="flex gap-4 justify-center mt-4">
               <FaGithub
-                className="w-7 h-7 cursor-pointer transition-transform hover:scale-125"
+                className="w-6 h-6 md:w-7 md:h-7 cursor-pointer transition-transform hover:scale-125"
                 onClick={() => window.open("b", "_blank")}
               />
               <FaLinkedin
-                className="w-7 h-7 cursor-pointer transition-transform hover:scale-125"
+                className="w-6 h-6 md:w-7 md:h-7 cursor-pointer transition-transform hover:scale-125"
                 color="#0A66C2"
                 onClick={() => window.open("a", "_blank")}
               />
@@ -46,9 +46,9 @@ const HomePage = () => {
           </div>
 
           {/* Description Content */}
-          <div className="flex-1 text-center max-w-4xl pl-10">
-            <div className="flex flex-col items-center gap-2 mb-16">
-              <h2 className="text-2xl md:text-3xl text-muted-foreground font-bold">
+          <div className="flex-1 text-center md:text-left max-w-2xl lg:max-w-3xl md:pl-0 lg:pl-8">
+            <div className="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-12">
+              <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-bold">
                 I&apos;m a
               </h2>
               <TypeWriter
@@ -58,23 +58,23 @@ const HomePage = () => {
                   { text: "Smart Contract Developer", color: "emerald-500" },
                   { text: "Web3 Enthusiast", color: "orange-500" },
                 ]}
-                className="text-2xl md:text-3xl font-bold"
+                className="text-xl md:text-2xl lg:text-3xl font-bold"
               />
             </div>
 
-            <blockquote className="text-lg md:text-lg italic relative px-6 mb-16">
-              <span className="absolute left-0 top-0 text-3xl text-primary leading-none">
+            <blockquote className="text-base md:text-lg italic relative px-4 md:px-6 mb-6 md:mb-12">
+              <span className="absolute left-0 top-0 text-2xl md:text-3xl text-primary leading-none">
                 &ldquo;
               </span>
               <p className="text-muted-foreground font-medium px-2">
                 {t("citation")}
               </p>
-              <span className="absolute right-0 bottom-0 text-3xl text-primary leading-none">
+              <span className="absolute right-0 bottom-0 text-2xl md:text-3xl text-primary leading-none">
                 &rdquo;
               </span>
             </blockquote>
 
-            <div className="flex justify-center mt-5 space-x-5">
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 sm:gap-5">
               <DownloadButton name={t("resumeButton")} />
               <Button
                 asChild
@@ -83,9 +83,7 @@ const HomePage = () => {
               >
                 <Link href="/about" className="flex items-center gap-2">
                   <span>{t("detailButton")}</span>
-                  <BiSolidUserDetail
-                    style={{ height: "24px", width: "24px" }}
-                  />
+                  <BiSolidUserDetail className="w-5 h-5 md:w-6 md:h-6" />
                 </Link>
               </Button>
             </div>

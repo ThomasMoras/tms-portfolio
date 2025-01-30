@@ -41,6 +41,7 @@ import { FaGear } from "react-icons/fa6";
 import { Code, Boxes } from "lucide-react";
 import { FaToolbox } from "react-icons/fa";
 import { FaBook } from "react-icons/fa6";
+import { SiGoland } from "react-icons/si";
 
 const technologies = {
   blockchain: [
@@ -163,6 +164,7 @@ const technologies = {
   ],
   working: [
     { name: "Rust", icon: <SiRust className="h-6 w-6" />, color: "#000000" },
+    { name: "Go", icon: <SiGoland className="h-6 w-6" />, color: "#00ADD8" },
     {
       name: "Kubernetes",
       icon: <SiKubernetes className="h-6 w-6" />,

@@ -3,18 +3,32 @@ import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
-import { GraduationCap, Book, Award, School } from "lucide-react";
+import { GraduationCap, Award, School, MapPin } from "lucide-react";
+import { ImOffice } from "react-icons/im";
 import "react-vertical-timeline-component/style.min.css";
 
+interface Experience {
+  title: string;
+  contract: string;
+  compagny: string;
+  location: string;
+  description: string;
+  date: string;
+  icon: React.ReactNode;
+  iconBg: string;
+}
+
 const GlobalTimeLine = () => {
-  const studies = [
+  const experiences = [
     {
       title: "Blockchain Development Certification",
+      contract: "",
+      compagny: "",
       location: "Remote, France",
       description: "Advanced Smart Contract Development and Security",
       date: "2024 - 2025",
       icon: <Award className="h-6 w-6" />,
-      iconBg: "#8b5cf6",
+      iconBg: "#EEB422",
     },
     {
       title: "Software Engineer",
@@ -23,46 +37,49 @@ const GlobalTimeLine = () => {
       location: "Lyon, France",
       description: "",
       date: "2020 - 2024",
-      icon: <GraduationCap className="h-6 w-6" />,
-      iconBg: "#3b82f6",
+      icon: <ImOffice className="h-6 w-6" />,
+      iconBg: "#26a769",
     },
     {
       title: "Master's Degree",
+      contract: "",
+      compagny: "",
       location: "Lyon, France",
       description: "Information Systems Expert",
       date: "2019",
       icon: <Award className="h-6 w-6" />,
-      iconBg: "#8b5cf6",
+      iconBg: "#EEB422",
     },
     {
       title: "Software Engineer",
       contract: "Apprenticeship",
       compagny: "Ineo Nuclear",
       location: "Lyon, France",
-      description:
-        "Software engineer in apprenticeship for Ineo Nuclear compagny",
+      description: "Software engineer for Ineo Nuclear compagny",
       date: "2018-2019",
-      icon: <Book className="h-6 w-6" />,
-      iconBg: "#8b5cf6",
+      icon: <GraduationCap className="h-6 w-6" />,
+      iconBg: "#26a769",
     },
     {
       title: "Full Stack Developer",
-      location: "Lyon, France",
       contract: "Apprenticeship",
       compagny: "Pegasus developpement",
+      location: "Lyon, France",
       description:
         "Full Stack Developer for the compagny, Pegasus developpement",
       date: "2017-2018",
-      icon: <Book className="h-6 w-6" />,
-      iconBg: "#0b5cf6",
+      icon: <GraduationCap className="h-6 w-6" />,
+      iconBg: "#3d85c6",
     },
     {
       title: "Bachelor's Degree",
-      location: "Lyon, France",
+      contract: "",
+      compagny: "",
+      location: "Sophia Antipolis, France",
       description: "Computer Science",
       date: "2014 - 2017",
       icon: <School className="h-6 w-6" />,
-      iconBg: "#f97316",
+      iconBg: "#B2766A",
     },
   ];
 
@@ -72,24 +89,52 @@ const GlobalTimeLine = () => {
         Professional Experiences
       </h3>
       <VerticalTimeline className="custom-timeline" animate={true}>
-        {studies.map((study, index) => (
+        {experiences.map((experience: Experience, index) => (
           <VerticalTimelineElement
             key={index}
-            date={study.date}
+            date={experience.date}
             iconStyle={{
-              background: study.iconBg,
+              background: experience.iconBg,
               color: "#fff",
             }}
-            icon={study.icon}
+            icon={experience.icon}
           >
-            <h3 className="timeline-title">{study.title}</h3>
-            <h4 className="timeline-location">{study.location}</h4>
-            <p className="timeline-description">{study.description}</p>
+            <div className="space-y-2">
+              <div>
+                <h3 className="text-lg font-semibold inline-flex items-center">
+                  {experience.title}
+                  {experience.contract && (
+                    <span className="ml-2 text-sm font-medium text-muted-foreground">
+                      ({experience.contract})
+                    </span>
+                  )}
+                </h3>
+              </div>
+
+              {experience.compagny && (
+                <h4 className="text-base font-medium text-muted-foreground">
+                  {experience.compagny}
+                </h4>
+              )}
+
+              {experience.location && (
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <MapPin className="mr-1 h-4 w-4" />
+                  {experience.location}
+                </div>
+              )}
+
+              {experience.description &&
+                experience.description.trim() !== "" && (
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {experience.description}
+                  </p>
+                )}
+            </div>
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
     </div>
   );
 };
-
 export default GlobalTimeLine;
