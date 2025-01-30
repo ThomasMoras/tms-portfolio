@@ -12,19 +12,13 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Github,
-  ExternalLink,
-  Calendar,
-  Laptop,
-  Code,
-  Palette,
-} from "lucide-react";
+import { ExternalLink, Calendar, Laptop, Palette } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 const page = () => {
   const projects = [
     {
-      title: "Decentralized Application on EVM",
+      title: "Pulse - Decentralized Application on EVM",
       description: "Certification RS6515 - Social DApp on Base Sepolia",
       icon: <Laptop className="h-8 w-8 text-primary" />,
       tags: [
@@ -41,34 +35,25 @@ const page = () => {
       category: "Blockchain",
     },
     {
-      title: "Showcase website - Lyon Marquage Service",
+      title: "Lyon Marquage Service - Showcase website",
       description:
         "A showcase website for the French screen printing company Lyon Marquage Service",
       icon: <Laptop className="h-8 w-8 text-primary" />,
-      tags: ["Python", "PyTorch", "React"],
+      tags: ["Next JS", "Tailwind", "Shadcn"],
       date: "2024-02",
-      github: "https://github.com/username/ai-gen",
-      demo: "https://ai-gen-demo.com",
-      category: "AI/ML",
+      github: "https://github.com/ThomasMoras/lyon-marquage-services",
+      demo: "https://lyon-marquage-service.vercel.app",
+      category: "Frontend",
     },
     {
-      title: "Portfolio Template",
+      title: "My Portfolio Template",
       description: "Modern portfolio template with animations",
       icon: <Palette className="h-8 w-8 text-primary" />,
-      tags: ["React", "Framer Motion", "Tailwind"],
+      tags: ["React", "Framer Motion", "Tailwind", "Shadcn", "Next Intl"],
       date: "2024-03",
-      github: "https://github.com/username/portfolio",
-      demo: "https://portfolio-demo.com",
-      category: "Design",
-    },
-    {
-      title: "CLI Tool",
-      description: "Developer productivity CLI tool",
-      icon: <Code className="h-8 w-8 text-primary" />,
-      tags: ["Node.js", "TypeScript"],
-      date: "2024-04",
-      github: "https://github.com/username/cli-tool",
-      category: "Developer Tools",
+      github: "https://github.com/ThomasMoras/tms-portfolio",
+      demo: "https://thomas-moras-portfolio.vercel.app",
+      category: "Frontend",
     },
   ];
 
@@ -99,7 +84,7 @@ const page = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github className="h-5 w-5" />
+                        <FaGithub className="h-5 w-5" />
                       </a>
                       {project.demo && (
                         <a

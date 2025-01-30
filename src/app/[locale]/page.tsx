@@ -9,6 +9,7 @@ import DownloadButton from "@/components/shared/DownloadButton";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { useTranslations } from "next-intl";
 import TypeWriter from "@/components/shared/TypeWritter";
+import { PROFILE } from "@/constants";
 
 const HomePage = () => {
   const t = useTranslations("Home");
@@ -20,7 +21,7 @@ const HomePage = () => {
           {/* Profile Section */}
           <div className="w-full md:w-auto shrink-0 text-center md:sticky md:top-20">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-              aaa bbb
+              {PROFILE.fullName}
             </h1>
             <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 relative mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/50 rounded-full animate-pulse" />
@@ -35,12 +36,12 @@ const HomePage = () => {
             <div className="flex gap-4 justify-center mt-4">
               <FaGithub
                 className="w-6 h-6 md:w-7 md:h-7 cursor-pointer transition-transform hover:scale-125"
-                onClick={() => window.open("b", "_blank")}
+                onClick={() => window.open(PROFILE.GitHubUrl)}
               />
               <FaLinkedin
                 className="w-6 h-6 md:w-7 md:h-7 cursor-pointer transition-transform hover:scale-125"
                 color="#0A66C2"
-                onClick={() => window.open("a", "_blank")}
+                onClick={() => window.open(PROFILE.LinkedinUrl)}
               />
             </div>
           </div>
