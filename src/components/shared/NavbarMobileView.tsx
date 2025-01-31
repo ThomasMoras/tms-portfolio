@@ -1,5 +1,9 @@
 import { useState } from "react";
 import NavigationLink from "./NavigationLink";
+import { FaEthereum } from "react-icons/fa";
+import LocaleSwitcher from "./LocalSwitcher";
+import { ModeToggle } from "./ToogleTheme";
+import { Menu } from "lucide-react";
 
 type ValidRoutes = "/" | "/about" | "/career" | "/projects" | "/contact";
 
@@ -34,7 +38,26 @@ const NavbarMobileView = ({ t }: NavbarProps) => {
 
   return (
     <nav className="lg:hidden flex flex-col w-full backdrop-blur-sm">
-      {/* ... rest of your navbar code ... */}
+      <div className="flex justify-between items-center p-5">
+        <div className="flex flex-row gap-6">
+          <FaEthereum color="#627EEA" className="h-5 w-5" />
+          🍁
+        </div>
+
+        <div className="flex gap-2 items-center">
+          <LocaleSwitcher />
+          <div className="w-10">
+            <ModeToggle />
+          </div>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 rounded-md hover:bg-accent"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </div>
+
       {isMenuOpen && (
         <div className="flex flex-col px-4 py-2 bg-background/95 border-t">
           <MobileNavLink
