@@ -25,8 +25,9 @@ const GlobalTimeLine = () => {
       contract: "",
       compagny: "",
       location: "Remote, France",
-      description: "Advanced Smart Contract Development and Security",
-      date: "2024 - 2025",
+      description:
+        "Developed and deployed secure, resilient decentralized applications by creating smart contracts using industry-standard practices, optimizing functionality through testing and security analysis, and integrating user-friendly interfaces to interact with the blockchain backend.",
+      date: "2024-2025",
       icon: <Award className="h-6 w-6" />,
       iconBg: "#EEB422",
     },
@@ -35,17 +36,19 @@ const GlobalTimeLine = () => {
       contract: "CDI",
       compagny: "Ineo Nuclear",
       location: "Lyon, France",
-      description: "",
-      date: "2020 - 2024",
+      description:
+        "Led end-to-end development of digital workflows, integrated RESTful APIs, and optimized processes with Java automation. Built C# solutions, engineered data pipelines, developed proof of concepts, and managed intern and apprentice teams",
+      date: "2020-2024",
       icon: <ImOffice className="h-6 w-6" />,
       iconBg: "#26a769",
     },
     {
-      title: "Master's Degree",
+      title: "Master's Degree - Information Systems Management",
       contract: "",
-      compagny: "",
+      compagny: "Isitech Partner Formation",
       location: "Lyon, France",
-      description: "Information Systems Expert",
+      description:
+        'The French "Expert in Information Systems" certification validates advanced skills in designing, developing, and managing complex information systems to support strategic objectives. It attests to the holder\'s expertise in requirements analysis, solution architecture, project management, system security, and performance optimization',
       date: "2019",
       icon: <Award className="h-6 w-6" />,
       iconBg: "#EEB422",
@@ -55,7 +58,8 @@ const GlobalTimeLine = () => {
       contract: "Apprenticeship",
       compagny: "Ineo Nuclear",
       location: "Lyon, France",
-      description: "Software engineer for Ineo Nuclear compagny",
+      description:
+        "Implemented a business process management (BPM) platform (MoovApps) and set up business workflows. Optimized workflow efficiency through Java-based process automation",
       date: "2018-2019",
       icon: <GraduationCap className="h-6 w-6" />,
       iconBg: "#26a769",
@@ -66,7 +70,7 @@ const GlobalTimeLine = () => {
       compagny: "Pegasus developpement",
       location: "Lyon, France",
       description:
-        "Full Stack Developer for the compagny, Pegasus developpement",
+        "Developed an ERP system with full-stack modules, designed a SQL Server database architecture, and collaborated in a 4-person Agile team using GitHub and Slack for efficient delivery",
       date: "2017-2018",
       icon: <GraduationCap className="h-6 w-6" />,
       iconBg: "#3d85c6",
@@ -74,10 +78,10 @@ const GlobalTimeLine = () => {
     {
       title: "Bachelor's Degree",
       contract: "",
-      compagny: "",
+      compagny: "Polytech Nice S",
       location: "Sophia Antipolis, France",
       description: "Computer Science",
-      date: "2014 - 2017",
+      date: "2014-2017",
       icon: <School className="h-6 w-6" />,
       iconBg: "#B2766A",
     },
@@ -100,15 +104,17 @@ const GlobalTimeLine = () => {
             icon={experience.icon}
           >
             <div className="space-y-2">
-              <div>
-                <h3 className="text-lg font-semibold inline-flex items-center">
-                  {experience.title}
-                  {experience.contract && (
-                    <span className="ml-2 text-sm font-medium text-muted-foreground">
-                      ({experience.contract})
-                    </span>
-                  )}
-                </h3>
+              <div className="space-y-2">
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                    {experience.title}
+                    {experience.contract && (
+                      <span className="text-xs sm:text-sm font-medium text-muted-foreground">
+                        ({experience.contract})
+                      </span>
+                    )}
+                  </h3>
+                </div>
               </div>
 
               {experience.compagny && (

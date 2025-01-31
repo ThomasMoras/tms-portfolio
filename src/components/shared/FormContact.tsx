@@ -82,7 +82,7 @@ export default function ContactPage() {
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-center">
-            Contact Me
+            Contact Me (Currently not working)
           </CardTitle>
         </CardHeader>
         <CardContent>
