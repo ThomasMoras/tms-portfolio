@@ -8,7 +8,7 @@ import { SKILL_CATEGORIES, SKILL_LEVELS } from "@/constants/section-skills";
 
 const SkillsSection = () => {
   const t = useTranslations("Skills");
-  const [activeTab, setActiveTab] = React.useState("all");
+  // const [activeTab, setActiveTab] = React.useState("all");
 
   // Fonction pour rendre sûre l'utilisation des classes CSS
   const safeCss = (cssClass: string | undefined) => cssClass || "";
@@ -28,11 +28,7 @@ const SkillsSection = () => {
           </div>
         </div>
 
-        <Tabs
-          defaultValue="all"
-          className="space-y-8"
-          onValueChange={setActiveTab}
-        >
+        <Tabs defaultValue="all" className="space-y-8">
           <TabsList className="grid grid-cols-4 w-full max-w-md mx-auto">
             <TabsTrigger value="all">Tous</TabsTrigger>
             <TabsTrigger value="backend">Backend</TabsTrigger>

@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Footer from "./Footer";
 import Header from "./Header";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/hooks/usePageTransition";
-import { ProgressBar } from "./ProgressBar";
+import { ProgressBar } from "../shared/ProgressBar";
+import Footer from "./Footer";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname, initial, animate, exit, transition } = usePageTransition();

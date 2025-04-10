@@ -1,4 +1,4 @@
-import FormContact from "@/components/shared/FormContact";
+import FormContact from "@/components/sections/FormContact";
 import React from "react";
 
 const page = () => {

@@ -3,7 +3,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import TechStackPreview from "@/components/shared/TechStackPreview";
+import TechStackPreview from "@/components/sections/tech-stack/TechStackPreview";
 
 type TechStackSectionProps = {
   sectionId?: string;

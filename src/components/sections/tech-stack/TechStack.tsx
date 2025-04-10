@@ -10,7 +10,6 @@ import {
   Database,
   Server,
   Layout,
-  Share2,
   ArrowUpDown,
 } from "lucide-react";
 import { FaReact, FaHardHat } from "react-icons/fa";

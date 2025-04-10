@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import SkillsSection from "@/components/sections/SkillsSections";
-import ProfileCard from "@/components/profile/ProfileCard";
+import SkillsSection from "@/components/sections/skills/SkillsSections";
+import ProfileCard from "@/components/sections/profile/ProfileCard";
 
 const HomePage = () => {
   return (

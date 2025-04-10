@@ -3,9 +3,9 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Locale, routing } from "@/i18n/routing";
 import { ThemeProvider } from "next-themes";
-import Layout from "@/components/shared/Layout";
 import { inter, robotoMono } from "../fonts";
 import { Toaster } from "@/components/ui/toaster";
+import Layout from "@/components/navigation/Layout";
 
 export default async function LocaleLayout({
   children,

@@ -4,7 +4,7 @@ import React from "react";
 import ProfileHeader from "./ProfileHeader";
 import ProfileBio from "./ProfileBio";
 import ProfilePicture from "./ProfilePicture";
-import TechStackSection from "../shared/TechStackSection";
+import TechStackSection from "../tech-stack/TechStackSection";
 
 const ProfileCard: React.FC = () => {
   return (

@@ -1,8 +1,8 @@
 "use client";
 
-import { ModeToggle } from "./ToogleTheme";
+import { ModeToggle } from "../shared/ToogleTheme";
 import NavigationLink from "./NavigationLink";
-import LocaleSwitcher from "./LocalSwitcher";
+import LocaleSwitcher from "../shared/LocalSwitcher";
 import { FaEthereum } from "react-icons/fa";
 
 interface NavbarProps {

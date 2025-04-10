@@ -1,4 +1,4 @@
-import AboutSection from "@/components/shared/About";
+import AboutSection from "@/components/sections/About";
 import React from "react";
 
 const page = () => {

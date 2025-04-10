@@ -7,12 +7,7 @@ import {
   type SkillCategoryData,
   type TechCategoryData,
 } from "@/constants/section-skills-data";
-import {
-  SkillCategory,
-  TechCategory,
-  Skill,
-  TechItem,
-} from "@/types/section-skills";
+import { SkillCategory, TechCategory } from "@/types/section-skills";
 
 // Convertir les données en objets avec composants React
 export const mapSkillData = (skillData: SkillCategoryData): SkillCategory => {

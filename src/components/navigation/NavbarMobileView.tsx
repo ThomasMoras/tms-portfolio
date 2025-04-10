@@ -1,8 +1,8 @@
 import { useState } from "react";
 import NavigationLink from "./NavigationLink";
 import { FaEthereum } from "react-icons/fa";
-import LocaleSwitcher from "./LocalSwitcher";
-import { ModeToggle } from "./ToogleTheme";
+import LocaleSwitcher from "../shared/LocalSwitcher";
+import { ModeToggle } from "../shared/ToogleTheme";
 import { Menu } from "lucide-react";
 
 type ValidRoutes = "/" | "/about" | "/career" | "/projects" | "/contact";
