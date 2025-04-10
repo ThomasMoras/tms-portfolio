@@ -12,6 +12,10 @@
     "detailButton": "Experience & Skills",
     "titleExpertises": "My Specialization"
   },
+  "Skills": {
+    "title": "Skills",
+    "description": ""
+  },
   "About": {
     "title": "About Me",
     "description": "👋 Hello everyone, I'm Thomas Moras, a software engineer and full-stack developer with six years of experience. Recently transitioned into blockchain development, I'm passionate about emerging technologies such as AI and blockchain 🤖. Originally from France, I currently live in Toronto and am looking for new opportunities in Web3, either in Toronto or remotely 🚀",

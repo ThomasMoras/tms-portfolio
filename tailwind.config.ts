@@ -7,6 +7,27 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Couleurs de fond pour les catégories
+    "bg-blue-500/10",
+    "bg-purple-500/10",
+    "bg-amber-500/10",
+    // Couleurs de texte pour les catégories
+    "text-blue-500",
+    "text-purple-500",
+    "text-amber-500",
+    // Couleurs pour les barres de progression
+    "bg-blue-500",
+    "bg-purple-500",
+    "bg-amber-500",
+    // Variantes dark mode (si utilisées)
+    "dark:bg-blue-800/30",
+    "dark:bg-purple-800/30",
+    "dark:bg-amber-800/30",
+    "dark:border-blue-800/30",
+    "dark:border-purple-800/30",
+    "dark:border-amber-800/30",
+  ],
   theme: {
     extend: {
       fontFamily: {
