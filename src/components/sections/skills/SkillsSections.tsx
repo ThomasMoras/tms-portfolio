@@ -85,8 +85,8 @@ const SkillsSection = () => {
                         </div>
                         {skill.name === "Rust" && (
                           <p className="text-sm text-muted-foreground mt-1">
-                            Je suis en phase d'apprentissage de Rust, avec pour
-                            objectif d'approfondir mes compétences en
+                            Je suis en phase d&apos;apprentissage de Rust, avec
+                            pour objectif d&apos;approfondir mes compétences en
                             programmation système et Web Assembly.
                           </p>
                         )}
@@ -152,8 +152,8 @@ const SkillsSection = () => {
                         </div>
                         {skill.name === "Rust" && (
                           <p className="text-sm text-muted-foreground mt-1">
-                            Je suis en phase d'apprentissage de Rust, avec pour
-                            objectif d'approfondir mes compétences en
+                            Je suis en phase d&apos;apprentissage de Rust, avec
+                            pour objectif d&apos;approfondir mes compétences en
                             programmation système et Web Assembly.
                           </p>
                         )}
