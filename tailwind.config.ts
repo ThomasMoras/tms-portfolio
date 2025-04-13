@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: ["class"],
@@ -83,5 +84,28 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        ".flip-card": {
+          perspective: "1500px",
+        },
+        ".flip-card-inner": {
+          transformStyle: "preserve-3d",
+          transition: "transform 0.7s",
+        },
+        ".flip-card-front": {
+          backfaceVisibility: "hidden",
+        },
+        ".flip-card-back": {
+          backfaceVisibility: "hidden",
+          transform: "rotateY(180deg)",
+        },
+        ".flip-rotate": {
+          transform: "rotateY(180deg)",
+        },
+      });
+    }),
+  ],
 } satisfies Config;

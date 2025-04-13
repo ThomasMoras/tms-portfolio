@@ -1,10 +1,12 @@
 export type ProfileData = {
-  fullName: string;
-  title: string;
-  avatarUrl: string;
+  FullName: string;
+  Title: string;
+  GhibliProfileUrl: string;
+  AvatarUrl: string;
   GitHubUrl: string;
   LinkedinUrl: string;
-  resumeUrl: string;
+  ResumeEnUrl: string;
+  ResumeFrUrl: string;
 };
 
 export type TypewriterItem = {
@@ -13,12 +15,14 @@ export type TypewriterItem = {
 };
 
 export const PROFILE: ProfileData = {
-  fullName: "John Doe", // Remplacez par votre nom
-  title: "Full Stack Developer",
-  avatarUrl: "/images/profile.jpg",
-  GitHubUrl: "https://github.com/yourusername",
-  LinkedinUrl: "https://linkedin.com/in/yourprofile",
-  resumeUrl: "/resume.pdf",
+  FullName: "Thomas Moras",
+  Title: "Full Stack Developer",
+  AvatarUrl: "/images/profile.jpg",
+  GhibliProfileUrl: "/images/ghibli/profile/2.jpg",
+  GitHubUrl: "https://github.com/ThomasMoras",
+  LinkedinUrl: "https://www.linkedin.com/in/thomas-moras-48006213b",
+  ResumeEnUrl: "/resume.pdf",
+  ResumeFrUrl: "/resume.pdf",
 };
 
 export const TYPEWRITER_STRINGS: TypewriterItem[] = [
