@@ -3,16 +3,17 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { FaGithub, FaLinkedin, FaArrowDown, FaEthereum } from "react-icons/fa";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { FaArrowDown } from "react-icons/fa";
 import { TbBrandReact, TbBrandNextjs, TbBrandTailwind } from "react-icons/tb";
 import { SiSolidity, SiTypescript, SiNodedotjs } from "react-icons/si";
-import TypeWriter from "@/components/shared/TypeWritter";
-import DownloadButton from "@/components/shared/DownloadButton";
-import { PROFILE, TYPEWRITER_STRINGS } from "@/constants/profile-data";
+import { ArrowRight } from "lucide-react";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
 import ProfilePicture from "@/components/sections/profile/ProfilePicture";
+import ProfileBio from "@/components/sections/profile/ProfileBio";
+import { TECH_CATEGORIES } from "@/constants/section-skills";
 
 const HomePage: React.FC = () => {
   const t = useTranslations("Home");
@@ -32,56 +33,7 @@ const HomePage: React.FC = () => {
 
           {/* Right side - Content */}
           <div className="w-full md:w-3/5">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3">{PROFILE.FullName}</h1>
-            <h2 className="text-2xl md:text-3xl text-primary font-bold mb-6">{PROFILE.Title}</h2>
-
-            <div className="flex flex-col items-start gap-2 mb-6">
-              <h3 className="text-xl md:text-2xl text-muted-foreground font-medium">I&apos;m a</h3>
-              <TypeWriter
-                strings={TYPEWRITER_STRINGS}
-                className="text-xl md:text-2xl font-bold text-primary"
-              />
-            </div>
-
-            <blockquote className="text-base md:text-lg italic relative px-6 mb-8">
-              <span className="absolute left-0 top-0 text-3xl text-primary leading-none">
-                &ldquo;
-              </span>
-              <p className="text-muted-foreground font-medium px-2">{t("citation")}</p>
-              <span className="absolute right-0 bottom-0 text-3xl text-primary leading-none">
-                &rdquo;
-              </span>
-            </blockquote>
-
-            <div className="flex gap-4 mb-8">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => window.open(PROFILE.GitHubUrl)}
-                className="hover:bg-slate-200 dark:hover:bg-slate-800"
-              >
-                <FaGithub className="w-6 h-6" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => window.open(PROFILE.LinkedinUrl)}
-                className="hover:bg-slate-200 dark:hover:bg-slate-800"
-              >
-                <FaLinkedin className="w-6 h-6 text-[#0A66C2]" />
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <DownloadButton name={t("resumeButton")} />
-              <Button
-                asChild
-                size="lg"
-                className="bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white shadow-md transition-colors"
-              >
-                <Link href="/about">{t("detailButton")}</Link>
-              </Button>
-            </div>
+            <ProfileBio />
           </div>
         </div>
 
@@ -97,7 +49,7 @@ const HomePage: React.FC = () => {
         </button>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills Section - Updated with TechStackPreview */}
       <section
         id="skills-section"
         ref={refs.skillsRef}
@@ -106,45 +58,57 @@ const HomePage: React.FC = () => {
         <div className="container max-w-6xl mx-auto px-4">
           <div className="mb-16 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Mes Expertises</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Des compétences pointues dans des domaines variés pour répondre aux défis techniques
-              modernes.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Frontend Category */}
-            <SkillCategory
-              title="Frontend"
-              description="Création d'interfaces modernes, interactives et responsive"
-              skills={["React", "Next.js", "TypeScript", "Tailwind CSS"]}
-              icon={<TbBrandReact className="w-8 h-8" />}
-              color="text-blue-500"
-              bgColor="bg-blue-100 dark:bg-blue-900/30"
-              linkHref="/projects?category=frontend"
-            />
+            {TECH_CATEGORIES.map((category, index) => (
+              <Card
+                key={index}
+                className="hover:shadow-lg transition-shadow overflow-hidden border border-border"
+              >
+                <CardContent className="p-0">
+                  <div
+                    className={`flex items-center gap-3 p-4 ${
+                      category.color.includes("bg-") ? category.color : category.bgColor
+                    }`}
+                  >
+                    <div className={`p-2 rounded-full ${category.color}`}>{category.icon}</div>
+                    <h3 className="text-xl font-semibold">{category.title}</h3>
+                  </div>
 
-            {/* Backend Category */}
-            <SkillCategory
-              title="Backend"
-              description="Architecture robuste et scalable pour vos applications"
-              skills={["Node.js", "Express", "GraphQL", "Bases de données"]}
-              icon={<SiNodedotjs className="w-8 h-8" />}
-              color="text-green-500"
-              bgColor="bg-green-100 dark:bg-green-900/30"
-              linkHref="/projects?category=backend"
-            />
+                  <div className="p-6">
+                    <p className="text-muted-foreground mb-6">
+                      {getDescriptionForCategory(category.title)}
+                    </p>
 
-            {/* Blockchain Category */}
-            <SkillCategory
-              title="Blockchain"
-              description="Solutions décentralisées pour les nouveaux défis du Web3"
-              skills={["Solidity", "Ethereum", "Smart Contracts", "DApps"]}
-              icon={<FaEthereum className="w-8 h-8" />}
-              color="text-purple-500"
-              bgColor="bg-purple-100 dark:bg-purple-900/30"
-              linkHref="/projects?category=blockchain"
-            />
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {category.techs.map((tech, techIndex) => (
+                        <Badge
+                          key={techIndex}
+                          variant={tech.learning ? "outline" : "secondary"}
+                          className={`flex items-center gap-1 ${
+                            tech.learning
+                              ? "border-amber-300 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-500"
+                              : ""
+                          }`}
+                        >
+                          <span className="text-xs">{tech.icon}</span>
+                          <span>{tech.name}</span>
+                          {tech.learning && <span className="text-[10px] italic">(en cours)</span>}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <Button asChild variant="outline" className="w-full justify-between">
+                      <Link href={category.link || `/skills?tab=${category.title.toLowerCase()}`}>
+                        Voir les détails
+                        <ArrowRight size={16} />
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
 
           <div className="mt-12 text-center">
@@ -207,12 +171,18 @@ const HomePage: React.FC = () => {
       <section className="py-16 bg-gradient-to-r from-primary/20 to-cyan-500/20 border-t border-b border-border">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            <TechIcon icon={<TbBrandReact className="w-10 h-10" />} name="React" />
-            <TechIcon icon={<TbBrandNextjs className="w-10 h-10" />} name="Next.js" />
-            <TechIcon icon={<SiTypescript className="w-10 h-10" />} name="TypeScript" />
-            <TechIcon icon={<TbBrandTailwind className="w-10 h-10" />} name="Tailwind" />
-            <TechIcon icon={<SiNodedotjs className="w-10 h-10" />} name="Node.js" />
-            <TechIcon icon={<SiSolidity className="w-10 h-10" />} name="Solidity" />
+            {/* We'll use the actual tech icons from each category */}
+            {TECH_CATEGORIES.flatMap((category) =>
+              category.techs
+                .filter((_, index) => index < 2) // Take just 2 techs from each category to avoid overcrowding
+                .map((tech, techIndex) => (
+                  <TechIcon
+                    key={`${category.title}-${techIndex}`}
+                    icon={tech.icon}
+                    name={tech.name}
+                  />
+                ))
+            )}
           </div>
         </div>
       </section>
@@ -236,52 +206,19 @@ const HomePage: React.FC = () => {
   );
 };
 
-interface SkillCategoryProps {
-  title: string;
-  description: string;
-  skills: string[];
-  icon: React.ReactNode;
-  color: string;
-  bgColor: string;
-  linkHref: string;
+// Helper function to get descriptions for categories from the original code
+function getDescriptionForCategory(title: string): string {
+  switch (title) {
+    case "Front-end":
+      return "Création d'interfaces modernes, interactives et responsive";
+    case "Back-end":
+      return "Architecture robuste et scalable pour vos applications";
+    case "Blockchain":
+      return "Solutions décentralisées pour les nouveaux défis du Web3";
+    default:
+      return "Technologies et compétences spécialisées";
+  }
 }
-
-// Skill Category Component
-const SkillCategory: React.FC<SkillCategoryProps> = ({
-  title,
-  description,
-  skills,
-  icon,
-  color,
-  bgColor,
-  linkHref,
-}) => {
-  return (
-    <div className="bg-card rounded-xl shadow-md border border-border overflow-hidden hover:shadow-lg transition-shadow">
-      <div className={`flex items-center gap-3 p-4 ${bgColor}`}>
-        <div className={`p-2 rounded-full ${color}`}>{icon}</div>
-        <h3 className="text-xl font-semibold">{title}</h3>
-      </div>
-
-      <div className="p-6">
-        <p className="text-muted-foreground mb-6">{description}</p>
-
-        <ul className="space-y-2 mb-6">
-          {skills.map((skill, index) => (
-            <li key={index} className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-              <span>{skill}</span>
-            </li>
-          ))}
-        </ul>
-
-        <Button asChild variant="outline" className="w-full">
-          <Link href={linkHref}>Voir projets {title}</Link>
-        </Button>
-      </div>
-    </div>
-  );
-};
 
 interface ProjectCardProps {
   title: string;

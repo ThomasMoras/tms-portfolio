@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { PROFILE } from "@/constants/profile-data";
+import { PROFILE } from "@/constants/profile";
 import { useGhibliMode } from "@/contexts/GhibliModeContext";
 
 type ProfilePictureProps = {

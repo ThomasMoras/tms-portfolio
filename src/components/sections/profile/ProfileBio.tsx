@@ -7,44 +7,33 @@ import { Button } from "@/components/ui/button";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import TypeWriter from "@/components/shared/TypeWritter";
 import DownloadButton from "@/components/shared/DownloadButton";
-import { PROFILE, TYPEWRITER_STRINGS } from "@/constants/profile-data";
+import { PROFILE, TYPEWRITER_STRINGS } from "@/constants/profile";
+import ProfileHeader from "./ProfileHeader";
 
 const ProfileBio: React.FC = () => {
   const t = useTranslations("Home");
 
   return (
     <div className="w-full flex flex-col">
-      <div className="flex flex-col items-start gap-2 mb-6">
-        <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-bold">
-          I&apos;m a
-        </h2>
-        <TypeWriter
-          strings={TYPEWRITER_STRINGS}
-          className="text-xl md:text-2xl lg:text-3xl font-bold"
-        />
-      </div>
+      <ProfileHeader />
 
-      <blockquote className="text-base md:text-lg italic relative px-4 md:px-6 mb-6">
-        <span className="absolute left-0 top-0 text-2xl md:text-3xl text-primary leading-none">
-          &ldquo;
-        </span>
-        <p className="text-muted-foreground font-medium px-2">
-          {t("citation")}
-        </p>
-        <span className="absolute right-0 bottom-0 text-2xl md:text-3xl text-primary leading-none">
-          &rdquo;
-        </span>
-      </blockquote>
+      <p className="text-base text-muted-foreground">{t("description")}</p>
 
-      <div className="flex gap-4 mb-6">
-        <SocialButton
-          icon={<FaGithub className="w-6 h-6" />}
-          url={PROFILE.GitHubUrl}
-        />
-        <SocialButton
-          icon={<FaLinkedin className="w-6 h-6 text-[#0A66C2]" />}
-          url={PROFILE.LinkedinUrl}
-        />
+      <div className="flex gap-4 mb-8">
+        <Button
+          variant="ghost"
+          className="p-3 h-auto w-auto hover:bg-slate-200 dark:hover:bg-slate-800"
+          onClick={() => window.open(PROFILE.GitHubUrl)}
+        >
+          <FaGithub className="w-8 h-8" />
+        </Button>
+        <Button
+          variant="ghost"
+          className="p-3 h-auto w-auto hover:bg-slate-200 dark:hover:bg-slate-800"
+          onClick={() => window.open(PROFILE.LinkedinUrl)}
+        >
+          <FaLinkedin className="w-16 h-16 text-[#0A66C2]" />
+        </Button>
       </div>
 
       <div className="flex flex-wrap gap-4">
@@ -70,9 +59,8 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, url }) => {
   return (
     <Button
       variant="ghost"
-      size="icon"
+      className="p-3 h-auto w-auto hover:bg-slate-200 dark:hover:bg-slate-800"
       onClick={() => window.open(url)}
-      className="hover:bg-slate-200 dark:hover:bg-slate-800"
     >
       {icon}
     </Button>

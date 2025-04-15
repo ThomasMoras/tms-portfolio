@@ -22,9 +22,7 @@ const SkillsSection = () => {
         <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl">
-              {t("description")}
-            </p>
+            <p className="text-muted-foreground mt-2 max-w-2xl">{t("description")}</p>
           </div>
         </div>
 
@@ -41,14 +39,10 @@ const SkillsSection = () => {
               <Card key={category.id} className="overflow-hidden">
                 <CardContent className="p-0">
                   <div
-                    className={`flex items-center gap-3 p-4 border-b ${safeCss(
-                      category.bgColor
-                    )}`}
+                    className={`flex items-center gap-3 p-4 border-b ${safeCss(category.bgColor)}`}
                   >
                     <div className="bg-background p-2 rounded-full">
-                      <span className={safeCss(category.color)}>
-                        {safeIcon(category.icon)}
-                      </span>
+                      <span className={safeCss(category.color)}>{safeIcon(category.icon)}</span>
                     </div>
                     <h3 className="text-xl font-semibold">{category.title}</h3>
                   </div>
@@ -58,9 +52,7 @@ const SkillsSection = () => {
                       <div key={skill.name} className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className={safeCss(category.color)}>
-                              {safeIcon(skill.icon)}
-                            </span>
+                            <span className={safeCss(category.color)}>{safeIcon(skill.icon)}</span>
                             <span className="font-medium">{skill.name}</span>
                             {skill.learning && (
                               <span className="text-xs px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full">
@@ -69,25 +61,22 @@ const SkillsSection = () => {
                             )}
                           </div>
                           <span className="text-sm text-muted-foreground">
-                            {SKILL_LEVELS[skill.level]?.label || skill.level} -{" "}
-                            {skill.percentage}%
+                            {SKILL_LEVELS[skill.level]?.label || skill.level} - {skill.percentage}%
                           </span>
                         </div>
                         <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
                           <div
                             className={`h-2.5 rounded-full ${
-                              skill.learning
-                                ? "bg-amber-500"
-                                : safeCss(category.progressColor)
+                              skill.learning ? "bg-amber-500" : safeCss(category.progressColor)
                             }`}
                             style={{ width: `${skill.percentage}%` }}
                           />
                         </div>
                         {skill.name === "Rust" && (
                           <p className="text-sm text-muted-foreground mt-1">
-                            Je suis en phase d&apos;apprentissage de Rust, avec
-                            pour objectif d&apos;approfondir mes compétences en
-                            programmation système et Web Assembly.
+                            Je suis en phase d&apos;apprentissage de Rust, avec pour objectif
+                            d&apos;approfondir mes compétences en programmation système et Web
+                            Assembly.
                           </p>
                         )}
                       </div>
@@ -100,22 +89,14 @@ const SkillsSection = () => {
 
           {/* Contenu pour chaque catégorie individuelle */}
           {SKILL_CATEGORIES.map((category) => (
-            <TabsContent
-              key={category.id}
-              value={category.id}
-              className="space-y-6"
-            >
+            <TabsContent key={category.id} value={category.id} className="space-y-6">
               <Card className="overflow-hidden">
                 <CardContent className="p-0">
                   <div
-                    className={`flex items-center gap-3 p-4 border-b ${safeCss(
-                      category.bgColor
-                    )}`}
+                    className={`flex items-center gap-3 p-4 border-b ${safeCss(category.bgColor)}`}
                   >
                     <div className="bg-background p-2 rounded-full">
-                      <span className={safeCss(category.color)}>
-                        {safeIcon(category.icon)}
-                      </span>
+                      <span className={safeCss(category.color)}>{safeIcon(category.icon)}</span>
                     </div>
                     <h3 className="text-xl font-semibold">{category.title}</h3>
                   </div>
@@ -125,9 +106,7 @@ const SkillsSection = () => {
                       <div key={skill.name} className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className={safeCss(category.color)}>
-                              {safeIcon(skill.icon)}
-                            </span>
+                            <span className={safeCss(category.color)}>{safeIcon(skill.icon)}</span>
                             <span className="font-medium">{skill.name}</span>
                             {skill.learning && (
                               <span className="text-xs px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full">
@@ -136,25 +115,22 @@ const SkillsSection = () => {
                             )}
                           </div>
                           <span className="text-sm text-muted-foreground">
-                            {SKILL_LEVELS[skill.level]?.label || skill.level} -{" "}
-                            {skill.percentage}%
+                            {SKILL_LEVELS[skill.level]?.label || skill.level} - {skill.percentage}%
                           </span>
                         </div>
                         <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
                           <div
                             className={`h-3 rounded-full ${
-                              skill.learning
-                                ? "bg-amber-500"
-                                : safeCss(category.progressColor)
+                              skill.learning ? "bg-amber-500" : safeCss(category.progressColor)
                             }`}
                             style={{ width: `${skill.percentage}%` }}
                           />
                         </div>
                         {skill.name === "Rust" && (
                           <p className="text-sm text-muted-foreground mt-1">
-                            Je suis en phase d&apos;apprentissage de Rust, avec
-                            pour objectif d&apos;approfondir mes compétences en
-                            programmation système et Web Assembly.
+                            Je suis en phase d&apos;apprentissage de Rust, avec pour objectif
+                            d&apos;approfondir mes compétences en programmation système et Web
+                            Assembly.
                           </p>
                         )}
                       </div>
