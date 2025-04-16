@@ -1,73 +1,63 @@
 "use client";
 
 import React from "react";
-import { SKILL_CATEGORIES } from "@/constants/section-skills";
+import { TECH_CATEGORIES } from "@/constants/skillsConstants";
+import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { TechCategory, TechItem } from "@/types/skillsTypes";
 
-const TechBanner: React.FC = () => {
+const TechBanner = () => {
   return (
-    <div className="w-full py-6">
-      <div className="container max-w-6xl mx-auto px-4">
-        <Card className="shadow-md border overflow-hidden">
-          <CardContent className="p-0">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold">Technologies principales</h3>
-              <Link
-                href="/skills"
-                className="text-sm text-primary hover:underline flex items-center"
-              >
-                Voir toutes mes compétences
-                <ArrowRight size={14} className="ml-1" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
-              {SKILL_CATEGORIES.map((category) => {
-                // Get top 3 skills by percentage (non-learning)
-                const topSkills = category.skills
-                  .filter((skill) => !skill.learning)
-                  .sort((a, b) => b.percentage - a.percentage)
-                  .slice(0, 3);
-
-                return (
-                  <div key={category.id} className="p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className={cn("p-1.5 rounded-full", category.bgColor)}>
-                        <div className={category.color}>{category.icon}</div>
-                      </div>
-                      <h3 className="font-medium">{category.title}</h3>
+    <div className="container mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {TECH_CATEGORIES.map((category: TechCategory, index: number) => {
+          return (
+            <Card
+              key={index}
+              className="hover:shadow-lg transition-all duration-300 overflow-hidden border border-border hover:translate-y-[-5px]"
+            >
+              <CardContent className="p-0">
+                <Link
+                  href={category.link || `/skills?tab=${category.title.toLowerCase()}`}
+                  className="block"
+                >
+                  <div className={`flex items-center gap-2 p-2 ${category.color}`}>
+                    <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <span className="text-xl">{category.icon}</span>
                     </div>
-
-                    <div className="space-y-3">
-                      {topSkills.map((skill) => (
-                        <div key={skill.name} className="flex items-center justify-between group">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm">{skill.icon}</span>
-                            <span>{skill.name}</span>
-                          </div>
-                          <Badge
-                            variant="outline"
-                            className={cn(
-                              "text-xs font-normal",
-                              category.color.replace("text-", "border-").replace("-500", "-200"),
-                              category.color
-                            )}
-                          >
-                            {skill.percentage}%
-                          </Badge>
-                        </div>
-                      ))}
-                    </div>
+                    <h3 className="text-xl font-semibold">{category.title}</h3>
+                    <ExternalLink className="ml-auto" size={18} />
                   </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+                </Link>
+
+                <div className="p-6">
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    {category.techs.map((tech: TechItem, techIndex: number) => (
+                      <div
+                        key={techIndex}
+                        className="flex flex-col items-center gap-2 px-3 rounded-lg transition-transform duration-200 hover:scale-110"
+                      >
+                        <div
+                          style={{ color: tech.color }}
+                          className="flex items-center justify-center"
+                        >
+                          {tech.icon}
+                        </div>
+                        <span className="text-sm font-medium text-center">{tech.name}</span>
+                        {tech.learning && (
+                          <span className="text-xs bg-amber-200 dark:bg-amber-800/50 text-amber-800 dark:text-amber-300 rounded-full">
+                            learning
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

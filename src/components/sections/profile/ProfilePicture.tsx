@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { PROFILE } from "@/constants/profile";
 import { useGhibliMode } from "@/contexts/GhibliModeContext";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 type ProfilePictureProps = {
   className?: string;
@@ -51,6 +52,14 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ className = "" }) => {
                 className="object-cover rounded-2xl border-4 border-background transition-transform hover:scale-105"
               />
             </div>
+          </div>
+        </div>
+        <div className="flex flex-row justify-center">
+          <div className="cursor-pointer p-3" onClick={() => window.open(PROFILE.GitHubUrl)}>
+            <FaGithub className="w-10 h-10 transition-all duration-300 ease-in-out hover:scale-125" />
+          </div>
+          <div className="cursor-pointer p-3" onClick={() => window.open(PROFILE.LinkedinUrl)}>
+            <FaLinkedin className="w-10 h-10 text-[#0A66C2] transition-all duration-300 ease-in-out hover:scale-125" />
           </div>
         </div>
       </div>

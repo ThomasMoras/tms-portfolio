@@ -1,37 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { FaArrowDown, FaGithub, FaStar } from "react-icons/fa";
 import { ArrowRight, Clock, Code, GitCommit } from "lucide-react";
-import { useActiveSection } from "@/contexts/ActiveSectionContext";
 import ProfilePicture from "@/components/sections/profile/ProfilePicture";
 import ProfileBio from "@/components/sections/profile/ProfileBio";
-import { TECH_CATEGORIES } from "@/constants/section-skills";
 import TechBanner from "@/components/shared/TechBanner";
-import OtherTechBanner from "@/components/shared/OtherTechBanner";
-import TypeWriter from "@/components/shared/TypeWritter";
-import { TYPEWRITER_STRINGS } from "@/constants/profile";
-
-// GitHub activity interface
-interface GitHubActivity {
-  totalStars: number;
-  totalContributions: number;
-  recentCommits: {
-    repo: string;
-    message: string;
-    date: string;
-    url: string;
-  }[];
-  loading: boolean;
-}
+import { GitHubActivity } from "@/types/githubTypes";
+import { useActiveSection } from "@/contexts/ActiveSectionContext";
+import ProfileHeader from "@/components/sections/profile/ProfileHeader";
 
 const HomePage: React.FC = () => {
-  const t = useTranslations("Home");
   const { refs } = useActiveSection();
 
   // State for GitHub activity
@@ -79,33 +61,37 @@ const HomePage: React.FC = () => {
     fetchGitHubData();
   }, []);
 
-  // Selected top technologies (showing your strongest skills)
-  const topTechnologies = TECH_CATEGORIES.flatMap((category) =>
-    category.techs.filter((tech) => !tech.learning).slice(0, 2)
-  ).slice(0, 6);
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section
         id="home-section"
         ref={refs.homeRef}
-        className="min-h-screen flex flex-col pt-24 pb-10 items-center relative px-4"
+        className="min-h-screen flex flex-col md:pt-16 pb-10 items-center relative px-4 md:px-6"
       >
-        <div className="container max-w-full mx-auto flex flex-col md:flex-row gap-8">
-          {/* Left side - Profile Image */}
-          <div className="w-full md:w-1/5 justify-items-center">
-            <ProfilePicture className="" />
+        <div className="w-full max-w-6xl mx-auto">
+          {/* Mobile Header (above image) */}
+          <div className="md:hidden md:mb-0">
+            <ProfileHeader />
           </div>
 
-          {/* Right side - Content */}
-          <div className="w-full md:w-3/5">
-            <ProfileBio />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="col-span-1 flex items-center justify-center">
+              <ProfilePicture />
+            </div>
+            <div className="col-span-1 md:col-span-2 flex flex-col justify-between text-center md:text-left">
+              {/* Desktop Header (beside image) - hidden on mobile */}
+              <div className="hidden md:block">
+                <ProfileHeader />
+              </div>
+              <div className="mt-8 md:mt-0">
+                <ProfileBio />
+              </div>
+            </div>
+            <div className="col-span-1 md:col-span-3 mt-10 md:mt-20">
+              <TechBanner />
+            </div>
           </div>
-        </div>
-
-        <div className="mt-2">
-          <OtherTechBanner />
         </div>
 
         {/* Scroll down indicator */}
@@ -123,40 +109,44 @@ const HomePage: React.FC = () => {
       {/* GitHub Activity Section */}
       <section
         id="github-section"
-        className="py-16 bg-slate-50 dark:bg-slate-900/50 border-t border-border"
+        className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 border-t border-border"
       >
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Mon Activité GitHub</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+        <div className="container max-w-6xl mx-auto px-4 md:px-6">
+          <div className="mb-8 md:mb-12 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
+              Mon Activité GitHub
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
               Un aperçu de ma contribution au code source et de mes projets open-source.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {/* Stats Card */}
             <Card className="border border-border hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-semibold">Statistiques</h3>
-                  <FaGithub className="w-6 h-6 text-muted-foreground" />
+                  <h3 className="text-lg md:text-xl font-semibold">Statistiques</h3>
+                  <FaGithub className="w-5 h-5 md:w-6 md:h-6 text-muted-foreground" />
                 </div>
 
                 {githubActivity.loading ? (
-                  <div className="flex justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <div className="flex justify-center py-6 md:py-8">
+                    <div className="animate-spin rounded-full h-6 w-6 md:h-8 md:w-8 border-b-2 border-primary"></div>
                   </div>
                 ) : (
-                  <div className="space-y-4">
+                  <div className="space-y-3 md:space-y-4">
                     <div className="flex items-center gap-2">
                       <FaStar className="text-amber-400" />
                       <span className="font-medium">{githubActivity.totalStars}</span>
-                      <span className="text-muted-foreground text-sm">Étoiles</span>
+                      <span className="text-muted-foreground text-xs md:text-sm">Étoiles</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <GitCommit className="text-green-500" size={18} />
                       <span className="font-medium">{githubActivity.totalContributions}</span>
-                      <span className="text-muted-foreground text-sm">Contributions en 2024</span>
+                      <span className="text-muted-foreground text-xs md:text-sm">
+                        Contributions en 2024
+                      </span>
                     </div>
                     <Button variant="outline" size="sm" className="w-full mt-2" asChild>
                       <Link href="https://github.com/your-username" target="_blank">
@@ -170,32 +160,34 @@ const HomePage: React.FC = () => {
 
             {/* Recent Commits */}
             <Card className="border border-border hover:shadow-md transition-shadow md:col-span-2">
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-semibold">Commits Récents</h3>
-                  <Code className="w-5 h-5 text-muted-foreground" />
+                  <h3 className="text-lg md:text-xl font-semibold">Commits Récents</h3>
+                  <Code className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
                 </div>
 
                 {githubActivity.loading ? (
-                  <div className="flex justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <div className="flex justify-center py-6 md:py-8">
+                    <div className="animate-spin rounded-full h-6 w-6 md:h-8 md:w-8 border-b-2 border-primary"></div>
                   </div>
                 ) : (
-                  <div className="space-y-4">
+                  <div className="space-y-3 md:space-y-4">
                     {githubActivity.recentCommits.map((commit, index) => (
                       <Link
                         key={index}
                         href={commit.url}
                         target="_blank"
-                        className="block p-3 rounded-md border border-border hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
+                        className="block p-2 md:p-3 rounded-md border border-border hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
                       >
-                        <div className="flex items-start justify-between">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                           <div>
-                            <p className="font-medium">{commit.message}</p>
-                            <p className="text-sm text-muted-foreground mt-1">{commit.repo}</p>
+                            <p className="font-medium text-sm md:text-base">{commit.message}</p>
+                            <p className="text-xs md:text-sm text-muted-foreground mt-1">
+                              {commit.repo}
+                            </p>
                           </div>
-                          <div className="flex items-center text-xs text-muted-foreground">
-                            <Clock size={12} className="mr-1" />
+                          <div className="flex items-center text-xs text-muted-foreground whitespace-nowrap">
+                            <Clock size={12} className="mr-1 flex-shrink-0" />
                             {commit.date}
                           </div>
                         </div>
@@ -208,7 +200,7 @@ const HomePage: React.FC = () => {
                         target="_blank"
                       >
                         Voir tous mes projets
-                        <ArrowRight size={16} />
+                        <ArrowRight size={14} className="md:size-16" />
                       </Link>
                     </Button>
                   </div>
@@ -217,14 +209,14 @@ const HomePage: React.FC = () => {
             </Card>
           </div>
 
-          <div className="mt-10 text-center">
+          <div className="mt-8 md:mt-10 text-center">
             <Button
               onClick={() =>
                 document.getElementById("skills-section")?.scrollIntoView({ behavior: "smooth" })
               }
-              className="bg-primary/10 hover:bg-primary/20 text-primary font-medium"
+              className="bg-primary/10 hover:bg-primary/20 text-primary font-medium text-sm md:text-base"
             >
-              Découvrir mes expertises <FaArrowDown className="ml-2 w-4 h-4" />
+              Découvrir mes expertises <FaArrowDown className="ml-2 w-3 h-3 md:w-4 md:h-4" />
             </Button>
           </div>
         </div>
@@ -234,24 +226,26 @@ const HomePage: React.FC = () => {
       <section
         id="skills-section"
         ref={refs.skillsRef}
-        className="py-20 border-t border-border"
+        className="py-12 md:py-20 border-t border-border"
       ></section>
 
       {/* Projects Section Preview */}
       <section
         id="projects-section"
         ref={refs.projectsRef}
-        className="py-20 bg-slate-50 dark:bg-slate-900/50 border-t border-border"
+        className="py-12 md:py-20 bg-slate-50 dark:bg-slate-900/50 border-t border-border"
       >
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Projets Récents</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+        <div className="container max-w-6xl mx-auto px-4 md:px-6">
+          <div className="mb-10 md:mb-16 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
+              Projets Récents
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
               Une sélection de mes réalisations les plus pertinentes dans différents domaines.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Project Cards would go here - simplified for brevity */}
             <ProjectCard
               title="DeFi Platform"
@@ -276,7 +270,7 @@ const HomePage: React.FC = () => {
             />
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-8 md:mt-12 text-center">
             <Button asChild className="bg-primary hover:bg-primary/90 text-white">
               <Link href="/projects">Voir tous mes projets</Link>
             </Button>
@@ -285,11 +279,13 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Contact CTA Section */}
-      <section id="contact-section" ref={refs.contactRef} className="py-20">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="bg-card rounded-2xl p-8 md:p-12 shadow-xl border border-border max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Un projet en tête ?</h2>
-            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+      <section id="contact-section" ref={refs.contactRef} className="py-12 md:py-20">
+        <div className="container max-w-6xl mx-auto px-4 md:px-6">
+          <div className="bg-card rounded-lg md:rounded-2xl p-6 md:p-12 shadow-lg md:shadow-xl border border-border max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
+              Un projet en tête ?
+            </h2>
+            <p className="text-muted-foreground mb-6 md:mb-8 max-w-lg mx-auto text-sm md:text-base">
               Je suis disponible pour discuter de vos projets et vous aider à les concrétiser avec
               les meilleures technologies.
             </p>
@@ -312,29 +308,29 @@ interface ProjectCardProps {
 }
 
 // Project Card Component
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, category, tech, image, href }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, category, tech, href }) => {
   return (
     <div>
       <Link href={href} className="block">
         <div className="bg-card rounded-xl overflow-hidden shadow-md border border-border hover:shadow-lg transition-all hover:translate-y-[-5px]">
-          <div className="h-48 relative bg-slate-200 dark:bg-slate-800">
+          <div className="h-40 md:h-48 relative bg-slate-200 dark:bg-slate-800">
             {/* Image would go here in production */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-muted-foreground">Image Preview</span>
+              <span className="text-muted-foreground text-xs md:text-sm">Image Preview</span>
             </div>
           </div>
 
-          <div className="p-6">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-3">
+          <div className="p-4 md:p-6">
+            <span className="inline-block px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-2 md:mb-3">
               {category}
             </span>
-            <h3 className="text-xl font-bold mb-2">{title}</h3>
+            <h3 className="text-lg md:text-xl font-bold mb-2">{title}</h3>
 
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-1 md:gap-2 mt-3 md:mt-4">
               {tech.map((item, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
+                  className="px-2 py-0.5 md:py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
                 >
                   {item}
                 </span>
@@ -343,21 +339,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, category, tech, image,
           </div>
         </div>
       </Link>
-    </div>
-  );
-};
-
-interface TechIconProps {
-  icon: React.ReactNode;
-  name: string;
-}
-
-// Tech Icon Component
-const TechIcon: React.FC<TechIconProps> = ({ icon, name }) => {
-  return (
-    <div className="flex flex-col items-center hover:scale-110 transition-transform">
-      <div className="text-muted-foreground hover:text-primary transition-colors">{icon}</div>
-      <span className="mt-2 text-sm font-medium">{name}</span>
     </div>
   );
 };

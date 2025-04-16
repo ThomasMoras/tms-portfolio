@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 
 export type SkillLevel = "beginner" | "intermediate" | "advanced" | "expert";
 
-// Type pour les données sans JSX
 export type SkillCategoryData = {
   id: string;
   title: string;
@@ -19,6 +18,7 @@ export type SkillData = {
   level: SkillLevel;
   percentage: number;
   learning?: boolean;
+  color: string;
 };
 
 export type TechCategoryData = {
@@ -33,10 +33,11 @@ export type TechItemData = {
   name: string;
   iconType: string;
   learning?: boolean;
+  color: string;
 };
 
-// Types pour TechStackPreview
 export type TechItem = {
+  color: string;
   name: string;
   icon: ReactNode;
   learning?: boolean;
@@ -50,7 +51,6 @@ export type TechCategory = {
   techs: TechItem[];
 };
 
-// Types pour SkillsSection
 export type Skill = {
   name: string;
   icon: ReactNode;
@@ -74,7 +74,6 @@ export type SkillLevelInfo = {
   range: [number, number];
 };
 
-// Type pour les données GitHub (pour utilisation future)
 export type GithubSkill = {
   name: string;
   proficiency: number;

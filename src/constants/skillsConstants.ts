@@ -1,4 +1,4 @@
-import { mapSkillData, mapTechData } from "@/lib/skills-mapper";
+import { mapSkillData, mapTechData } from "@/lib/mapper";
 import {
   SkillCategory,
   SkillCategoryData,
@@ -6,7 +6,7 @@ import {
   SkillLevelInfo,
   TechCategory,
   TechCategoryData,
-} from "@/types/section-skills";
+} from "@/types/skillsTypes";
 
 // Informations sur les niveaux de compétence
 export const SKILL_LEVELS: Record<SkillLevel, SkillLevelInfo> = {
@@ -16,7 +16,7 @@ export const SKILL_LEVELS: Record<SkillLevel, SkillLevelInfo> = {
   expert: { label: "Expert", range: [91, 100] },
 };
 
-// Catégories de technologie pour TechStackPreview (sans JSX)
+// Catégories de technologie pour TechStackPreview
 export const TECH_CATEGORIES_DATA: TechCategoryData[] = [
   {
     title: "Back-end",
@@ -24,11 +24,27 @@ export const TECH_CATEGORIES_DATA: TechCategoryData[] = [
     color: "bg-blue-500/10 text-blue-500 border-blue-200 dark:border-blue-800/30",
     link: "/skills?tab=backend",
     techs: [
-      { name: "Node.js", iconType: "nodejs" },
-      { name: "Express", iconType: "server" },
-      { name: "API REST", iconType: "arrow-right" },
-      { name: "Rust", iconType: "rust", learning: true },
-      { name: "Docker", iconType: "docker" },
+      {
+        name: "Node.js",
+        iconType: "nodejs",
+        color: "#339933",
+      },
+      {
+        name: "Express",
+        iconType: "server",
+        color: "#000000",
+      },
+      {
+        name: "Rust",
+        iconType: "rust",
+        learning: true,
+        color: "#000000",
+      },
+      {
+        name: "Docker",
+        iconType: "docker",
+        color: "#2496ED",
+      },
     ],
   },
   {
@@ -37,10 +53,26 @@ export const TECH_CATEGORIES_DATA: TechCategoryData[] = [
     color: "bg-purple-500/10 text-purple-500 border-purple-200 dark:border-purple-800/30",
     link: "/skills?tab=frontend",
     techs: [
-      { name: "React", iconType: "react" },
-      { name: "Next.js", iconType: "nextjs" },
-      { name: "TypeScript", iconType: "typescript" },
-      { name: "Tailwind CSS", iconType: "tailwind" },
+      {
+        name: "React",
+        iconType: "react",
+        color: "#61DAFB",
+      },
+      {
+        name: "Next.js",
+        iconType: "nextjs",
+        color: "#000000",
+      },
+      {
+        name: "TypeScript",
+        iconType: "typescript",
+        color: "#3178C6",
+      },
+      {
+        name: "Tailwind CSS",
+        iconType: "tailwind",
+        color: "#06B6D4",
+      },
     ],
   },
   {
@@ -49,15 +81,31 @@ export const TECH_CATEGORIES_DATA: TechCategoryData[] = [
     color: "bg-amber-500/10 text-amber-500 border-amber-200 dark:border-amber-800/30",
     link: "/skills?tab=blockchain",
     techs: [
-      { name: "Solidity", iconType: "solidity" },
-      { name: "EVM", iconType: "binary" },
-      { name: "Hardhat", iconType: "hardhat" },
-      { name: "Web3.js", iconType: "code" },
+      {
+        name: "Solidity",
+        iconType: "solidity",
+        color: "#363636",
+      },
+      {
+        name: "EVM",
+        iconType: "binary",
+        color: "#3C3C3D",
+      },
+      {
+        name: "Hardhat",
+        iconType: "hardhat",
+        color: "#F6851B",
+      },
+      {
+        name: "Web3.js",
+        iconType: "code",
+        color: "#F6851B",
+      },
     ],
   },
 ];
 
-// Catégories de compétences pour SkillsSection (sans JSX)
+// Catégories de compétences pour SkillsSection
 export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
   {
     id: "backend",
@@ -72,24 +120,28 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         iconType: "nodejs",
         level: "advanced",
         percentage: 85,
+        color: "#339933",
       },
       {
         name: "Express",
         iconType: "server",
         level: "advanced",
         percentage: 80,
+        color: "#000000",
       },
       {
         name: "PostgreSQL",
         iconType: "postgresql",
         level: "intermediate",
         percentage: 70,
+        color: "#4169E1",
       },
       {
         name: "MongoDB",
         iconType: "mongodb",
         level: "intermediate",
         percentage: 75,
+        color: "#47A248",
       },
       {
         name: "Rust",
@@ -97,12 +149,14 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "beginner",
         percentage: 30,
         learning: true,
+        color: "#000000",
       },
       {
         name: "Docker",
         iconType: "docker",
         level: "intermediate",
         percentage: 60,
+        color: "#2496ED",
       },
     ],
   },
@@ -114,26 +168,41 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
     bgColor: "bg-purple-500/10",
     progressColor: "bg-purple-500",
     skills: [
-      { name: "React", iconType: "react", level: "advanced", percentage: 90 },
+      {
+        name: "React",
+        iconType: "react",
+        level: "advanced",
+        percentage: 90,
+        color: "#61DAFB",
+      },
       {
         name: "Next.js",
         iconType: "nextjs",
         level: "advanced",
         percentage: 75,
+        color: "#000000",
       },
       {
         name: "TypeScript",
         iconType: "typescript",
         level: "advanced",
         percentage: 80,
+        color: "#3178C6",
       },
       {
         name: "Tailwind CSS",
         iconType: "tailwind",
         level: "advanced",
         percentage: 85,
+        color: "#06B6D4",
       },
-      { name: "Git", iconType: "git", level: "advanced", percentage: 85 },
+      {
+        name: "Git",
+        iconType: "git",
+        level: "advanced",
+        percentage: 85,
+        color: "#F05032",
+      },
     ],
   },
   {
@@ -149,24 +218,28 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         iconType: "solidity",
         level: "advanced",
         percentage: 75,
+        color: "#363636",
       },
       {
         name: "EVM",
         iconType: "binary",
         level: "intermediate",
         percentage: 70,
+        color: "#3C3C3D",
       },
       {
         name: "Hardhat",
         iconType: "hardhat",
         level: "intermediate",
         percentage: 65,
+        color: "#F6851B",
       },
       {
         name: "Web3.js",
         iconType: "code",
         level: "intermediate",
         percentage: 60,
+        color: "#F6851B",
       },
     ],
   },

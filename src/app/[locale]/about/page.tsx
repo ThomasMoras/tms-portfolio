@@ -1,4 +1,4 @@
-import AboutSection from "@/components/sections/About";
+import AboutSection from "@/components/not-used/About";
 import React from "react";
 
 const page = () => {
