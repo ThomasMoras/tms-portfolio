@@ -3,13 +3,23 @@ export interface GitHubCommit {
   message: string;
   date: string;
   url: string;
+  language?: string | null;
+  description?: string | null;
+}
+
+export interface LanguageStat {
+  name: string;
+  count: number;
 }
 
 export interface GitHubActivity {
   totalStars: number;
   totalContributions: number;
   recentCommits: GitHubCommit[];
+  repoCount?: number;
+  topLanguages?: LanguageStat[];
   loading: boolean;
+  error?: string;
 }
 
 export interface GitHubRepository {

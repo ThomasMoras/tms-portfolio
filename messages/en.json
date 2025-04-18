@@ -17,8 +17,18 @@
     "description": "Hello everyone 👋 I'm a software engineer and full-stack developer with six years of experience. Recently transitioned into blockchain development, I'm passionate about emerging technologies such as AI and blockchain 🤖. Originally from France, I currently live in Toronto and am looking for new opportunities in Web3, either in Toronto or remotely 🚀"
   },
   "Contributions": {
-    "title": "",
-    "description": ""
+    "title": "Mon Activité GitHub",
+    "subtitle": "Un aperçu de ma contribution au code source et de mes projets open-source.",
+    "statsTitle": "Statistiques",
+    "recentCommits": "Commits Récents",
+    "stars": "Étoiles",
+    "contributions": "Contributions en 2024",
+    "repositories": "Dépôts",
+    "viewProfile": "Voir mon profil GitHub",
+    "viewAllProjects": "Voir tous mes projets",
+    "topLanguages": "Langages principaux",
+    "errorMessage": "Erreur de chargement",
+    "noCommits": "Aucun commit récent disponible"
   },
   "Skills": {
     "title": "Skills",

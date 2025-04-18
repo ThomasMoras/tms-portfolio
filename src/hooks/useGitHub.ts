@@ -1,3 +1,4 @@
+// hooks/useGitHub.ts
 import { useState, useEffect } from "react";
 import { GitHubActivity } from "@/types/githubTypes";
 
@@ -6,22 +7,37 @@ export function useGitHub() {
     totalStars: 0,
     totalContributions: 0,
     recentCommits: [],
+    repoCount: 0,
+    topLanguages: [],
     loading: true,
+    error: undefined,
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("call api !");
+        console.log("Fetching GitHub data...");
         const response = await fetch("/api/github");
+
         if (!response.ok) {
-          throw new Error("Failed to fetch GitHub data");
+          const errorData = await response.json();
+          throw new Error(errorData.message || `API error: ${response.status}`);
         }
+
         const data = await response.json();
-        setActivity(data);
+        console.log("GitHub data received:", data);
+
+        setActivity({
+          ...data,
+          loading: false,
+        });
       } catch (error) {
-        console.error("Error:", error);
-        setActivity((prev) => ({ ...prev, loading: false }));
+        console.error("Error fetching GitHub data:", error);
+        setActivity((prev) => ({
+          ...prev,
+          loading: false,
+          error: error instanceof Error ? error.message : "Unknown error",
+        }));
       }
     };
 

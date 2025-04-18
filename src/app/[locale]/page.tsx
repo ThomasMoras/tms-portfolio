@@ -19,7 +19,6 @@ const HomePage: React.FC = () => {
         className="min-h-screen flex flex-col md:pt-16 pb-10 items-center relative px-4 md:px-6"
       >
         <Home></Home>
-
         <ScrollDown sectionName="github-section"></ScrollDown>
       </section>
 
@@ -30,6 +29,7 @@ const HomePage: React.FC = () => {
         className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 border-t border-border"
       >
         <Contributions></Contributions>
+        <ScrollDown sectionName="skills-section"></ScrollDown>
       </section>
 
       {/* Skills Section */}
