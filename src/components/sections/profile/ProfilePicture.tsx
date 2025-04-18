@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { PROFILE } from "@/constants/profile";
+import { PROFILE } from "@/constants/profileConstants";
 import { useGhibliMode } from "@/contexts/GhibliModeContext";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 

@@ -2,7 +2,7 @@
   "Navbar": {
     "about": "À propos",
     "home": "Accueil",
-    "contributions": "Contributions",
+    "github": "Contributions",
     "skills": "Compétences",
     "career": "Carrière",
     "projects": "Projets",
@@ -13,6 +13,10 @@
     "resumeButton": "Mon CV",
     "detailButton": "Mon parcours & Compétences",
     "titleExpertises": "Ma spécialisation"
+  },
+  "Contributions": {
+    "title": "",
+    "description": ""
   },
   "Skills": {
     "title": "Compétences",

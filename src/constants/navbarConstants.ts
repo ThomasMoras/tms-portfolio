@@ -18,7 +18,7 @@ export const NAV_ITEMS: NavItem[] = [
     threshold: 0.5,
   },
   {
-    key: "contributions",
+    key: "github",
     type: "section",
     order: 2,
     threshold: 0.3,

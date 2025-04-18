@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { PROFILE } from "@/constants/profile";
+import { PROFILE } from "@/constants/profileConstants";
 import { MapPin } from "lucide-react";
 
 const ProfileHeader: React.FC = () => {

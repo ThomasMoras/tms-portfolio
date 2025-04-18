@@ -12,74 +12,31 @@ const sectionItems = NAV_ITEMS.filter((item) => item.type === "section");
 
 const ActiveSectionContext = createContext<ActiveSectionContextType | undefined>(undefined);
 
-// Custom hook to create section refs
-// const useSectionRefs = () => {
-//   // Get threshold values from NAV_ITEMS
-//   const getThreshold = (key: string) =>
-//     sectionItems.find((item) => item.key === key)?.threshold || 0.3;
-
-//   // Create a ref and inView state for each section with its threshold
-//   const homeData = useInView({ threshold: getThreshold("home") });
-//   const contributionsData = useInView({ threshold: getThreshold("contributions") });
-//   const skillsData = useInView({ threshold: getThreshold("skills") });
-//   const careerData = useInView({ threshold: getThreshold("career") });
-//   const projectsData = useInView({ threshold: getThreshold("projects") });
-//   const contactData = useInView({ threshold: getThreshold("contact") });
-
-//   // Map section keys to their respective ref and inView state
-//   const refs = useMemo(
-//     () => ({
-//       home: homeData[0],
-//       contributions: contributionsData[0],
-//       skills: skillsData[0],
-//       career: careerData[0],
-//       projects: projectsData[0],
-//       contact: contactData[0],
-//     }),
-//     [homeData, contributionsData, skillsData, careerData, projectsData, contactData]
-//   );
-
-//   // Map section keys to their respective inView state
-//   const inViewStates = useMemo(
-//     () => ({
-//       home: homeData[1],
-//       contributions: contributionsData[1],
-//       skills: skillsData[1],
-//       career: careerData[1],
-//       projects: projectsData[1],
-//       contact: contactData[1],
-//     }),
-//     [homeData, contributionsData, skillsData, careerData, projectsData, contactData]
-//   );
-
-//   return { refs, inViewStates };
-// };
-
 const getThreshold = (key: string) =>
   sectionItems.find((item) => item.key === key)?.threshold || 0.3;
 
 const useSectionRefs = () => {
-  // Appeler useInView pour chaque section individuellement
+  // Create individual refs for each section with their specific threshold
   const homeData = useInView({ threshold: getThreshold("home") });
-  const contributionsData = useInView({ threshold: getThreshold("contributions") });
+  const githubData = useInView({ threshold: getThreshold("github") });
   const skillsData = useInView({ threshold: getThreshold("skills") });
   const careerData = useInView({ threshold: getThreshold("career") });
   const projectsData = useInView({ threshold: getThreshold("projects") });
   const contactData = useInView({ threshold: getThreshold("contact") });
 
-  // Construire l'objet sectionRefs après avoir appelé tous les hooks
+  // Create a map of section refs
   const sectionRefs = useMemo(() => {
     return {
       home: homeData,
-      contributions: contributionsData,
+      github: githubData,
       skills: skillsData,
       career: careerData,
       projects: projectsData,
       contact: contactData,
     } as Record<SectionName, ReturnType<typeof useInView>>;
-  }, [homeData, contributionsData, skillsData, careerData, projectsData, contactData]);
+  }, [homeData, githubData, skillsData, careerData, projectsData, contactData]);
 
-  // Extraire les refs et inView states
+  // Extract refs and inView states into separate objects
   const refs = useMemo(() => {
     return Object.fromEntries(Object.entries(sectionRefs).map(([key, value]) => [key, value[0]]));
   }, [sectionRefs]);
@@ -99,9 +56,10 @@ export const ActiveSectionProvider: React.FC<ActiveSectionProviderProps> = ({ ch
     // Sort sections by their order for checking priority
     const orderedSections = [...SECTION_ITEMS].sort((a, b) => a.order - b.order);
 
-    // Find the first section that is in view
+    // Find the first section that is in view based on the ordered sections
     for (const section of orderedSections) {
       if (inViewStates[section.key]) {
+        console.log(`Setting active section to: ${section.key}`);
         setActiveSection(section.key);
         return;
       }
