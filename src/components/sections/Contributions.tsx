@@ -1,20 +1,90 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useGitHub } from "@/hooks/useGitHub";
-import { GitCommit, Code, Clock, ArrowRight } from "lucide-react";
-import { FaGithub, FaStar, FaArrowDown, FaCodeBranch } from "react-icons/fa";
-import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
+import { useGitHub, UseGitHubOptions } from "@/hooks/useGitHub";
+import { GitCommit, Code, Clock, ArrowRight, Filter, Search } from "lucide-react";
+import { FaGithub, FaStar, FaCodeBranch } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import NextLink from "next/link";
 import { GITHUB_USERNAME } from "@/constants/githubConstants";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { PaginationWrapper } from "@/components/ui/pagination-wrapper";
+import { LANGUAGE_COLORS } from "@/types/githubTypes";
 
-const Contributions = () => {
+export interface ContributionsProps {
+  perPage?: number;
+  initialPage?: number;
+  defaultLanguage?: string;
+  defaultRepoFilter?: string;
+  defaultBranch?: string;
+}
+
+const Contributions = ({
+  perPage = 5,
+  initialPage = 1,
+  defaultLanguage,
+  defaultRepoFilter = "",
+  defaultBranch = "main",
+}: ContributionsProps) => {
   const t = useTranslations("Contributions");
-  const githubActivity = useGitHub();
+  const [page, setPage] = useState(initialPage);
+  const [language, setLanguage] = useState<string | undefined>(defaultLanguage);
+  const [repoFilter, setRepoFilter] = useState(defaultRepoFilter);
+  const [branch, setBranch] = useState(defaultBranch);
+  const [repoSearchInput, setRepoSearchInput] = useState(defaultRepoFilter);
+  const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const githubOptions: UseGitHubOptions = {
+    page,
+    perPage,
+    language,
+    repo: repoFilter,
+    branch,
+  };
+
+  const githubActivity = useGitHub(githubOptions);
 
   useEffect(() => {
     console.log("GitHub activity:", githubActivity);
   }, [githubActivity]);
+
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value === "all" ? undefined : value);
+    setPage(1); // Réinitialiser la page lors du changement de filtre
+  };
+
+  const handleBranchChange = (value: string) => {
+    setBranch(value);
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleRepoSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setRepoSearchInput(value);
+
+    // Utiliser un délai pour éviter trop de requêtes lors de la frappe
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
+    const timeout = setTimeout(() => {
+      setRepoFilter(value);
+      setPage(1); // Réinitialiser la page lors du changement de filtre
+    }, 500);
+
+    setSearchTimeout(timeout);
+  };
 
   return (
     <div>
@@ -24,6 +94,62 @@ const Contributions = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
             {t("subtitle")}
           </p>
+        </div>
+
+        {/* Filtres */}
+        <div className="flex flex-wrap gap-4 mb-6 justify-center">
+          <div className="w-48">
+            <Select value={language || "all"} onValueChange={handleLanguageChange}>
+              <SelectTrigger className="w-full">
+                <div className="flex items-center gap-2">
+                  <Code className="w-4 h-4" />
+                  <SelectValue placeholder={t("filterByLanguage")} />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allLanguages")}</SelectItem>
+                {githubActivity.allLanguages?.map((lang) => (
+                  <SelectItem key={lang} value={lang}>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="inline-block w-2 h-2 rounded-full"
+                        style={{ backgroundColor: LANGUAGE_COLORS[lang] || "#808080" }}
+                      />
+                      {lang}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="w-48">
+            <Select value={branch} onValueChange={handleBranchChange}>
+              <SelectTrigger className="w-full">
+                <div className="flex items-center gap-2">
+                  <FaCodeBranch className="w-4 h-4" />
+                  <SelectValue placeholder={t("selectBranch")} />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="main">main</SelectItem>
+                <SelectItem value="master">master</SelectItem>
+                <SelectItem value="dev">dev</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="w-64">
+            <div className="relative">
+              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder={t("searchRepositories")}
+                value={repoSearchInput}
+                onChange={handleRepoSearchChange}
+                className="pl-8"
+              />
+            </div>
+          </div>
         </div>
 
         {githubActivity.error && (
@@ -83,7 +209,13 @@ const Contributions = () => {
                   <div className="space-y-2">
                     {githubActivity.topLanguages.map((lang) => (
                       <div key={lang.name} className="flex items-center justify-between">
-                        <span className="text-xs">{lang.name}</span>
+                        <div className="flex items-center">
+                          <span
+                            className="inline-block w-3 h-3 rounded-full mr-2"
+                            style={{ backgroundColor: lang.color || "#808080" }}
+                          />
+                          <span className="text-xs">{lang.name}</span>
+                        </div>
                         <span className="text-xs text-muted-foreground">{lang.count} repos</span>
                       </div>
                     ))}
@@ -123,7 +255,18 @@ const Contributions = () => {
                               {commit.repo}
                             </p>
                             {commit.language && (
-                              <span className="text-xs px-1.5 py-0.5 bg-primary/10 text-primary rounded-full">
+                              <span
+                                className="text-xs px-1.5 py-0.5 rounded-full flex items-center gap-1"
+                                style={{
+                                  backgroundColor: `${getLanguageColor(commit.language)}20`, // Ajout d'opacité en hexa (12.5%)
+                                  color: getLanguageColor(commit.language),
+                                  borderColor: getLanguageColor(commit.language),
+                                }}
+                              >
+                                <span
+                                  className="w-2 h-2 rounded-full inline-block"
+                                  style={{ backgroundColor: getLanguageColor(commit.language) }}
+                                />
                                 {commit.language}
                               </span>
                             )}
@@ -142,13 +285,24 @@ const Contributions = () => {
                     </a>
                   ))}
 
+                  {/* Pagination avec le composant shadcn */}
+                  {githubActivity.pagination && githubActivity.pagination.totalPages > 1 && (
+                    <div className="flex justify-center mt-6">
+                      <PaginationWrapper
+                        currentPage={page}
+                        totalPages={githubActivity.pagination.totalPages}
+                        onPageChange={handlePageChange}
+                      />
+                    </div>
+                  )}
+
                   <Button variant="ghost" size="sm" className="w-full justify-between" asChild>
                     <NextLink
                       href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
                       target="_blank"
                     >
                       {t("viewAllProjects")}
-                      <ArrowRight size={14} className="md:size-16" />
+                      <ArrowRight size={14} className="md:h-4 md:w-4" />
                     </NextLink>
                   </Button>
                 </div>
@@ -162,5 +316,10 @@ const Contributions = () => {
     </div>
   );
 };
+
+// Fonction utilitaire pour obtenir la couleur d'un langage
+function getLanguageColor(language: string): string {
+  return LANGUAGE_COLORS[language] || "#808080"; // Gris par défaut
+}
 
 export default Contributions;

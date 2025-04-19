@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
         ref={refs.github}
         className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 border-t border-border"
       >
-        <Contributions></Contributions>
+        <Contributions perPage={5} initialPage={1} defaultBranch="main" />
         <ScrollDown sectionName="skills-section"></ScrollDown>
       </section>
 

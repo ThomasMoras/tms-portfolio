@@ -9,11 +9,12 @@
     "contact": "Contact"
   },
   "Home": {
-    "citation": "Nous ne pouvons pas prédire l’avenir, mais nous pouvons créer les outils pour le construire",
+    "citation": "Nous ne pouvons pas prédire l'avenir, mais nous pouvons créer les outils pour le construire",
     "resumeButton": "Mon CV",
     "detailButton": "Mon parcours & Compétences",
     "titleExpertises": "Ma spécialisation"
   },
+
   "Contributions": {
     "title": "Mon Activité GitHub",
     "subtitle": "Un aperçu de ma contribution au code source et de mes projets open-source.",
@@ -25,9 +26,13 @@
     "viewProfile": "Voir mon profil GitHub",
     "viewAllProjects": "Voir tous mes projets",
     "topLanguages": "Langages principaux",
-    "discoverSkills": "Découvrir mes expertises",
     "errorMessage": "Erreur de chargement",
-    "noCommits": "Aucun commit récent disponible"
+    "noCommits": "Aucun commit récent disponible",
+    "filterByLanguage": "Filtrer par langage",
+    "allLanguages": "Tous les langages",
+    "selectBranch": "Sélectionner une branche",
+    "pageXofY": "Page {current} sur {total}",
+    "searchRepositories": "Rechercher des dépôts"
   },
   "Skills": {
     "title": "Compétences",
@@ -35,7 +40,7 @@
   },
   "About": {
     "title": "À propos de moi",
-    "description": "👋 Bonjour à tous, je suis Thomas Moras, ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀",
+    "description": "👋 Bonjour à tous, je suis ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀",
     "expertiseTitle": "Compétences"
   },
   "Career": {},

@@ -1,6 +1,5 @@
-// constants/githubConstants.ts
 export const GITHUB_API_BASE_URL = "https://api.github.com";
-export const GITHUB_USERNAME = "your-username";
+export const GITHUB_USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "";
 export const GITHUB_HEADERS = {
   Accept: "application/vnd.github.v3+json",
 };

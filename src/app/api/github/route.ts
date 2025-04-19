@@ -1,12 +1,19 @@
-// app/api/github/route.ts
 import { NextResponse } from "next/server";
 
 // Cache control: This helps prevent hitting GitHub API rate limits
 export const revalidate = 3600; // Revalidate every hour
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
   const GITHUB_USERNAME = process.env.GITHUB_USERNAME || "your-username";
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+  // Paramètres de pagination et de filtrage
+  const page = parseInt(searchParams.get("page") || "1");
+  const perPage = parseInt(searchParams.get("perPage") || "10");
+  const languageFilter = searchParams.get("language"); // Filtre par langage
+  const repoFilter = searchParams.get("repo"); // Filtre par nom de repository
+  const branchName = searchParams.get("branch") || "main"; // Branche pour les commits
 
   try {
     const headers: HeadersInit = {
@@ -20,7 +27,7 @@ export async function GET() {
     // Fetch user data for contributions count via the GraphQL API
     const contributionsCount = await fetchContributionsCount(GITHUB_USERNAME, GITHUB_TOKEN);
 
-    // Fetch repos with better typing
+    // Fetch repos with better typing and pagination
     const reposResponse = await fetch(
       `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=owner`,
       {
@@ -42,24 +49,45 @@ export async function GET() {
       description: string | null;
       created_at: string;
       updated_at: string;
+      topics: string[];
     }>;
 
     // Filter out forks if you want only original repos
     const ownRepos = repos.filter((repo) => !repo.fork);
 
+    // Appliquer les filtres (langage et/ou nom de repository)
+    const filteredRepos = ownRepos.filter((repo) => {
+      // Filtre par langage
+      const matchesLanguage =
+        !languageFilter ||
+        (repo.language && repo.language.toLowerCase() === languageFilter.toLowerCase());
+
+      // Filtre par nom de repository (recherche partielle)
+      const matchesRepoName =
+        !repoFilter || repo.name.toLowerCase().includes(repoFilter.toLowerCase());
+
+      // Le repository doit satisfaire tous les filtres activés
+      return matchesLanguage && matchesRepoName;
+    });
+
     // Calculate total stars
-    const totalStars = ownRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+    const totalStars = filteredRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+
+    // Paginate repositories
+    const startIndex = (page - 1) * perPage;
+    const totalPages = Math.ceil(filteredRepos.length / perPage);
 
     // Find the most active repositories (most recently updated)
-    const activeRepos = [...ownRepos]
+    const activeRepos = [...filteredRepos]
       .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
-      .slice(0, 10);
+      .slice(startIndex, startIndex + perPage);
 
     // Get recent commits in parallel
     const commitPromises = activeRepos.map(async (repo) => {
       try {
+        // Spécifiez la branche pour les commits
         const commitsResponse = await fetch(
-          `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/commits?per_page=1`,
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/commits?per_page=1&sha=${branchName}`,
           { headers, next: { revalidate } }
         );
 
@@ -99,7 +127,7 @@ export async function GET() {
     const recentCommits = commitsResults.filter((commit) => commit !== null);
 
     // Get primary language distribution
-    const languages = ownRepos
+    const languages = filteredRepos
       .filter((repo) => repo.language)
       .reduce(
         (acc, repo) => {
@@ -114,13 +142,26 @@ export async function GET() {
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count);
 
-    // Return complete GitHub activity data
+    // Get all unique languages for filtering options
+    const allLanguages = Array.from(
+      new Set(ownRepos.filter((repo) => repo.language).map((repo) => repo.language as string))
+    ).sort();
+
+    // Return complete GitHub activity data with pagination info
     return NextResponse.json({
       totalStars,
       totalContributions: contributionsCount,
       recentCommits,
-      repoCount: ownRepos.length,
+      repoCount: filteredRepos.length,
       topLanguages: languageStats.slice(0, 5),
+      allLanguages,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        perPage,
+        totalItems: filteredRepos.length,
+        hasMore: page < totalPages,
+      },
       loading: false,
     });
   } catch (error) {
@@ -134,7 +175,6 @@ export async function GET() {
     );
   }
 }
-
 // Fetch real contributions count using GitHub GraphQL API
 async function fetchContributionsCount(username: string, token?: string): Promise<number> {
   if (!token) {
