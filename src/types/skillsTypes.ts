@@ -1,8 +1,26 @@
 import { ReactNode } from "react";
 
+// Types de base
 export type SkillLevel = "beginner" | "intermediate" | "advanced" | "expert";
 
-export type SkillCategoryData = {
+export interface SkillLevelInfo {
+  label: string;
+  range: [number, number];
+}
+
+// Types pour les données brutes
+export interface SkillData {
+  name: string;
+  iconType: string;
+  level: SkillLevel;
+  percentage: number;
+  color: string;
+  learning?: boolean;
+  description?: string;
+  icon?: ReactNode;
+}
+
+export interface SkillCategoryData {
   id: string;
   title: string;
   iconType: string;
@@ -10,74 +28,31 @@ export type SkillCategoryData = {
   bgColor: string;
   progressColor: string;
   skills: SkillData[];
-};
+}
 
-export type SkillData = {
+export interface TechData {
   name: string;
   iconType: string;
-  level: SkillLevel;
-  percentage: number;
-  learning?: boolean;
   color: string;
-};
+  learning?: boolean;
+  icon?: ReactNode;
+}
 
-export type TechCategoryData = {
+export interface TechCategoryData {
   title: string;
   iconType: string;
   color: string;
   link: string;
-  techs: TechItemData[];
-};
+  techs: TechData[];
+}
 
-export type TechItemData = {
-  name: string;
-  iconType: string;
-  learning?: boolean;
-  color: string;
-};
-
-export type TechItem = {
-  color: string;
-  name: string;
+// Types pour les composants React
+export interface SkillCategory extends Omit<SkillCategoryData, "iconType" | "skills"> {
   icon: ReactNode;
-  learning?: boolean;
-};
+  skills: (SkillData & { icon: ReactNode })[];
+}
 
-export type TechCategory = {
-  title: string;
+export interface TechCategory extends Omit<TechCategoryData, "iconType" | "techs"> {
   icon: ReactNode;
-  color: string;
-  link: string;
-  techs: TechItem[];
-};
-
-export type Skill = {
-  name: string;
-  icon: ReactNode;
-  level: SkillLevel;
-  percentage: number;
-  learning?: boolean;
-};
-
-export type SkillCategory = {
-  id: string;
-  title: string;
-  icon: ReactNode;
-  color: string;
-  bgColor: string;
-  progressColor: string;
-  skills: Skill[];
-};
-
-export type SkillLevelInfo = {
-  label: string;
-  range: [number, number];
-};
-
-export type GithubSkill = {
-  name: string;
-  proficiency: number;
-  experience: number;
-  commits?: number;
-  repos: number;
-};
+  techs: (TechData & { icon: ReactNode })[];
+}

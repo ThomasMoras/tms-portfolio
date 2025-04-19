@@ -7,6 +7,7 @@ import ProjectsList from "@/components/sections/ProjectsList";
 import Contributions from "@/components/sections/Contributions";
 import ScrollDown from "@/components/shared/ScrollDown";
 import Home from "@/components/sections/Home";
+import Skills from "@/components/sections/Skills";
 
 const HomePage: React.FC = () => {
   const { refs } = useActiveSection();
@@ -38,7 +39,7 @@ const HomePage: React.FC = () => {
         ref={refs.skills}
         className="py-12 md:py-20 border-t border-border"
       >
-        <SkillsSection></SkillsSection>
+        <Skills tabSize="medium"></Skills>
       </section>
 
       {/* Projects Section Preview */}
