@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { SkillData } from "@/types/skillsTypes";
 
 // Types pour les props du composant
@@ -38,7 +38,6 @@ const Skills: React.FC<SkillsProps> = ({
   animate = true,
 }) => {
   const t = useTranslations("Skills");
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -143,6 +142,7 @@ const Skills: React.FC<SkillsProps> = ({
 
     return (
       <Badge
+        key={level}
         className={cn(levelColors[level], "ml-2 cursor-pointer")}
         onClick={() => setSelectedLevel(selectedLevel === level ? null : level)}
         variant={selectedLevel === level ? "default" : "outline"}
@@ -207,11 +207,11 @@ const Skills: React.FC<SkillsProps> = ({
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      {showLevels && (
+                      {/* {showLevels && (
                         <span className="text-sm text-muted-foreground">
                           {SKILL_LEVELS[skill.level]?.label || skill.level}
                         </span>
-                      )}
+                      )} */}
                       <span className="text-sm font-medium w-10 text-right">
                         {skill.percentage}%
                       </span>
@@ -229,7 +229,7 @@ const Skills: React.FC<SkillsProps> = ({
                     />
 
                     {/* Marqueurs de niveau */}
-                    {Object.values(SKILL_LEVELS).map((level, index) => (
+                    {/* {Object.values(SKILL_LEVELS).map((level, index) => (
                       <div
                         key={index}
                         className="absolute bottom-full mb-1 -translate-x-1/2 opacity-70"
@@ -243,7 +243,7 @@ const Skills: React.FC<SkillsProps> = ({
                           {level.label}
                         </div>
                       </div>
-                    ))}
+                    ))} */}
                   </div>
 
                   {skill.description && (

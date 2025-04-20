@@ -44,7 +44,29 @@
     "description": "👋 Hello everyone,I'm a software engineer and full-stack developer with six years of experience. Recently transitioned into blockchain development, I'm passionate about emerging technologies such as AI and blockchain 🤖. Originally from France, I currently live in Toronto and am looking for new opportunities in Web3, either in Toronto or remotely 🚀",
     "expertiseTitle": "Stack"
   },
-  "Career": {},
+  "Career": {
+    "title": "Professional Career and Eduction",
+    "subtitle": "My professional journey and educational background",
+    "blockchain_certification": "Blockchain Development Certification",
+    "software_engineer_ineo": "Software Engineer",
+    "masters_degree": "Master's Degree - Information Systems Management",
+    "software_engineer_apprentice": "Software Engineer",
+    "fullstack_developer": "Full Stack Developer",
+    "bachelors_degree": "Bachelor's Degree",
+    "remote_france": "Remote, France",
+    "lyon_france": "Lyon, France",
+    "sophia_antipolis_france": "Sophia Antipolis, France",
+    "blockchain_description": "Developed and deployed secure, resilient decentralized applications by creating smart contracts using industry-standard practices, optimizing functionality through testing and security analysis, and integrating user-friendly interfaces to interact with the blockchain backend.",
+    "software_engineer_ineo_description": "Led end-to-end development of digital workflows, integrated RESTful APIs, and optimized processes with Java automation. Built C# solutions, engineered data pipelines, developed proof of concepts, and managed intern and apprentice teams.",
+    "masters_degree_description": "The French \"Expert in Information Systems\" certification validates advanced skills in designing, developing, and managing complex information systems to support strategic objectives. It attests to the holder's expertise in requirements analysis, solution architecture, project management, system security, and performance optimization.",
+    "software_engineer_apprentice_description": "Implemented a business process management (BPM) platform (MoovApps) and set up business workflows. Optimized workflow efficiency through Java-based process automation.",
+    "fullstack_developer_description": "Developed an ERP system with full-stack modules, designed a SQL Server database architecture, and collaborated in a 4-person Agile team using GitHub and Slack for efficient delivery.",
+    "computer_science": "Computer Science",
+    "contracts": {
+      "cdi": "Permanent Contract",
+      "apprenticeship": "Apprenticeship"
+    }
+  },
   "Projects": {},
   "Contact": {},
   "Footer": {

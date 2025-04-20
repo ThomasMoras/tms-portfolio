@@ -12,7 +12,9 @@
     "citation": "Nous ne pouvons pas prédire l'avenir, mais nous pouvons créer les outils pour le construire",
     "resumeButton": "Mon CV",
     "detailButton": "Mon parcours & Compétences",
-    "titleExpertises": "Ma spécialisation"
+    "projectButton": "My Projects",
+    "titleExpertises": "Ma spécialisation",
+    "description": "👋 Bonjour à tous, je suis ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀"
   },
   "Contributions": {
     "title": "Mon Activité GitHub",
@@ -42,7 +44,29 @@
     "description": "👋 Bonjour à tous, je suis ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀",
     "expertiseTitle": "Compétences"
   },
-  "Career": {},
+  "Career": {
+    "title": "Parcours Professionnel",
+    "subtitle": "Mon parcours professionnel et ma formation académique",
+    "blockchain_certification": "Certification en Développement Blockchain",
+    "software_engineer_ineo": "Ingénieur Logiciel",
+    "masters_degree": "Master - Gestion des Systèmes d'Information",
+    "software_engineer_apprentice": "Ingénieur Logiciel",
+    "fullstack_developer": "Développeur Full Stack",
+    "bachelors_degree": "Licence",
+    "remote_france": "Télétravail, France",
+    "lyon_france": "Lyon, France",
+    "sophia_antipolis_france": "Sophia Antipolis, France",
+    "blockchain_description": "Développement et déploiement d'applications décentralisées sécurisées et résilientes en créant des contrats intelligents selon les pratiques standards de l'industrie, en optimisant les fonctionnalités par des tests et des analyses de sécurité, et en intégrant des interfaces conviviales pour interagir avec le backend blockchain.",
+    "software_engineer_ineo_description": "Direction du développement de bout en bout des flux de travail numériques, intégration d'API RESTful et optimisation des processus avec l'automatisation Java. Création de solutions C#, conception de pipelines de données, développement de preuves de concept et gestion d'équipes de stagiaires et d'apprentis.",
+    "masters_degree_description": "La certification française \"Expert en Systèmes d'Information\" valide des compétences avancées dans la conception, le développement et la gestion de systèmes d'information complexes pour soutenir les objectifs stratégiques. Elle atteste l'expertise du titulaire en analyse des exigences, architecture de solutions, gestion de projet, sécurité des systèmes et optimisation des performances.",
+    "software_engineer_apprentice_description": "Implémentation d'une plateforme de gestion des processus métier (BPM) (MoovApps) et mise en place de workflows métier. Optimisation de l'efficacité des flux de travail grâce à l'automatisation basée sur Java.",
+    "fullstack_developer_description": "Développement d'un système ERP avec des modules full-stack, conception d'une architecture de base de données SQL Server et collaboration au sein d'une équipe Agile de 4 personnes utilisant GitHub et Slack pour une livraison efficace.",
+    "computer_science": "Informatique",
+    "contracts": {
+      "cdi": "Contrat à Durée Indéterminée",
+      "apprenticeship": "Apprentissage"
+    }
+  },
   "Projects": {},
   "Contact": {},
   "Footer": {

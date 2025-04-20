@@ -51,10 +51,6 @@ const Contributions = ({
 
   const githubActivity = useGitHub(githubOptions);
 
-  useEffect(() => {
-    console.log("GitHub activity:", githubActivity);
-  }, [githubActivity]);
-
   const handleLanguageChange = (value: string) => {
     setLanguage(value === "all" ? undefined : value);
     setPage(1); // Réinitialiser la page lors du changement de filtre

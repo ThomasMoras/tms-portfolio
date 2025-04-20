@@ -2,12 +2,12 @@
 
 import React from "react";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
-import SkillsSection from "@/components/sections/skills/refactor";
 import ProjectsList from "@/components/sections/ProjectsList";
 import Contributions from "@/components/sections/Contributions";
 import ScrollDown from "@/components/shared/ScrollDown";
 import Home from "@/components/sections/Home";
 import Skills from "@/components/sections/Skills";
+import GlobalTimeLine from "@/components/shared/GlobalTimeLine";
 
 const HomePage: React.FC = () => {
   const { refs } = useActiveSection();
@@ -40,6 +40,15 @@ const HomePage: React.FC = () => {
         className="py-12 md:py-20 border-t border-border"
       >
         <Skills tabSize="medium"></Skills>
+      </section>
+
+      {/* Skills Section */}
+      <section
+        id="career-section"
+        ref={refs.career}
+        className="py-12 md:py-20 border-t border-border"
+      >
+        <GlobalTimeLine />
       </section>
 
       {/* Projects Section Preview */}
