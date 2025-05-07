@@ -29,7 +29,7 @@ const ProfileBio: React.FC = () => {
           size="lg"
           className="bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white shadow-md transition-colors"
         >
-          <Link href="/about">{t("projectButton")}</Link>
+          <Link href="/projects">{t("projectButton")}</Link>
         </Button>
       </div>
     </div>

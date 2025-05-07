@@ -35,6 +35,10 @@
     "pageXofY": "Page {current} sur {total}",
     "searchRepositories": "Rechercher des dépôts"
   },
+  "Projects": {
+    "title": "Mes projets",
+    "subtitle": ""
+  },
   "Skills": {
     "title": "Compétences",
     "description": ""
@@ -67,7 +71,6 @@
       "apprenticeship": "Apprentissage"
     }
   },
-  "Projects": {},
   "Contact": {},
   "Footer": {
     "description": "Tous droits réservés © Thomas Moras 2025"

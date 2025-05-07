@@ -6,6 +6,7 @@ import GhibliToggleButton from "../shared/GhibliToggleButton";
 import { NAV_ITEMS, NAVBAR_ICON } from "@/constants/navbarConstants";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
 import { navbar, navButton, navSection, toggleContainer } from "../ui/styles/navbar";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   t: (key: string) => string;
@@ -13,6 +14,18 @@ interface NavbarProps {
 
 const NavbarStandardView = ({ t }: NavbarProps) => {
   const { activeSection, scrollToSection } = useActiveSection();
+  const pathname = usePathname();
+
+  // Helper function to determine if a section should be active
+  const isActive = (key: string) => {
+    // For path-based active state
+    if (pathname.includes(`/${key}`)) {
+      return true;
+    }
+
+    // For section-based active state
+    return activeSection === key;
+  };
 
   const renderNavItem = (item: (typeof NAV_ITEMS)[0]) => {
     if (item.type === "section") {
@@ -20,23 +33,12 @@ const NavbarStandardView = ({ t }: NavbarProps) => {
         <button
           key={item.key}
           onClick={() => scrollToSection(item.key)}
-          className={navButton({ active: activeSection === item.key })}
+          className={navButton({ active: isActive(item.key) })}
         >
           {t(item.key)}
         </button>
       );
     }
-    // else {
-    //   return (
-    //     <NavigationLink
-    //       key={item.key}
-    //       href={item.href || "/"}
-    //       className={NAVBAR_STYLES.navigationLink}
-    //     >
-    //       {t(item.key)}
-    //     </NavigationLink>
-    //   );
-    // }
   };
 
   return (

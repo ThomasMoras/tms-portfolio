@@ -47,7 +47,7 @@ export default function GhibliToggleButton() {
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
-              background: "#e6f7ff",
+              background: "white",
               border: `1px solid ${ghibliBlue}`,
             }}
           >

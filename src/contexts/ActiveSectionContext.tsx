@@ -4,6 +4,7 @@ import {
   ActiveSectionProviderProps,
   SectionName,
 } from "@/types/sectionTypes";
+import { usePathname, useRouter } from "next/navigation";
 import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -51,8 +52,44 @@ const useSectionRefs = () => {
 export const ActiveSectionProvider: React.FC<ActiveSectionProviderProps> = ({ children }) => {
   const [activeSection, setActiveSection] = useState<SectionName>("home");
   const { refs, inViewStates } = useSectionRefs();
+  const pathname = usePathname();
+  const router = useRouter();
 
+  // Set active section based on URL path
+  // In your ActiveSectionContext.tsx
+  // Handle scroll to section after navigation
   useEffect(() => {
+    // Only run this on home page
+    if (pathname !== "/" && pathname !== "/en" && pathname !== "/fr") {
+      return;
+    }
+
+    const savedSection = localStorage.getItem("scrollToSection") as SectionName | null;
+
+    if (savedSection) {
+      // Use a longer timeout to ensure everything is fully loaded
+      const timer = setTimeout(() => {
+        const sectionElement = document.getElementById(`${savedSection}-section`);
+        if (sectionElement) {
+          // Use element.scrollIntoView with an offset via scroll-margin-top CSS
+          sectionElement.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(savedSection);
+        }
+        localStorage.removeItem("scrollToSection");
+      }, 800); // Increased timeout for more reliable positioning
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
+  // Only detect sections by scroll when on the home page
+  useEffect(() => {
+    console.log("refs ", refs);
+    // Don't detect sections by visibility when not on home page
+    if (pathname !== "/" && pathname !== "/en" && pathname !== "/fr") {
+      return;
+    }
+
     // Sort sections by their order for checking priority
     const orderedSections = [...SECTION_ITEMS].sort((a, b) => a.order - b.order);
 
@@ -64,16 +101,49 @@ export const ActiveSectionProvider: React.FC<ActiveSectionProviderProps> = ({ ch
         return;
       }
     }
-  }, [inViewStates]);
+  }, [inViewStates, pathname]);
 
+  // Function to scroll to section (or navigate + scroll)
   const scrollToSection = (section: SectionName) => {
-    if (!section) return;
+    // If we're not on the home page, navigate to home and then scroll
+    if (pathname !== "/" && pathname !== "/en" && pathname !== "/fr") {
+      // Save section to localStorage to scroll after navigation
+      localStorage.setItem("scrollToSection", section);
+      router.push("/");
+      return;
+    }
 
-    const element = document.getElementById(`${section}-section`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // If we're on the home page, just scroll using section ID
+    const sectionElement = document.getElementById(`${section}-section`);
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(section);
     }
   };
+
+  // Handle scroll to section after navigation
+  useEffect(() => {
+    // Only run this on home page
+    if (pathname !== "/" && pathname !== "/en" && pathname !== "/fr") {
+      return;
+    }
+
+    const savedSection = localStorage.getItem("scrollToSection") as SectionName | null;
+
+    if (savedSection) {
+      // Wait a bit for the page to fully load then scroll
+      const timer = setTimeout(() => {
+        const sectionElement = document.getElementById(`${savedSection}-section`);
+        if (sectionElement) {
+          sectionElement.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(savedSection);
+        }
+        localStorage.removeItem("scrollToSection");
+      }, 300); // Increased timeout to ensure DOM is fully loaded
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
 
   return (
     <ActiveSectionContext.Provider

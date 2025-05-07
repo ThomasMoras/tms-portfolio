@@ -1,12 +1,12 @@
 import { ProjectType, ProjectFeature, ProjectChallenge } from "@/types/projectTypes";
 
 export const PROJECT_CATEGORIES = {
-  BLOCKCHAIN: "Blockchain",
+  // BLOCKCHAIN: "Blockchain",
   FULL_STACK: "Full Stack",
-  MOBILE: "Mobile",
-  UI_UX: "UI/UX",
-  MACHINE_LEARNING: "Machine Learning",
-  WEB3: "Web3",
+  // MOBILE: "Mobile",
+  // UI_UX: "UI/UX",
+  // MACHINE_LEARNING: "Machine Learning",
+  // WEB3: "Web3",
 } as const;
 
 export const PROJECT_TECHNOLOGIES = {

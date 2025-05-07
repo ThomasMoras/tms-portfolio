@@ -263,7 +263,7 @@ const Skills: React.FC<SkillsProps> = ({
   };
 
   return (
-    <section className="py-16 bg-slate-50 dark:bg-slate-900/50 border-t border-b border-border">
+    <section>
       <div className="container max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
           <div>
