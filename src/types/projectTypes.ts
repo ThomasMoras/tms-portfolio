@@ -48,9 +48,9 @@ export interface RelatedProject {
 }
 
 export interface ProjectCardProps {
-  title: string;
-  category: string;
-  tech: string[];
-  image: string;
-  href: string;
+  project: ProjectType;
+  locale: "fr" | "en";
+  translations?: {
+    noImage: string;
+  };
 }

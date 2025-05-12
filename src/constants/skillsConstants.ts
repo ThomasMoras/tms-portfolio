@@ -18,7 +18,7 @@ export const SKILL_LEVELS: Record<SkillLevel, SkillLevelInfo> = {
 // Unified skills data structure
 export const SKILLS_DATA = [
   {
-    id: "backend",
+    id: "back-end",
     title: "Back-end",
     iconType: "server",
     color: "text-blue-500",
@@ -79,7 +79,7 @@ export const SKILLS_DATA = [
     ],
   },
   {
-    id: "frontend",
+    id: "front-end",
     title: "Front-end",
     iconType: "layout",
     color: "text-purple-500",
@@ -191,6 +191,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = SKILLS_DATA.map((category) =>
 // Generate TECH_CATEGORIES for the TechBanner component
 export const TECH_CATEGORIES: TechCategory[] = SKILLS_DATA.map((category) =>
   mapTechData({
+    id: category.id,
     title: category.title,
     iconType: category.iconType,
     color: category.bannerColor,

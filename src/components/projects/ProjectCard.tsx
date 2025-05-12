@@ -1,17 +1,10 @@
 "use client";
 
-import { ProjectType } from "@/types/projectTypes";
+import { ProjectCardProps } from "@/types/projectTypes";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface ProjectCardProps {
-  project: ProjectType;
-  locale: "fr" | "en";
-  translations?: {
-    noImage: string;
-  };
-}
 const ProjectCard = ({
   project,
   locale,

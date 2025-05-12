@@ -36,8 +36,8 @@ export default function GhibliToggleButton() {
                 <Image
                   src={"/images/ghibli/no_color_logo.png"}
                   alt={"Totoro"}
-                  width={400} // Set appropriate width
-                  height={400} // Set appropriate height
+                  width={400}
+                  height={400}
                   className="object-contain"
                   quality={80}
                 />

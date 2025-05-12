@@ -40,6 +40,7 @@ export interface TechData {
 }
 
 export interface TechCategoryData {
+  id: string;
   title: string;
   iconType: string;
   color: string;

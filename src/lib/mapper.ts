@@ -33,6 +33,7 @@ export const mapTechData = (categoryData: TechCategoryData): TechCategory => {
   }));
 
   return {
+    id: categoryData.id,
     title: categoryData.title,
     icon: getIconByType(categoryData.iconType, { size: 24, className: "h-6 w-6" }),
     color: categoryData.color,

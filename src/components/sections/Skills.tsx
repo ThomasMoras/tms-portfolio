@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
@@ -41,8 +41,24 @@ const Skills: React.FC<SkillsProps> = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Récupérer le tab actif depuis les paramètres de l'URL ou utiliser la valeur par défaut
-  const activeTab = searchParams.get("tab") || defaultTab;
+  // Get active tab from URL, sessionStorage, or default
+  const [activeTab, setActiveTab] = useState<string>(() => {
+    // First check URL parameters
+    const tabFromUrl = searchParams.get("tab");
+    if (tabFromUrl) return tabFromUrl;
+
+    // Then check sessionStorage (only on client side)
+    if (typeof window !== "undefined") {
+      const storedTab = sessionStorage.getItem("selectedSkillTab");
+      if (storedTab) {
+        sessionStorage.removeItem("selectedSkillTab"); // Clear after use
+        return storedTab;
+      }
+    }
+
+    // Fall back to default
+    return defaultTab;
+  });
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [sortBy, setSortBy] = useState<"name" | "level" | "percentage">("percentage");
@@ -50,6 +66,26 @@ const Skills: React.FC<SkillsProps> = ({
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [tabSize, setTabSize] = useState<TabSize>(initialTabSize);
+
+  // Listen for custom events to change the tab
+  useEffect(() => {
+    const handleTabChange = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      if (customEvent.detail && customEvent.detail.tabId) {
+        setActiveTab(customEvent.detail.tabId);
+
+        // Update URL to reflect the new tab
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("tab", customEvent.detail.tabId);
+        window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
+      }
+    };
+
+    window.addEventListener("skill-tab-change", handleTabChange);
+    return () => {
+      window.removeEventListener("skill-tab-change", handleTabChange);
+    };
+  }, [pathname, searchParams]);
 
   // Fonction pour mettre à jour l'URL sans recharger la page
   const createQueryString = (name: string, value: string) => {
@@ -60,6 +96,7 @@ const Skills: React.FC<SkillsProps> = ({
 
   // Gestionnaire de changement d'onglet - Modification pour éviter le rechargement
   const handleTabChange = (value: string): void => {
+    setActiveTab(value);
     // Utiliser replaceState pour mettre à jour l'URL sans rechargement
     window.history.replaceState(null, "", `${pathname}?${createQueryString("tab", value)}`);
   };
@@ -207,11 +244,6 @@ const Skills: React.FC<SkillsProps> = ({
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      {/* {showLevels && (
-                        <span className="text-sm text-muted-foreground">
-                          {SKILL_LEVELS[skill.level]?.label || skill.level}
-                        </span>
-                      )} */}
                       <span className="text-sm font-medium w-10 text-right">
                         {skill.percentage}%
                       </span>
@@ -227,23 +259,6 @@ const Skills: React.FC<SkillsProps> = ({
                       )}
                       style={{ width: `${skill.percentage}%` }}
                     />
-
-                    {/* Marqueurs de niveau */}
-                    {/* {Object.values(SKILL_LEVELS).map((level, index) => (
-                      <div
-                        key={index}
-                        className="absolute bottom-full mb-1 -translate-x-1/2 opacity-70"
-                        style={{
-                          left: `${level.range[1]}%`,
-                          display: hoveredSkill === skill.name ? "block" : "none",
-                        }}
-                      >
-                        <div className="w-px h-2 bg-slate-400 dark:bg-slate-500"></div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 whitespace-nowrap">
-                          {level.label}
-                        </div>
-                      </div>
-                    ))} */}
                   </div>
 
                   {skill.description && (
@@ -263,7 +278,7 @@ const Skills: React.FC<SkillsProps> = ({
   };
 
   return (
-    <section>
+    <section id="skills-section">
       <div className="container max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
           <div>
@@ -377,7 +392,7 @@ const Skills: React.FC<SkillsProps> = ({
           </div>
         )}
 
-        <Tabs defaultValue={activeTab} className="space-y-8" onValueChange={handleTabChange}>
+        <Tabs value={activeTab} className="space-y-8" onValueChange={handleTabChange}>
           <TabsList className="grid grid-cols-4 w-full">
             <TabsTrigger value="all">Tous</TabsTrigger>
             {SKILL_CATEGORIES.map((category) => (
