@@ -41,7 +41,9 @@ const HomePage: React.FC = () => {
 
       {/* Projects Section Preview */}
       <SectionLayout id="projects-section" ref={refs.projects} isLastSection={true}>
-        <Projects />
+        <div className="container max-w-6xl mx-auto px-4 md:px-6">
+          <Projects />
+        </div>
       </SectionLayout>
     </div>
   );

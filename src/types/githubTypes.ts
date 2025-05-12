@@ -90,3 +90,5 @@ export const LANGUAGE_COLORS: Record<string, string> = {
   Vue: "#41b883",
   // Ajouter d'autres langages au besoin
 };
+
+export type LanguageKey = keyof typeof LANGUAGE_COLORS;

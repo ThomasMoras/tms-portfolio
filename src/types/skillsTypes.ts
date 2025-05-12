@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-// Types de base
+// Basic types
 export type SkillLevel = "beginner" | "intermediate" | "advanced" | "expert";
 
 export interface SkillLevelInfo {
@@ -8,7 +8,7 @@ export interface SkillLevelInfo {
   range: [number, number];
 }
 
-// Types pour les données brutes
+// Types for raw data
 export interface SkillData {
   name: string;
   iconType: string;
@@ -18,6 +18,7 @@ export interface SkillData {
   learning?: boolean;
   description?: string;
   icon?: ReactNode;
+  showInBanner?: boolean;
 }
 
 export interface SkillCategoryData {
@@ -46,7 +47,20 @@ export interface TechCategoryData {
   techs: TechData[];
 }
 
-// Types pour les composants React
+// Types for the unified skills data structure
+export interface UnifiedSkillCategory {
+  id: string;
+  title: string;
+  iconType: string;
+  color: string;
+  bgColor: string;
+  progressColor: string;
+  bannerColor: string;
+  link: string;
+  skills: SkillData[];
+}
+
+// Types for React components
 export interface SkillCategory extends Omit<SkillCategoryData, "iconType" | "skills"> {
   icon: ReactNode;
   skills: (SkillData & { icon: ReactNode })[];

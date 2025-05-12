@@ -1,14 +1,13 @@
 import { mapSkillData, mapTechData } from "@/lib/mapper";
 import {
   SkillCategory,
-  SkillCategoryData,
+  SkillData,
   SkillLevel,
   SkillLevelInfo,
   TechCategory,
-  TechCategoryData,
 } from "@/types/skillsTypes";
 
-// Informations sur les niveaux de compétence
+// Skill level definitions remain the same
 export const SKILL_LEVELS: Record<SkillLevel, SkillLevelInfo> = {
   beginner: { label: "Débutant", range: [0, 40] },
   intermediate: { label: "Intermédiaire", range: [41, 70] },
@@ -16,97 +15,8 @@ export const SKILL_LEVELS: Record<SkillLevel, SkillLevelInfo> = {
   expert: { label: "Expert", range: [91, 100] },
 };
 
-// Catégories de technologie pour TechStackPreview
-export const TECH_CATEGORIES_DATA: TechCategoryData[] = [
-  {
-    title: "Back-end",
-    iconType: "server",
-    color: "bg-blue-500/10 text-blue-500 border-blue-200 dark:border-blue-800/30",
-    link: "/skills?tab=backend",
-    techs: [
-      {
-        name: "Node.js",
-        iconType: "nodejs",
-        color: "#339933",
-      },
-      {
-        name: "Express",
-        iconType: "server",
-        color: "#000000",
-      },
-      {
-        name: "Rust",
-        iconType: "rust",
-        learning: true,
-        color: "#000000",
-      },
-      {
-        name: "Docker",
-        iconType: "docker",
-        color: "#2496ED",
-      },
-    ],
-  },
-  {
-    title: "Front-end",
-    iconType: "layout",
-    color: "bg-purple-500/10 text-purple-500 border-purple-200 dark:border-purple-800/30",
-    link: "/skills?tab=frontend",
-    techs: [
-      {
-        name: "React",
-        iconType: "react",
-        color: "#61DAFB",
-      },
-      {
-        name: "Next.js",
-        iconType: "nextjs",
-        color: "#000000",
-      },
-      {
-        name: "TypeScript",
-        iconType: "typescript",
-        color: "#3178C6",
-      },
-      {
-        name: "Tailwind CSS",
-        iconType: "tailwind",
-        color: "#06B6D4",
-      },
-    ],
-  },
-  {
-    title: "Blockchain",
-    iconType: "boxes",
-    color: "bg-amber-500/10 text-amber-500 border-amber-200 dark:border-amber-800/30",
-    link: "/skills?tab=blockchain",
-    techs: [
-      {
-        name: "Solidity",
-        iconType: "solidity",
-        color: "#363636",
-      },
-      {
-        name: "EVM",
-        iconType: "binary",
-        color: "#3C3C3D",
-      },
-      {
-        name: "Hardhat",
-        iconType: "hardhat",
-        color: "#F6851B",
-      },
-      {
-        name: "Web3.js",
-        iconType: "code",
-        color: "#F6851B",
-      },
-    ],
-  },
-];
-
-// Catégories de compétences pour SkillsSection
-export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
+// Unified skills data structure
+export const SKILLS_DATA = [
   {
     id: "backend",
     title: "Back-end",
@@ -114,6 +24,8 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",
     progressColor: "bg-blue-500",
+    bannerColor: "bg-blue-500/10 text-blue-500 border-blue-200 dark:border-blue-800/30",
+    link: "/skills?tab=backend",
     skills: [
       {
         name: "Node.js",
@@ -121,6 +33,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 85,
         color: "#339933",
+        showInBanner: true,
       },
       {
         name: "Express",
@@ -128,6 +41,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 80,
         color: "#000000",
+        showInBanner: true,
       },
       {
         name: "PostgreSQL",
@@ -135,6 +49,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "intermediate",
         percentage: 70,
         color: "#4169E1",
+        showInBanner: false,
       },
       {
         name: "MongoDB",
@@ -142,6 +57,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "intermediate",
         percentage: 75,
         color: "#47A248",
+        showInBanner: false,
       },
       {
         name: "Rust",
@@ -150,6 +66,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         percentage: 30,
         learning: true,
         color: "#000000",
+        showInBanner: true,
       },
       {
         name: "Docker",
@@ -157,6 +74,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "intermediate",
         percentage: 60,
         color: "#2496ED",
+        showInBanner: true,
       },
     ],
   },
@@ -167,6 +85,8 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
     color: "text-purple-500",
     bgColor: "bg-purple-500/10",
     progressColor: "bg-purple-500",
+    bannerColor: "bg-purple-500/10 text-purple-500 border-purple-200 dark:border-purple-800/30",
+    link: "/skills?tab=frontend",
     skills: [
       {
         name: "React",
@@ -174,6 +94,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 90,
         color: "#61DAFB",
+        showInBanner: true,
       },
       {
         name: "Next.js",
@@ -181,6 +102,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 75,
         color: "#000000",
+        showInBanner: true,
       },
       {
         name: "TypeScript",
@@ -188,6 +110,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 80,
         color: "#3178C6",
+        showInBanner: true,
       },
       {
         name: "Tailwind CSS",
@@ -195,6 +118,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 85,
         color: "#06B6D4",
+        showInBanner: true,
       },
       {
         name: "Git",
@@ -202,6 +126,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 85,
         color: "#F05032",
+        showInBanner: false,
       },
     ],
   },
@@ -212,6 +137,8 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
     color: "text-amber-500",
     bgColor: "bg-amber-500/10",
     progressColor: "bg-amber-500",
+    bannerColor: "bg-amber-500/10 text-amber-500 border-amber-200 dark:border-amber-800/30",
+    link: "/skills?tab=blockchain",
     skills: [
       {
         name: "Solidity",
@@ -219,6 +146,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "advanced",
         percentage: 75,
         color: "#363636",
+        showInBanner: true,
       },
       {
         name: "EVM",
@@ -226,6 +154,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "intermediate",
         percentage: 70,
         color: "#3C3C3D",
+        showInBanner: true,
       },
       {
         name: "Hardhat",
@@ -233,6 +162,7 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "intermediate",
         percentage: 65,
         color: "#F6851B",
+        showInBanner: true,
       },
       {
         name: "Web3.js",
@@ -240,11 +170,38 @@ export const SKILL_CATEGORIES_DATA: SkillCategoryData[] = [
         level: "intermediate",
         percentage: 60,
         color: "#F6851B",
+        showInBanner: true,
       },
     ],
   },
 ];
 
-// Exporter les constantes avec composants React intégrés
-export const SKILL_CATEGORIES: SkillCategory[] = SKILL_CATEGORIES_DATA.map(mapSkillData);
-export const TECH_CATEGORIES: TechCategory[] = TECH_CATEGORIES_DATA.map(mapTechData);
+export const SKILL_CATEGORIES: SkillCategory[] = SKILLS_DATA.map((category) =>
+  mapSkillData({
+    id: category.id,
+    title: category.title,
+    iconType: category.iconType,
+    color: category.color,
+    bgColor: category.bgColor,
+    progressColor: category.progressColor,
+    skills: category.skills as SkillData[],
+  })
+);
+
+// Generate TECH_CATEGORIES for the TechBanner component
+export const TECH_CATEGORIES: TechCategory[] = SKILLS_DATA.map((category) =>
+  mapTechData({
+    title: category.title,
+    iconType: category.iconType,
+    color: category.bannerColor,
+    link: category.link,
+    techs: category.skills
+      .filter((skill) => skill.showInBanner)
+      .map((skill) => ({
+        name: skill.name,
+        iconType: skill.iconType,
+        color: skill.color,
+        learning: skill.learning,
+      })),
+  })
+);

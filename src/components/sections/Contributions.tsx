@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useGitHub, UseGitHubOptions } from "@/hooks/useGitHub";
-import { GitCommit, Code, Clock, ArrowRight, Filter, Search } from "lucide-react";
+import { GitCommit, Code, Clock, ArrowRight, Search } from "lucide-react";
 import { FaGithub, FaStar, FaCodeBranch } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";

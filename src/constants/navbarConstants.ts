@@ -39,7 +39,7 @@ export const NAV_ITEMS: NavItem[] = [
     key: "projects",
     type: "section",
     order: 5,
-    threshold: 0.8,
+    threshold: 1,
   },
 ];
 

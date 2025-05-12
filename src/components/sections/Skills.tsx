@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useSearchParams, usePathname } from "next/navigation";
-import { SkillData } from "@/types/skillsTypes";
+import { SkillCategory, SkillData } from "@/types/skillsTypes";
 
 // Types pour les props du composant
 export type TabSize = "small" | "medium" | "large";
@@ -153,7 +153,7 @@ const Skills: React.FC<SkillsProps> = ({
   };
 
   // Fonction pour rendre une carte de compétence
-  const renderSkillCard = (category: any, filteredSkills: SkillData[]) => {
+  const renderSkillCard = (category: SkillCategory, filteredSkills: SkillData[]) => {
     if (filteredSkills.length === 0 && searchTerm) {
       return null; // Ne pas afficher la catégorie si aucune compétence ne correspond
     }

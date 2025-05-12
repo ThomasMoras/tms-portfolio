@@ -5,9 +5,12 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import DownloadButton from "@/components/shared/DownloadButton";
+import { useActiveSection } from "@/contexts/ActiveSectionContext";
+import { NAV_ITEMS } from "@/constants/navbarConstants";
 
 const ProfileBio: React.FC = () => {
   const t = useTranslations("Home");
+  const { scrollToSection } = useActiveSection();
 
   return (
     <div className="w-full flex flex-col justify-center gap-6">
@@ -25,11 +28,11 @@ const ProfileBio: React.FC = () => {
           <Link href="/about">{t("detailButton")}</Link>
         </Button>
         <Button
-          asChild
           size="lg"
           className="bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white shadow-md transition-colors"
+          onClick={() => scrollToSection(NAV_ITEMS[4].key)}
         >
-          <Link href="/projects">{t("projectButton")}</Link>
+          {t("projectButton")}
         </Button>
       </div>
     </div>

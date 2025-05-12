@@ -12,9 +12,9 @@
     "citation": "Nous ne pouvons pas prédire l'avenir, mais nous pouvons créer les outils pour le construire",
     "resumeButton": "Mon CV",
     "detailButton": "Mon parcours & Compétences",
-    "projectButton": "My Projects",
+    "projectButton": "Mes Projets",
     "titleExpertises": "Ma spécialisation",
-    "description": "👋 Bonjour à tous, je suis ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀"
+    "description": "👋 Bonjour à tous, je suis Thomas Moras, ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀"
   },
   "Contributions": {
     "title": "Mon Activité GitHub",
@@ -37,16 +37,21 @@
   },
   "Projects": {
     "title": "Mes projets",
-    "subtitle": ""
+    "subtitle": "Portfolio de mes réalisations en développement web, applications et technologies blockchain",
+    "allCategories": "Toutes les catégories",
+    "search": "Rechercher un projet",
+    "techStack": "Technologies utilisées",
+    "viewProject": "Voir le projet",
+    "githubRepo": "GitHub",
+    "liveDemo": "Démo en ligne",
+    "featured": "Projets à la une",
+    "viewAll": "Voir tous les projets",
+    "completed": "Achevé en",
+    "noResults": "Aucun projet ne correspond à votre recherche"
   },
   "Skills": {
     "title": "Compétences",
-    "description": ""
-  },
-  "About": {
-    "title": "À propos de moi",
-    "description": "👋 Bonjour à tous, je suis ingénieur informatique et développeur full-stack avec 6 ans d'expérience. Récemment reconverti en développeur blockchain, je suis passionné par les nouvelles technologies telles que l'IA et la blockchain 🤖. D'origine française, je vis actuellement à Toronto et suis à la recherche de nouvelles opportunités dans le Web3, à Toronto ou en remote 🚀",
-    "expertiseTitle": "Compétences"
+    "description": "Mes technologies de prédilection et expertises techniques"
   },
   "Career": {
     "title": "Parcours Professionnel",
@@ -71,16 +76,47 @@
       "apprenticeship": "Apprentissage"
     }
   },
-  "Contact": {},
+  "Contact": {
+    "title": "Contact",
+    "subtitle": "N'hésitez pas à me contacter pour discuter de vos projets",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "subject": "Sujet",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "success": "Votre message a été envoyé avec succès !",
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "nameRequired": "Le nom est requis",
+    "emailRequired": "L'email est requis",
+    "emailInvalid": "Format d'email invalide",
+    "messageRequired": "Le message est requis",
+    "subjectRequired": "Le sujet est requis"
+  },
   "Footer": {
-    "description": "Tous droits réservés © Thomas Moras 2025"
+    "description": "Tous droits réservés © Thomas Moras 2025",
+    "navigation": "Navigation",
+    "socialLinks": "Réseaux sociaux",
+    "contact": "Contact"
   },
   "LocaleSwitcher": {
     "label": "Changer de langue",
     "locale": "{locale, select, fr {Français} en {English} other {Unknown}}"
   },
-  "PathnamesPage": {
-    "description": "",
-    "title": "Pathnames"
+  "ProjectDetails": {
+    "backToProjects": "Retour aux projets",
+    "overview": "Vue d'ensemble",
+    "gallery": "Galerie",
+    "technical": "Détails techniques",
+    "aboutProject": "À propos du projet",
+    "technologiesUsed": "Technologies utilisées",
+    "keyFeatures": "Fonctionnalités clés",
+    "challengesSolutions": "Défis et Solutions",
+    "challenge": "Défi",
+    "solution": "Solution",
+    "similarProjects": "Projets similaires",
+    "noImage": "Pas d'image",
+    "featuresComingSoon": "Informations sur les fonctionnalités à venir.",
+    "challengesComingSoon": "Informations sur les défis et solutions à venir."
   }
 }

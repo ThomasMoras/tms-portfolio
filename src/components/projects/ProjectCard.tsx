@@ -1,3 +1,5 @@
+"use client";
+
 import { ProjectType } from "@/types/projectTypes";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,9 +7,16 @@ import React from "react";
 
 interface ProjectCardProps {
   project: ProjectType;
+  locale: "fr" | "en";
+  translations?: {
+    noImage: string;
+  };
 }
-
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const ProjectCard = ({
+  project,
+  locale,
+  translations = { noImage: "No Image" },
+}: ProjectCardProps) => {
   const { id, title, category, technologies, thumbnailImage, shortDescription } = project;
 
   return (
@@ -18,7 +27,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             <Image src={thumbnailImage} alt={title} fill className="object-cover" />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-800">
-              <span className="text-muted-foreground text-sm">No Image</span>
+              <span className="text-muted-foreground text-sm">{translations.noImage}</span>
             </div>
           )}
         </div>
@@ -28,7 +37,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             {category}
           </span>
           <h3 className="text-xl font-bold mb-2">{title}</h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{shortDescription}</p>
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+            {shortDescription[locale]}
+          </p>
 
           <div className="flex flex-wrap gap-2 mt-4">
             {technologies.slice(0, 3).map((tech, index) => (

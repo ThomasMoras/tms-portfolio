@@ -183,9 +183,6 @@ async function fetchContributionsCount(username: string, token?: string): Promis
   }
 
   try {
-    // Get the current year
-    const currentYear = new Date().getFullYear();
-
     // GraphQL query to get contribution count
     const query = `
       query {

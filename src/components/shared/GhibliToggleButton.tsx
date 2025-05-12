@@ -1,6 +1,7 @@
 "use client";
 
 import { useGhibliMode } from "@/contexts/GhibliModeContext";
+import Image from "next/image";
 
 export default function GhibliToggleButton() {
   const { isGhibliMode, toggleGhibliMode } = useGhibliMode();
@@ -32,10 +33,13 @@ export default function GhibliToggleButton() {
           >
             <div className="relative w-full h-full">
               <div className="absolute inset-0 flex items-center justify-center">
-                <img
-                  src="/images/ghibli/no_color_logo.png"
-                  alt="Totoro"
-                  className="w-40 h-40 object-contain"
+                <Image
+                  src={"/images/ghibli/no_color_logo.png"}
+                  alt={"Totoro"}
+                  width={400} // Set appropriate width
+                  height={400} // Set appropriate height
+                  className="object-contain"
+                  quality={80}
                 />
               </div>
             </div>

@@ -1,5 +1,18 @@
 import { useState, useEffect } from "react";
-import { GitHubActivity, LANGUAGE_COLORS } from "@/types/githubTypes";
+import { GitHubActivity, LANGUAGE_COLORS, LanguageKey } from "@/types/githubTypes";
+
+// Type guard to check if a language is a valid key in LANGUAGE_COLORS
+function isValidLanguage(lang: string): lang is LanguageKey {
+  return lang in LANGUAGE_COLORS;
+}
+
+// Helper function to get color with proper type checking
+function getLanguageColor(language: string): string {
+  if (isValidLanguage(language)) {
+    return LANGUAGE_COLORS[language];
+  }
+  return "#808080"; // Default gray
+}
 
 export interface UseGitHubOptions {
   page?: number;
@@ -52,11 +65,11 @@ export function useGitHub(options: UseGitHubOptions = {}) {
         const data = await response.json();
         console.log("GitHub data received:", data);
 
-        // Ajouter les codes couleur aux langages
+        // Ajouter les codes couleur aux langages avec type checking
         if (data.topLanguages) {
-          data.topLanguages = data.topLanguages.map((lang: any) => ({
+          data.topLanguages = data.topLanguages.map((lang: { name: string; count: number }) => ({
             ...lang,
-            color: LANGUAGE_COLORS[lang.name] || "#808080", // Gris par défaut
+            color: getLanguageColor(lang.name),
           }));
         }
 

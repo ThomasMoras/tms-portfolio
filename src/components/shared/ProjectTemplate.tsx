@@ -1,3 +1,4 @@
+"use client";
 import { ProjectType } from "@/types/projectTypes";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -9,12 +10,21 @@ import {
   PROJECT_CHALLENGES,
   getRelatedProjects,
 } from "@/constants/projectsConstants";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import { useActiveSection } from "@/contexts/ActiveSectionContext";
+import { NAV_ITEMS } from "@/constants/navbarConstants";
 
 interface ProjectTemplateProps {
   project: ProjectType;
 }
 
 const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
+  const t = useTranslations("ProjectDetails");
+  const projectsT = useTranslations("Projects");
+  const locale = useLocale() as "fr" | "en";
+  const { scrollToSection } = useActiveSection();
+
   const {
     title,
     fullDescription,
@@ -26,23 +36,28 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
     completionDate,
   } = project;
 
-  const formattedDate = new Date(completionDate).toLocaleDateString("fr-FR", {
-    year: "numeric",
-    month: "long",
-  });
+  const relatedProjects = getRelatedProjects(project.id);
+
+  const formattedDate = new Date(completionDate).toLocaleDateString(
+    locale === "fr" ? "fr-FR" : "en-US",
+    {
+      year: "numeric",
+      month: "long",
+    }
+  );
 
   return (
     <div className="container max-w-5xl mx-auto px-4 py-12 md:py-20">
       {/* Back button */}
       <Button
-        asChild
         variant="ghost"
         className="mb-6 flex items-center gap-1 hover:bg-transparent hover:text-primary"
+        onClick={() => {
+          scrollToSection(NAV_ITEMS[4].key);
+        }}
       >
-        <Link href="/projects">
-          <ArrowLeft className="h-4 w-4" />
-          <span>Retour aux projets</span>
-        </Link>
+        <ArrowLeft className="h-4 w-4" />
+        {t("backToProjects")}
       </Button>
 
       {/* Project header */}
@@ -68,7 +83,7 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
                   className="flex items-center gap-2"
                 >
                   <ExternalLink className="h-4 w-4" />
-                  <span>Live Demo</span>
+                  <span>{projectsT("liveDemo")}</span>
                 </a>
               </Button>
             )}
@@ -82,7 +97,7 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
                   className="flex items-center gap-2"
                 >
                   <Github className="h-4 w-4" />
-                  <span>GitHub</span>
+                  <span>{projectsT("githubRepo")}</span>
                 </a>
               </Button>
             )}
@@ -93,9 +108,9 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
       {/* Project content with tabs */}
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="mb-8">
-          <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
-          <TabsTrigger value="gallery">Galerie</TabsTrigger>
-          <TabsTrigger value="technical">Détails techniques</TabsTrigger>
+          <TabsTrigger value="overview">{t("overview")}</TabsTrigger>
+          <TabsTrigger value="gallery">{t("gallery")}</TabsTrigger>
+          <TabsTrigger value="technical">{t("technical")}</TabsTrigger>
         </TabsList>
 
         {/* Overview tab */}
@@ -109,8 +124,8 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
 
           {/* Project description */}
           <div className="prose prose-slate dark:prose-invert max-w-none">
-            <h2 className="text-2xl font-bold mb-4">À propos du projet</h2>
-            <p className="whitespace-pre-line">{fullDescription}</p>
+            <h2 className="text-2xl font-bold mb-4">{t("aboutProject")}</h2>
+            <p className="whitespace-pre-line">{fullDescription[locale]}</p>
           </div>
         </TabsContent>
 
@@ -135,7 +150,7 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
         <TabsContent value="technical">
           <div className="space-y-10">
             <div>
-              <h2 className="text-2xl font-bold mb-4">Technologies utilisées</h2>
+              <h2 className="text-2xl font-bold mb-4">{t("technologiesUsed")}</h2>
               <div className="flex flex-wrap gap-2">
                 {technologies.map((tech, index) => (
                   <span
@@ -149,45 +164,42 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold mb-4">Fonctionnalités clés</h2>
+              <h2 className="text-2xl font-bold mb-4">{t("keyFeatures")}</h2>
               {PROJECT_FEATURES[project.id] && PROJECT_FEATURES[project.id].length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {PROJECT_FEATURES[project.id].map((feature, index) => (
                     <div key={index} className="bg-card border border-border rounded-lg p-4">
-                      <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                      <p className="text-muted-foreground text-sm">{feature.description}</p>
+                      <h3 className="font-semibold text-lg mb-2">{feature.title[locale]}</h3>
+                      <p className="text-muted-foreground text-sm">{feature.description[locale]}</p>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-muted-foreground">
-                  Informations sur les fonctionnalités à venir.
-                </p>
+                <p className="text-muted-foreground">{t("featuresComingSoon")}</p>
               )}
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold mb-4">Défis et Solutions</h2>
+              <h2 className="text-2xl font-bold mb-4">{t("challengesSolutions")}</h2>
               {PROJECT_CHALLENGES[project.id] && PROJECT_CHALLENGES[project.id].length > 0 ? (
                 <div className="space-y-4">
                   {PROJECT_CHALLENGES[project.id].map((item, index) => (
                     <div key={index} className="bg-card border border-border rounded-lg p-5">
                       <h3 className="font-semibold text-lg mb-2">
-                        Défi: <span className="text-primary">{item.challenge}</span>
+                        {t("challenge")}:{" "}
+                        <span className="text-primary">{item.challenge[locale]}</span>
                       </h3>
                       <div className="pl-4 border-l-2 border-primary/30 mt-3">
                         <h4 className="font-medium mb-1 text-sm uppercase tracking-wide">
-                          Solution:
+                          {t("solution")}:
                         </h4>
-                        <p className="text-muted-foreground">{item.solution}</p>
+                        <p className="text-muted-foreground">{item.solution[locale]}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-muted-foreground">
-                  Informations sur les défis et solutions à venir.
-                </p>
+                <p className="text-muted-foreground">{t("challengesComingSoon")}</p>
               )}
             </div>
           </div>
@@ -195,47 +207,49 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
       </Tabs>
 
       {/* Related Projects Section */}
-      <div className="mt-16 pt-10 border-t border-border">
-        <h2 className="text-2xl font-bold mb-6">Projets similaires</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {getRelatedProjects(project.id).map((relatedProject) => {
-            if (!relatedProject) return null;
+      {relatedProjects.length > 0 && (
+        <div className="mt-16 pt-10 border-t border-border">
+          <h2 className="text-2xl font-bold mb-6">{t("similarProjects")}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {relatedProjects.map((relatedProject) => {
+              if (!relatedProject) return null;
 
-            return (
-              <Link
-                key={relatedProject.id}
-                href={`/projects/${relatedProject.id}`}
-                className="group block"
-              >
-                <div className="bg-card rounded-xl overflow-hidden shadow-md border border-border hover:shadow-lg transition-all group-hover:translate-y-[-5px]">
-                  <div className="h-36 relative">
-                    {relatedProject.thumbnailImage ? (
-                      <Image
-                        src={relatedProject.thumbnailImage}
-                        alt={relatedProject.title}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-800">
-                        <span className="text-muted-foreground text-sm">No Image</span>
-                      </div>
-                    )}
+              return (
+                <Link
+                  key={relatedProject.id}
+                  href={`/projects/${relatedProject.id}`}
+                  className="group block"
+                >
+                  <div className="bg-card rounded-xl overflow-hidden shadow-md border border-border hover:shadow-lg transition-all group-hover:translate-y-[-5px]">
+                    <div className="h-36 relative">
+                      {relatedProject.thumbnailImage ? (
+                        <Image
+                          src={relatedProject.thumbnailImage}
+                          alt={relatedProject.title}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-800">
+                          <span className="text-muted-foreground text-sm">{t("noImage")}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <span className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-2">
+                        {relatedProject.category}
+                      </span>
+                      <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                        {relatedProject.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <span className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-2">
-                      {relatedProject.category}
-                    </span>
-                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
-                      {relatedProject.title}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { TECH_CATEGORIES } from "@/constants/skillsConstants";
 import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import { TechCategory, TechItem } from "@/types/skillsTypes";
+import { TechCategory, TechData } from "@/types/skillsTypes";
 
 const TechBanner = () => {
   return (
@@ -33,7 +33,7 @@ const TechBanner = () => {
 
                 <div className="p-6">
                   <div className="flex flex-wrap gap-4 justify-center">
-                    {category.techs.map((tech: TechItem, techIndex: number) => (
+                    {category.techs.map((tech: TechData, techIndex: number) => (
                       <div
                         key={techIndex}
                         className="flex flex-col items-center gap-2 px-3 rounded-lg transition-transform duration-200 hover:scale-110"
