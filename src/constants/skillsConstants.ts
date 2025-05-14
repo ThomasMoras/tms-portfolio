@@ -7,7 +7,7 @@ import {
   TechCategory,
 } from "@/types/skillsTypes";
 
-// Skill level definitions remain the same
+// Skill level definitions
 export const SKILL_LEVELS: Record<SkillLevel, SkillLevelInfo> = {
   beginner: { label: "Débutant", range: [0, 40] },
   intermediate: { label: "Intermédiaire", range: [41, 70] },
@@ -206,3 +206,164 @@ export const TECH_CATEGORIES: TechCategory[] = SKILLS_DATA.map((category) =>
       })),
   })
 );
+
+// New categories data using your existing icon system
+// Soft Skills Categories
+const SOFT_SKILLS_DATA = [
+  {
+    id: "project-management",
+    title: "Project Management",
+    iconType: "clipboard-check",
+    color: "bg-purple-600 text-white",
+    link: "/skills?tab=project-management",
+    techs: [
+      { name: "Agile", iconType: "clipboard-list", color: "#8A2BE2" },
+      { name: "Scrum", iconType: "calendar", color: "#8A2BE2" },
+      { name: "Kanban", iconType: "kanban", color: "#8A2BE2" },
+      { name: "Jira", iconType: "layout", color: "#8A2BE2" },
+      { name: "Sprint Planning", iconType: "calendar-clock", color: "#8A2BE2" },
+    ],
+  },
+  {
+    id: "best-practices",
+    title: "Best Practices",
+    iconType: "book",
+    color: "bg-indigo-600 text-white",
+    link: "/skills?tab=best-practices",
+    techs: [
+      { name: "Clean Code", iconType: "code", color: "#5A67D8" },
+      { name: "TDD", iconType: "test-tube", color: "#5A67D8" },
+      { name: "DRY", iconType: "repeat", color: "#5A67D8" },
+      { name: "SOLID", iconType: "boxes", color: "#5A67D8" },
+      { name: "Code Reviews", iconType: "git-merge", color: "#5A67D8" },
+    ],
+  },
+  {
+    id: "ci-cd",
+    title: "CI/CD",
+    iconType: "git-branch",
+    color: "bg-orange-600 text-white",
+    link: "/skills?tab=ci-cd",
+    techs: [
+      { name: "Git Workflow", iconType: "git", color: "#F97316" },
+      { name: "Jenkins", iconType: "server", color: "#F97316" },
+      { name: "Docker", iconType: "docker", color: "#F97316" },
+      { name: "Automated Testing", iconType: "test-tube", color: "#F97316" },
+      { name: "GitOps", iconType: "git-branch", color: "#F97316", learning: true },
+    ],
+  },
+];
+
+// Tools Categories
+const TOOLS_DATA = [
+  {
+    id: "development-tools",
+    title: "Development Tools",
+    iconType: "code",
+    color: "bg-sky-600 text-white",
+    link: "/skills?tab=development-tools",
+    techs: [
+      { name: "VS Code", iconType: "code", color: "#007ACC" },
+      { name: "Cursor", iconType: "cursor-text", color: "#00BFFF" },
+      { name: "IntelliJ", iconType: "code", color: "#000000" },
+      { name: "GitHub", iconType: "github", color: "#181717" },
+      { name: "GitHub Enterprise", iconType: "github", color: "#181717" },
+    ],
+  },
+  {
+    id: "productivity",
+    title: "Productivity",
+    iconType: "check-square",
+    color: "bg-emerald-600 text-white",
+    link: "/skills?tab=productivity",
+    techs: [
+      { name: "Notion", iconType: "file-text", color: "#000000" },
+      { name: "Obsidian", iconType: "file-text", color: "#483699" },
+      { name: "Postman", iconType: "send", color: "#FF6C37" },
+      { name: "Power BI", iconType: "bar-chart", color: "#F2C811" },
+      { name: "MS Office Suite", iconType: "file", color: "#0078D4" },
+    ],
+  },
+  {
+    id: "devops",
+    title: "DevOps",
+    iconType: "server",
+    color: "bg-rose-600 text-white",
+    link: "/skills?tab=devops",
+    techs: [
+      { name: "Docker", iconType: "docker", color: "#2496ED" },
+      { name: "Jenkins", iconType: "server", color: "#D24939" },
+      { name: "Maven", iconType: "package", color: "#C71A36" },
+      { name: "Nginx", iconType: "server", color: "#009639" },
+      { name: "AWS", iconType: "cloud", color: "#FF9900" },
+    ],
+  },
+];
+
+// Certification Categories
+export const CERTIFICATIONS = [
+  {
+    id: "blockchain-certifications",
+    title: "Blockchain",
+    iconType: "award",
+    color: "bg-teal-600 text-white",
+    techs: [
+      {
+        name: "Développer une application décentralisée avec les technologies blockchain",
+        school: "Alyra, l'école blockchain & IA",
+        schoolUrl: "https://www.alyra.fr",
+        link: "https://certificate.alyra.fr/check/3C0A846D0843379C7305D6C31EA640F346608AA773FAC5B1E4F1D70E1AF37A2DM05jamJnYXFRdTBFT09pamQvZ0lBeUU0RTFBSWovRmtaS25MMDdNTW1WZDZOM1E1",
+        img: "/images/certifications/alyra.png",
+        learning: false,
+        complete: 2025,
+      },
+    ],
+  },
+
+  // {
+  //   id: "web-certifications",
+  //   title: "Web Development",
+  //   iconType: "award",
+  //   color: "bg-teal-600 text-white",
+  //   link: "/skills?tab=web-certifications",
+  //   techs: [
+  //     { name: "AWS Certified Developer", iconType: "cloud", color: "#FF9900" },
+  //     { name: "React Certification", iconType: "react", color: "#61DAFB" },
+  //     { name: "Next.js Certification", iconType: "nextjs", color: "#000000" },
+  //     { name: "JavaScript Expert", iconType: "javascript", color: "#F7DF1E" },
+  //   ],
+  // },
+  // {
+  //   id: "backend-certifications",
+  //   title: "Backend & Cloud",
+  //   iconType: "award",
+  //   color: "bg-pink-600 text-white",
+  //   link: "/skills?tab=backend-certifications",
+  //   techs: [
+  //     { name: "Azure Fundamentals", iconType: "cloud", color: "#0078D4" },
+  //     { name: "Google Cloud Associate", iconType: "cloud", color: "#4285F4" },
+  //     { name: "Java Specialist", iconType: "java", color: "#007396" },
+  //     { name: "Spring Framework Expert", iconType: "spring", color: "#6DB33F" },
+  //   ],
+  // },
+  // {
+  //   id: "other-certifications",
+  //   title: "Other Certifications",
+  //   iconType: "award",
+  //   color: "bg-fuchsia-600 text-white",
+  //   link: "/skills?tab=other-certifications",
+  //   techs: [
+  //     { name: "Scrum Master", iconType: "clipboard-check", color: "#8A2BE2" },
+  //     { name: "CompTIA Security+", iconType: "shield", color: "#FF0000" },
+  //     { name: "UX/UI Design", iconType: "palette", color: "#FF6B6B" },
+  //     { name: "Data Science", iconType: "bar-chart", color: "#4B0082", learning: true },
+  //   ],
+  // },
+];
+
+// Map the raw data to include React components using your existing mapper
+export const SOFT_SKILLS_CATEGORIES: TechCategory[] = SOFT_SKILLS_DATA.map((category) =>
+  mapTechData(category)
+);
+
+export const TOOLS_CATEGORIES: TechCategory[] = TOOLS_DATA.map((category) => mapTechData(category));
