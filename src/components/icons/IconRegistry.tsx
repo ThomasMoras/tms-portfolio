@@ -203,6 +203,7 @@ export const LegacyIconMapping: Record<string, string> = {
   "python": "SiPython",
   "tailwind-si": "SiTailwindcss",
   "vercel": "SiVercel",
+  "github": "SiGithub",
 
   // React Icons - Di mappings
   "sqlserver": "DiMsqlServer",

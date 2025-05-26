@@ -43,6 +43,7 @@ export interface Tool {
   name: LocalizedText;
   iconType: string;
   color?: string;
+  imgPath?: string;
 }
 
 // Tool category interface

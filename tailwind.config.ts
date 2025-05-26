@@ -28,6 +28,24 @@ export default {
     "dark:border-blue-800/30",
     "dark:border-purple-800/30",
     "dark:border-amber-800/30",
+
+    // Soft skils h3 titles (light & dark modes)
+    "dark:bg-blue-900/40",
+    "dark:text-blue-300",
+    "dark:bg-purple-900/40",
+    "dark:text-purple-300",
+    "dark:bg-amber-900/40",
+    "dark:text-amber-300",
+    "dark:bg-green-900/40",
+    "dark:text-green-300",
+    "text-blue-600",
+    "text-purple-600",
+    "text-amber-600",
+    "text-green-600",
+    "dark:text-blue-300",
+    "dark:text-purple-300",
+    "dark:text-amber-300",
+    "dark:text-green-300",
   ],
   theme: {
     extend: {

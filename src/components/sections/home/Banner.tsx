@@ -87,7 +87,7 @@ const Banner = () => {
               <div className="flex flex-wrap gap-4 justify-center">
                 {getSkillsByCategory(category.id)
                   .filter((skill) => skill.showInBanner)
-                  .slice(0, 6) // Limit to 6 skills for display
+                  .slice(0, 10)
                   .map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
@@ -97,7 +97,7 @@ const Banner = () => {
                         style={{ color: skill.color }}
                         className="flex items-center justify-center"
                       >
-                        <Icon name={skill.iconType || "code"} size={24} />
+                        <Icon name={skill.iconType || "code"} size={32} />
                       </div>
                       <span className="text-sm font-medium text-center">{skill.name}</span>
                       {skill.learning && (
@@ -167,7 +167,18 @@ const Banner = () => {
               className="w-12 h-12 flex items-center justify-center mb-3 rounded-full"
               style={{ color: tech.color }}
             >
-              <Icon name={tech.iconType || "tool"} size={28} />
+              {!tech.imgPath ? (
+                <Icon name={tech.iconType || "tool"} size={28} />
+              ) : (
+                <Image
+                  src={tech.imgPath}
+                  alt={tech.iconType}
+                  width={400}
+                  height={400}
+                  className="object-contain"
+                  quality={80}
+                ></Image>
+              )}
             </div>
             <span className="text-sm font-medium text-center">{getLocalizedText(tech.name)}</span>
           </div>
@@ -323,16 +334,16 @@ const Banner = () => {
               // Base filter colors (unselected state)
               activeFilter !== filter &&
                 filter === "hardskills" &&
-                "border-cyan-500 text-cyan-600 hover:bg-cyan-50",
+                "border-cyan-500 text-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-950 hover:text-cyan",
               activeFilter !== filter &&
                 filter === "softskills" &&
-                "border-emerald-500 text-emerald-600 hover:bg-emerald-50",
+                "border-emerald-500 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950  hover:text-emerald",
               activeFilter !== filter &&
                 filter === "tools" &&
-                "border-orange-500 text-orange-600 hover:bg-orange-50",
+                "border-orange-500 text-orange-600 hover:bg-orange-50  dark:hover:bg-orange-950 hover:text-orange",
               activeFilter !== filter &&
                 filter === "certification" &&
-                "border-amber-500 text-amber-600 hover:bg-amber-50",
+                "border-amber-500 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950  hover:text-amber",
               // Selected state with your original styling
               activeFilter === filter &&
                 filter === "hardskills" &&
