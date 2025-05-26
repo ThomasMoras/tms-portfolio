@@ -11,9 +11,9 @@ import {
   getRelatedProjects,
 } from "@/constants/projectsConstants";
 import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
 import { NAV_ITEMS } from "@/constants/navbarConstants";
+import { useLocalizedText } from "@/hooks/useLocalization";
 
 interface ProjectTemplateProps {
   project: ProjectType;
@@ -22,8 +22,10 @@ interface ProjectTemplateProps {
 const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
   const t = useTranslations("ProjectDetails");
   const projectsT = useTranslations("Projects");
-  const locale = useLocale() as "fr" | "en";
   const { scrollToSection } = useActiveSection();
+
+  // Use the custom hook - same pattern as your SkillItem component
+  const { getLocalizedText, currentLocale } = useLocalizedText();
 
   const {
     title,
@@ -39,7 +41,7 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
   const relatedProjects = getRelatedProjects(project.id);
 
   const formattedDate = new Date(completionDate).toLocaleDateString(
-    locale === "fr" ? "fr-FR" : "en-US",
+    currentLocale === "fr" ? "fr-FR" : "en-US",
     {
       year: "numeric",
       month: "long",
@@ -125,7 +127,7 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
           {/* Project description */}
           <div className="prose prose-slate dark:prose-invert max-w-none">
             <h2 className="text-2xl font-bold mb-4">{t("aboutProject")}</h2>
-            <p className="whitespace-pre-line">{fullDescription[locale]}</p>
+            <p className="whitespace-pre-line">{getLocalizedText(fullDescription)}</p>
           </div>
         </TabsContent>
 
@@ -163,14 +165,19 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
               </div>
             </div>
 
+            {/* Key Features */}
             <div>
               <h2 className="text-2xl font-bold mb-4">{t("keyFeatures")}</h2>
               {PROJECT_FEATURES[project.id] && PROJECT_FEATURES[project.id].length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {PROJECT_FEATURES[project.id].map((feature, index) => (
                     <div key={index} className="bg-card border border-border rounded-lg p-4">
-                      <h3 className="font-semibold text-lg mb-2">{feature.title[locale]}</h3>
-                      <p className="text-muted-foreground text-sm">{feature.description[locale]}</p>
+                      <h3 className="font-semibold text-lg mb-2">
+                        {getLocalizedText(feature.title)}
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        {getLocalizedText(feature.description)}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -179,6 +186,7 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
               )}
             </div>
 
+            {/* Challenges & Solutions */}
             <div>
               <h2 className="text-2xl font-bold mb-4">{t("challengesSolutions")}</h2>
               {PROJECT_CHALLENGES[project.id] && PROJECT_CHALLENGES[project.id].length > 0 ? (
@@ -187,13 +195,13 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
                     <div key={index} className="bg-card border border-border rounded-lg p-5">
                       <h3 className="font-semibold text-lg mb-2">
                         {t("challenge")}:{" "}
-                        <span className="text-primary">{item.challenge[locale]}</span>
+                        <span className="text-primary">{getLocalizedText(item.challenge)}</span>
                       </h3>
                       <div className="pl-4 border-l-2 border-primary/30 mt-3">
                         <h4 className="font-medium mb-1 text-sm uppercase tracking-wide">
                           {t("solution")}:
                         </h4>
-                        <p className="text-muted-foreground">{item.solution[locale]}</p>
+                        <p className="text-muted-foreground">{getLocalizedText(item.solution)}</p>
                       </div>
                     </div>
                   ))}

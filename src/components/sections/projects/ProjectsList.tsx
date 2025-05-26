@@ -1,8 +1,8 @@
 import React from "react";
-import ProjectCard from "../projects/ProjectCard";
-import { Button } from "../ui/button";
+import ProjectCard from "./ProjectCard";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/constants/projectsConstants";
+import { Button } from "@/components/ui/button";
 
 const ProjectsList = () => {
   const featuredProjects = getFeaturedProjects();

@@ -1,5 +1,5 @@
 import React from "react";
-import TechBanner from "../shared/TechBanner";
+import HomeBanner from "./Banner";
 import ProfileBio from "./profile/ProfileBio";
 import ProfileHeader from "./profile/ProfileHeader";
 import ProfilePicture from "./profile/ProfilePicture";
@@ -26,8 +26,8 @@ const Home = () => {
               <ProfileBio />
             </div>
           </div>
-          <div className="col-span-1 md:col-span-3 mt-10 md:mt-20">
-            <TechBanner />
+          <div className="col-span-1 md:col-span-3 mt-6 md:mt-10">
+            <HomeBanner />
           </div>
         </div>
       </div>

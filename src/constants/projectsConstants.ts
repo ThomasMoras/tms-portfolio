@@ -347,7 +347,7 @@ export const PROJECTS: ProjectType[] = [
       "/projects/lyonmarquage/section_editable.png",
     ],
     demoUrl: "https://www.lyonmarquage.fr",
-    repoUrl: "https://github.com/username/lyon-marquage-services",
+    repoUrl: "https://github.com/ThomasMoras/lyon-marquage-services",
     featured: true,
     completionDate: "2025-04",
   },

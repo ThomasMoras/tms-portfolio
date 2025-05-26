@@ -1,5 +1,6 @@
 "use client";
 
+import { createLocalizationUtils } from "@/lib/localizationUtils";
 import { ProjectCardProps } from "@/types/projectTypes";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +12,7 @@ const ProjectCard = ({
   translations = { noImage: "No Image" },
 }: ProjectCardProps) => {
   const { id, title, category, technologies, thumbnailImage, shortDescription } = project;
+  const { getLocalizedText } = createLocalizationUtils(locale, {});
 
   return (
     <Link href={`/projects/${id}`} className="block">
@@ -31,7 +33,7 @@ const ProjectCard = ({
           </span>
           <h3 className="text-xl font-bold mb-2">{title}</h3>
           <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-            {shortDescription[locale]}
+            {getLocalizedText(shortDescription)}
           </p>
 
           <div className="flex flex-wrap gap-2 mt-4">

@@ -3,11 +3,11 @@
 import React from "react";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
 import Contributions from "@/components/sections/Contributions";
-import Home from "@/components/sections/Home";
-import Skills from "@/components/sections/Skills";
+import Home from "@/components/sections/home/Home";
+import Skills from "@/components/sections/skills/Skills";
 import GlobalTimeLine from "@/components/shared/GlobalTimeLine";
-import Projects from "@/components/sections/Projects";
 import SectionLayout from "@/components/navigation/SectionLayout";
+import Projects from "@/components/sections/projects/Projects";
 
 const HomePage: React.FC = () => {
   const { refs } = useActiveSection();

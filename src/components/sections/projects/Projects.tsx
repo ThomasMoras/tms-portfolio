@@ -2,7 +2,7 @@ import React from "react";
 import ProjectCard from "../projects/ProjectCard";
 import { PROJECT_CATEGORIES, getFeaturedProjects } from "@/constants/projectsConstants";
 import { useTranslations } from "next-intl";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Projects = () => {
   const t = useTranslations("Projects");

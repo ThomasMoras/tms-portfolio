@@ -2,42 +2,38 @@
 
 import React, { useState } from "react";
 import {
-  TECH_CATEGORIES,
-  SOFT_SKILLS_CATEGORIES,
-  TOOLS_CATEGORIES,
+  CATEGORIES,
+  SKILLS,
+  TOOLS,
   CERTIFICATIONS,
+  SOFT_SKILLS,
 } from "@/constants/skillsConstants";
-import {
-  ExternalLink,
-  CheckCircle2,
-  Briefcase,
-  GitBranch,
-  Users,
-  MessageSquare,
-  Brain,
-  Clock,
-  Lightbulb,
-  Coffee,
-  Heart,
-} from "lucide-react";
+import { ExternalLink, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { TechCategory } from "@/types/skillsTypes";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl";
+import Icon from "@/components/icons/Icon";
+import { createLocalizationUtils } from "@/lib/localizationUtils";
+import { safeCss } from "@/lib/uiUtils";
+import { cn } from "@/lib/utils";
 
 // Define the filter types
 type FilterType = "hardskills" | "softskills" | "tools" | "certification";
 
-const HomeBanner = () => {
+const Banner = () => {
   const { scrollToSection } = useActiveSection();
   const [activeFilter, setActiveFilter] = useState<FilterType>("hardskills");
+  const locale = useLocale();
 
-  const handleCategoryClick = (category: TechCategory) => {
+  // Use the centralized localization utilities
+  const { getLocalizedText, currentLocale } = createLocalizationUtils(locale, {});
+
+  const handleCategoryClick = (categoryId: string) => {
     // Store the category id in sessionStorage to be picked up by the Skills component
-    sessionStorage.setItem("selectedSkillTab", category.id.toLowerCase());
+    sessionStorage.setItem("selectedSkillTab", categoryId.toLowerCase());
 
     // Scroll to the skills section
     scrollToSection("skills");
@@ -45,7 +41,7 @@ const HomeBanner = () => {
     // Fire a custom event to notify the Skills component about the tab change
     setTimeout(() => {
       const tabChangeEvent = new CustomEvent("skill-tab-change", {
-        detail: { tabId: category.id.toLowerCase() },
+        detail: { tabId: categoryId.toLowerCase() },
       });
       window.dispatchEvent(tabChangeEvent);
     }, 200);
@@ -56,46 +52,61 @@ const HomeBanner = () => {
     setActiveFilter(filter);
   };
 
-  // Render Hard Skills (Original 3-card layout)
+  // Get skills for a category
+  const getSkillsByCategory = (categoryId: string) => {
+    return SKILLS.filter((skill) => skill.categoryId === categoryId);
+  };
+
+  // Render Hard Skills (Technical skills organized by category)
   const renderHardSkills = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {TECH_CATEGORIES.map((category: TechCategory, index: number) => (
+      {CATEGORIES.map((category, index) => (
         <Card
           key={index}
           className="hover:shadow-lg transition-all duration-300 overflow-hidden border border-border hover:translate-y-[-5px]"
         >
           <CardContent className="p-0">
             <button
-              onClick={() => handleCategoryClick(category)}
+              onClick={() => handleCategoryClick(category.id)}
               className="block w-full text-left cursor-pointer"
             >
-              <div className={`flex items-center gap-2 p-2 ${category.color}`}>
+              <div className={`flex items-center gap-2 p-2 ${safeCss(category.bgColor)}`}>
                 <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-xl">{category.icon}</span>
+                  <Icon
+                    name={category.iconType || "code"}
+                    className={safeCss(category.color)}
+                    size={24}
+                  />
                 </div>
-                <h3 className="text-xl font-semibold">{category.title}</h3>
+                <h3 className="text-xl font-semibold">{getLocalizedText(category.title)}</h3>
                 <ExternalLink className="ml-auto" size={18} />
               </div>
             </button>
 
             <div className="p-6">
               <div className="flex flex-wrap gap-4 justify-center">
-                {category.techs.map((tech, techIndex: number) => (
-                  <div
-                    key={techIndex}
-                    className="flex flex-col items-center gap-2 px-3 rounded-lg transition-transform duration-200 hover:scale-110"
-                  >
-                    <div style={{ color: tech.color }} className="flex items-center justify-center">
-                      {tech.icon}
+                {getSkillsByCategory(category.id)
+                  .filter((skill) => skill.showInBanner)
+                  .slice(0, 6) // Limit to 6 skills for display
+                  .map((skill, skillIndex) => (
+                    <div
+                      key={skillIndex}
+                      className="flex flex-col items-center gap-2 px-3 rounded-lg transition-transform duration-200 hover:scale-110"
+                    >
+                      <div
+                        style={{ color: skill.color }}
+                        className="flex items-center justify-center"
+                      >
+                        <Icon name={skill.iconType || "code"} size={24} />
+                      </div>
+                      <span className="text-sm font-medium text-center">{skill.name}</span>
+                      {skill.learning && (
+                        <span className="text-xs bg-amber-200 dark:bg-amber-800/50 text-amber-800 dark:text-amber-300 rounded-full px-1.5 py-0.5">
+                          {currentLocale === "fr" ? "en cours" : "learning"}
+                        </span>
+                      )}
                     </div>
-                    <span className="text-sm font-medium text-center">{tech.name}</span>
-                    {tech.learning && (
-                      <span className="text-xs bg-amber-200 dark:bg-amber-800/50 text-amber-800 dark:text-amber-300 rounded-full px-1.5 py-0.5">
-                        learning
-                      </span>
-                    )}
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </CardContent>
@@ -104,71 +115,21 @@ const HomeBanner = () => {
     </div>
   );
 
-  // Render Soft Skills (Redesigned with more visual elements)
+  // Render Soft Skills (Using the SOFT_SKILLS structure)
   const renderSoftSkills = () => {
-    // Define our professional skills sections
-    const softSkillSections = [
-      {
-        title: "Communication & Collaboration",
-        icon: <MessageSquare className="w-6 h-6" />,
-        color: "bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300",
-        items: [
-          "Clearly expressing complex technical concepts to all stakeholders",
-          "Working effectively with diverse cross-functional teams",
-          "Active listening to understand requirements and feedback",
-          "Addressing disagreements professionally and constructively",
-        ],
-      },
-      {
-        title: "Leadership & Mentoring",
-        icon: <Users className="w-6 h-6" />,
-        color: "bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300",
-        items: [
-          "Providing technical guidance to teams and junior developers",
-          "Strong documentation and clear communication focused",
-          "Helping less experienced team members grow and develop",
-          "Leading projects with organization and accountability",
-        ],
-      },
-      {
-        title: "Problem Solving & Innovation",
-        icon: <Lightbulb className="w-6 h-6" />,
-        color: "bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300",
-        items: [
-          "Approaching challenges with creativity and persistence",
-          "Analytical mindset for efficient technical solutions",
-          "Understanding user needs to build better solutions",
-          "Self-driven approach with continuous learning",
-        ],
-      },
-      {
-        title: "Quality & Adaptability",
-        icon: <GitBranch className="w-6 h-6" />,
-        color: "bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-300",
-        items: [
-          "Emphasis on code quality and testing standards",
-          "Embracing new technologies and methodologies",
-          "Prioritizing tasks and meeting deadlines consistently",
-          "Being open to constructive feedback for improvement",
-        ],
-      },
-    ];
+    const softSkillsData = SOFT_SKILLS[currentLocale as keyof typeof SOFT_SKILLS];
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {softSkillSections.map((section, index) => (
+        {softSkillsData.map((section, index) => (
           <Card
             key={index}
             className="overflow-hidden border-border hover:shadow-lg transition-all"
           >
-            <div
-              className={`p-4 ${section.color.split(" ").slice(0, 2).join(" ")} border-b border-border`}
-            >
+            <div className={`p-4 ${section.color} border-b border-border`}>
               <div className="flex items-center gap-3">
-                <div
-                  className={`p-2 rounded-full bg-white/60 dark:bg-black/20 ${section.color.split(" ").slice(2).join(" ")}`}
-                >
-                  {section.icon}
+                <div className="p-2 rounded-full bg-white/60 dark:bg-black/20">
+                  <Icon name={section.iconType || "help-circle"} size={24} />
                 </div>
                 <h3 className="text-xl font-semibold">{section.title}</h3>
               </div>
@@ -193,10 +154,10 @@ const HomeBanner = () => {
     );
   };
 
-  // Render Tools (Grid of tool boxes with icons)
+  // Render Tools
   const renderTools = () => (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {TOOLS_CATEGORIES.flatMap((category) =>
+      {TOOLS.flatMap((category) =>
         category.techs.map((tech, techIndex) => (
           <div
             key={`${category.id}-${techIndex}`}
@@ -206,14 +167,9 @@ const HomeBanner = () => {
               className="w-12 h-12 flex items-center justify-center mb-3 rounded-full"
               style={{ color: tech.color }}
             >
-              {tech.icon}
+              <Icon name={tech.iconType || "tool"} size={28} />
             </div>
-            <span className="text-sm font-medium text-center">{tech.name}</span>
-            {tech.learning && (
-              <Badge variant="outline" className="mt-1 text-xs text-amber-500 border-amber-500">
-                learning
-              </Badge>
-            )}
+            <span className="text-sm font-medium text-center">{getLocalizedText(tech.name)}</span>
           </div>
         ))
       )}
@@ -226,7 +182,7 @@ const HomeBanner = () => {
       {CERTIFICATIONS.map((category, categoryIndex) => (
         <div key={categoryIndex} className="space-y-4">
           <h3 className="text-lg font-semibold pl-3 border-l-4 border-blue-500 flex items-center gap-2 text-gray-800 dark:text-gray-200">
-            <span>{category.title}</span>
+            <span>{getLocalizedText(category.title)}</span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             {category.techs.map((cert, certIndex) => (
@@ -237,35 +193,32 @@ const HomeBanner = () => {
                 <div className="relative mr-5 flex-shrink-0">
                   <div
                     className="w-24 h-24 rounded-lg bg-white dark:bg-gray-900 p-2 shadow-sm overflow-hidden flex items-center justify-center group-hover:shadow-md transition-all duration-300 cursor-pointer"
-                    onClick={() => cert.school && window.open(cert.schoolUrl, "_blank")}
+                    onClick={() => {
+                      if (cert.schoolUrl) {
+                        window.open(cert.schoolUrl, "_blank");
+                      }
+                    }}
                     role="button"
                     tabIndex={0}
-                    aria-label={`Visit ${cert.school} website`}
+                    aria-label={`Visit ${getLocalizedText(cert.school)} website`}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
-                        cert.schoolUrl && window.open(cert.schoolUrl, "_blank");
+                        if (cert.schoolUrl) {
+                          window.open(cert.schoolUrl, "_blank");
+                        }
                       }
                     }}
                   >
                     <Image
                       src={cert.img}
-                      alt={cert.name}
+                      alt={getLocalizedText(cert.name)}
                       width={80}
                       height={80}
                       className="object-contain group-hover:scale-105 transition-transform duration-300"
                       quality={90}
                     />
                   </div>
-                  {/* {cert.learning ? (
-                    <div className="absolute -bottom-1 -right-1 bg-amber-500 rounded-full w-6 h-6 flex items-center justify-center shadow-sm border-2 border-white dark:border-gray-800">
-                      <Clock className="w-3 h-3 text-white" />
-                    </div>
-                  ) : (
-                    <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full w-6 h-6 flex items-center justify-center shadow-sm border-2 border-white dark:border-gray-800">
-                      <CheckCircle2 className="w-3 h-3 text-white" />
-                    </div>
-                  )} */}
                 </div>
                 <div className="flex-1">
                   <Link
@@ -275,7 +228,7 @@ const HomeBanner = () => {
                     className="block hover:underline"
                   >
                     <h4 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1">
-                      {cert.name}
+                      {getLocalizedText(cert.name)}
                     </h4>
                   </Link>
 
@@ -286,13 +239,13 @@ const HomeBanner = () => {
                     className="block hover:underline"
                   >
                     <h2 className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      {cert.school}
+                      {getLocalizedText(cert.school)}
                     </h2>
                   </Link>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     {cert.learning
-                      ? `In progress • Started ${cert.complete || new Date().getFullYear()}`
-                      : `Completed • ${cert.complete}`}
+                      ? `${currentLocale === "fr" ? "En cours" : "In progress"} • ${currentLocale === "fr" ? "Commencé" : "Started"} ${cert.complete || new Date().getFullYear()}`
+                      : `${currentLocale === "fr" ? "Achevé" : "Completed"} • ${cert.complete}`}
                   </p>
                 </div>
                 <Button
@@ -300,7 +253,11 @@ const HomeBanner = () => {
                   size="sm"
                   className="rounded-full h-8 w-8 p-0 ml-2"
                   aria-label="View certificate details"
-                  onClick={() => window.open(cert.link, "_blank")}
+                  onClick={() => {
+                    if (cert.link) {
+                      window.open(cert.link, "_blank");
+                    }
+                  }}
                 >
                   <ExternalLink className="h-4 w-4" />
                 </Button>
@@ -328,38 +285,72 @@ const HomeBanner = () => {
     }
   };
 
+  // Translate filter button labels based on locale
+  const getFilterLabel = (filter: FilterType): string => {
+    const labels = {
+      hardskills: {
+        en: "Hard Skills",
+        fr: "Compétences Techniques",
+      },
+      softskills: {
+        en: "Soft Skills",
+        fr: "Compétences Humaines",
+      },
+      tools: {
+        en: "Tools",
+        fr: "Outils",
+      },
+      certification: {
+        en: "Certification",
+        fr: "Certification",
+      },
+    };
+
+    return labels[filter][currentLocale as keyof (typeof labels)[typeof filter]] || filter;
+  };
+
   return (
     <div className="container mx-auto mb-10">
       {/* Filter buttons */}
       <div className="flex flex-wrap justify-center gap-4 mb-8">
-        <Button
-          variant={activeFilter === "hardskills" ? "hardskills" : "outline"}
-          onClick={() => handleFilterClick("hardskills")}
-          className="min-w-24"
-        >
-          Hard Skills
-        </Button>
-        <Button
-          variant={activeFilter === "softskills" ? "softskills" : "outline"}
-          onClick={() => handleFilterClick("softskills")}
-          className="min-w-24"
-        >
-          Soft Skills
-        </Button>
-        <Button
-          variant={activeFilter === "tools" ? "tools" : "outline"}
-          onClick={() => handleFilterClick("tools")}
-          className="min-w-24"
-        >
-          Tools
-        </Button>
-        <Button
-          variant={activeFilter === "certification" ? "certification" : "outline"}
-          onClick={() => handleFilterClick("certification")}
-          className="min-w-24"
-        >
-          Certification
-        </Button>
+        {(["hardskills", "softskills", "tools", "certification"] as FilterType[]).map((filter) => (
+          <Button
+            key={filter}
+            variant={activeFilter === filter ? "default" : "outline"}
+            onClick={() => handleFilterClick(filter)}
+            className={cn(
+              "min-w-24",
+              // Base filter colors (unselected state)
+              activeFilter !== filter &&
+                filter === "hardskills" &&
+                "border-cyan-500 text-cyan-600 hover:bg-cyan-50",
+              activeFilter !== filter &&
+                filter === "softskills" &&
+                "border-emerald-500 text-emerald-600 hover:bg-emerald-50",
+              activeFilter !== filter &&
+                filter === "tools" &&
+                "border-orange-500 text-orange-600 hover:bg-orange-50",
+              activeFilter !== filter &&
+                filter === "certification" &&
+                "border-amber-500 text-amber-600 hover:bg-amber-50",
+              // Selected state with your original styling
+              activeFilter === filter &&
+                filter === "hardskills" &&
+                "bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 border-b-4 border-cyan-700 hover:border-cyan-500 rounded",
+              activeFilter === filter &&
+                filter === "softskills" &&
+                "bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-2 px-4 border-b-4 border-emerald-700 hover:border-emerald-500 rounded",
+              activeFilter === filter &&
+                filter === "tools" &&
+                "bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded",
+              activeFilter === filter &&
+                filter === "certification" &&
+                "bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 border-b-4 border-amber-700 hover:border-amber-500 rounded"
+            )}
+          >
+            {getFilterLabel(filter)}
+          </Button>
+        ))}
       </div>
 
       {/* Dynamic content based on active filter */}
@@ -368,4 +359,4 @@ const HomeBanner = () => {
   );
 };
 
-export default HomeBanner;
+export default Banner;

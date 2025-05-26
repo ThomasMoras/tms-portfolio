@@ -1,73 +1,84 @@
-import { ReactNode } from "react";
+import { LocalizedText } from "@/lib/localizationUtils";
 
-// Basic types
+// Base interface for items that can have localized content
+export interface LocalizableItem {
+  title: LocalizedText;
+  name?: LocalizedText;
+}
+
+// Category interface
+export interface Category extends LocalizableItem {
+  id: string;
+  iconType?: string;
+  color?: string;
+  bgColor?: string;
+  progressColor?: string;
+}
+
+// Skill level type
 export type SkillLevel = "beginner" | "intermediate" | "advanced" | "expert";
 
+// Skill level info interface
 export interface SkillLevelInfo {
-  label: string;
+  label: LocalizedText;
   range: [number, number];
 }
 
-// Types for raw data
-export interface SkillData {
+// Skill interface
+export interface Skill {
+  id: string;
   name: string;
-  iconType: string;
-  level: SkillLevel;
-  percentage: number;
-  color: string;
-  learning?: boolean;
-  description?: string;
-  icon?: ReactNode;
+  categoryId: string;
+  level?: SkillLevel | string; // Allow both for backward compatibility
+  percentage?: number;
+  color?: string;
+  iconType?: string;
   showInBanner?: boolean;
-}
-
-export interface SkillCategoryData {
-  id: string;
-  title: string;
-  iconType: string;
-  color: string;
-  bgColor: string;
-  progressColor: string;
-  skills: SkillData[];
-}
-
-export interface TechData {
-  name: string;
-  iconType: string;
-  color: string;
   learning?: boolean;
-  icon?: ReactNode;
+  description?: LocalizedText;
 }
 
-export interface TechCategoryData {
+// Tool interface
+export interface Tool {
+  name: LocalizedText;
+  iconType: string;
+  color?: string;
+}
+
+// Tool category interface
+export interface ToolCategory {
   id: string;
+  title: LocalizedText;
+  techs: Tool[];
+}
+
+// Certification interface
+export interface Certification {
+  name: LocalizedText;
+  school: LocalizedText;
+  img: string;
+  link?: string;
+  schoolUrl?: string;
+  complete?: string;
+  learning?: boolean;
+}
+
+// Certification category interface
+export interface CertificationCategory {
+  title: LocalizedText;
+  techs: Certification[];
+}
+
+// Soft skills section interface
+export interface SoftSkillsSection {
   title: string;
   iconType: string;
   color: string;
-  link: string;
-  techs: TechData[];
+  items: string[];
 }
 
-// Types for the unified skills data structure
-export interface UnifiedSkillCategory {
-  id: string;
-  title: string;
-  iconType: string;
-  color: string;
-  bgColor: string;
-  progressColor: string;
-  bannerColor: string;
-  link: string;
-  skills: SkillData[];
-}
-
-// Types for React components
-export interface SkillCategory extends Omit<SkillCategoryData, "iconType" | "skills"> {
-  icon: ReactNode;
-  skills: (SkillData & { icon: ReactNode })[];
-}
-
-export interface TechCategory extends Omit<TechCategoryData, "iconType" | "techs"> {
-  icon: ReactNode;
-  techs: (TechData & { icon: ReactNode })[];
+// Soft skills structure for both locales
+export interface SoftSkillsData {
+  en: SoftSkillsSection[];
+  fr: SoftSkillsSection[];
 }

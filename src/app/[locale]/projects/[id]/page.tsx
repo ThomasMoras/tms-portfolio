@@ -1,5 +1,6 @@
 import ProjectTemplate from "@/components/shared/ProjectTemplate";
 import { PROJECTS } from "@/constants/projectsConstants";
+import { createLocalizationUtils } from "@/lib/localizationUtils";
 import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -20,10 +21,11 @@ export async function generateMetadata({
       title: "Project Not Found",
     };
   }
+  const { getLocalizedText } = createLocalizationUtils(locale, {});
 
   return {
     title: `${project.title} | Portfolio`,
-    description: project.shortDescription[locale],
+    description: getLocalizedText(project.shortDescription),
   };
 }
 

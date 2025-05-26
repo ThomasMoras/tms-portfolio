@@ -1,14 +1,10 @@
+import { LocalizedText } from "@/lib/localizationUtils";
+
 export interface ProjectType {
   id: string;
   title: string;
-  shortDescription: {
-    fr: string;
-    en: string;
-  };
-  fullDescription: {
-    fr: string;
-    en: string;
-  };
+  shortDescription: LocalizedText;
+  fullDescription: LocalizedText;
   category: string;
   technologies: string[];
   thumbnailImage: string;
@@ -20,31 +16,20 @@ export interface ProjectType {
 }
 
 export interface ProjectFeature {
-  title: {
-    fr: string;
-    en: string;
-  };
-  description: {
-    fr: string;
-    en: string;
-  };
+  title: LocalizedText;
+  description: LocalizedText;
 }
 
 export interface ProjectChallenge {
-  challenge: {
-    fr: string;
-    en: string;
-  };
-  solution: {
-    fr: string;
-    en: string;
-  };
+  challenge: LocalizedText;
+  solution: LocalizedText;
 }
 
 export interface RelatedProject {
   id: string;
   title: string;
   thumbnailImage: string;
+  category?: string;
 }
 
 export interface ProjectCardProps {
