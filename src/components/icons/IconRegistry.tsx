@@ -174,6 +174,7 @@ export const LegacyIconMapping: Record<string, string> = {
   "hardhat": "FaHardHat",
   "ethereum": "FaEthereum",
   "java": "FaJava",
+  "c#": "FaJava",
 
   // React Icons - Ri mappings
   "nextjs": "RiNextjsFill",
