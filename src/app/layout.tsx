@@ -7,10 +7,6 @@ export const metadata: Metadata = {
     "Contents personnals and professionnels projects, describes my interest, skills and my passions for Blockchain & IA 🚀",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
