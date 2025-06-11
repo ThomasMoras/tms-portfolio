@@ -108,7 +108,7 @@ export const useSkillsStore = create<SkillsStore>()(
         const bValue = b[state.sortBy];
 
         // Handle different types of values
-        const compareValues = (val1: any, val2: any): number => {
+        const compareValues = (val1: string | number, val2: string | number): number => {
           if (val1 === undefined || val2 === undefined) {
             return 0;
           }
@@ -121,7 +121,7 @@ export const useSkillsStore = create<SkillsStore>()(
           return 0;
         };
 
-        const comparison = compareValues(aValue, bValue);
+        const comparison = compareValues(aValue as string | number, bValue as string | number);
 
         if (state.sortOrder === "asc") {
           return comparison;

@@ -13,14 +13,12 @@ interface SkillCategoryCardProps {
 }
 
 export const SkillCategoryCard: React.FC<SkillCategoryCardProps> = ({ category, searchTerm }) => {
-  const {
-    filterSkills,
-    animate,
-    skills,
-    locale,
-  } = useSkillsStore();
+  const { filterSkills, animate, skills, locale } = useSkillsStore();
 
-  const { getLocalizedText, currentLocale } = locale;
+  if (!locale) return null;
+
+  const getLocalizedText = locale.getLocalizedText;
+  const currentLocale = locale.currentLocale;
 
   // Get skills that belong to this category
   const categorySkills = skills.filter((skill) => skill.categoryId === category.id);

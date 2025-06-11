@@ -13,15 +13,12 @@ interface SkillItemProps {
 }
 
 export const SkillItem: React.FC<SkillItemProps> = ({ skill, progressColor }) => {
-  const {
-    hoveredSkill,
-    setHoveredSkill,
-    animate,
-    locale,
-  } = useSkillsStore();
+  const { hoveredSkill, setHoveredSkill, animate, locale } = useSkillsStore();
 
-  const { getLocalizedText, currentLocale } = locale;
+  if (!locale) return null;
 
+  const getLocalizedText = locale.getLocalizedText;
+  const currentLocale = locale.currentLocale;
   const skillName = skill.name;
   const isHovered = hoveredSkill === skillName;
 
