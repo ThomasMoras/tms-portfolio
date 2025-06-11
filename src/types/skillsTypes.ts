@@ -36,6 +36,9 @@ export interface Skill {
   showInBanner?: boolean;
   learning?: boolean;
   description?: LocalizedText;
+  order?: number; // For custom ordering
+  years?: number; // Years of experience
+  proficiency?: number; // Alternative to percentage
 }
 
 // Tool interface

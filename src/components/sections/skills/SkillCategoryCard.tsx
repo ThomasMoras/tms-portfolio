@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SkillItem } from "./SkillItem";
-import { useSkillsContext } from "@/contexts/SkillsContext";
+import { useSkillsStore } from "@/stores/skillsStore";
 import Icon from "@/components/icons/Icon";
 import { Category } from "@/types/skillsTypes";
 import { safeCss } from "@/lib/uiUtils";
@@ -17,8 +17,10 @@ export const SkillCategoryCard: React.FC<SkillCategoryCardProps> = ({ category, 
     filterSkills,
     animate,
     skills,
-    locale: { getLocalizedText, currentLocale },
-  } = useSkillsContext();
+    locale,
+  } = useSkillsStore();
+
+  const { getLocalizedText, currentLocale } = locale;
 
   // Get skills that belong to this category
   const categorySkills = skills.filter((skill) => skill.categoryId === category.id);

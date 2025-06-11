@@ -2,7 +2,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Skill } from "@/types/skillsTypes";
-import { useSkillsContext } from "@/contexts/SkillsContext";
+import { useSkillsStore } from "@/stores/skillsStore";
 import { safeCss } from "@/lib/uiUtils";
 import Icon from "@/components/icons/Icon";
 
@@ -17,8 +17,10 @@ export const SkillItem: React.FC<SkillItemProps> = ({ skill, progressColor }) =>
     hoveredSkill,
     setHoveredSkill,
     animate,
-    locale: { getLocalizedText, currentLocale },
-  } = useSkillsContext();
+    locale,
+  } = useSkillsStore();
+
+  const { getLocalizedText, currentLocale } = locale;
 
   const skillName = skill.name;
   const isHovered = hoveredSkill === skillName;

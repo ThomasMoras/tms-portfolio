@@ -1,15 +1,13 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
-import { useSkillsContext } from "@/contexts/SkillsContext";
+import { useSkillsStore } from "@/stores/skillsStore";
 
 export const SkillsFilter: React.FC = () => {
-  const {
-    searchTerm,
-    setSearchTerm,
-    showFilters,
-    locale: { currentLocale },
-  } = useSkillsContext();
+  const { searchTerm, setSearchTerm, showFilters, locale } = useSkillsStore();
 
+  if (!locale) return null;
+
+  const currentLocale = locale.currentLocale;
   if (!showFilters) return null;
 
   return (

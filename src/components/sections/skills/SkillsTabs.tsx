@@ -1,18 +1,23 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSkillsContext } from "@/contexts/SkillsContext";
+import { useSkillsStore } from "@/stores/skillsStore";
 import { SkillCategoryCard } from "./SkillCategoryCard";
 
 export const SkillsTabs: React.FC = () => {
   const {
     activeTab,
-    handleTabChange,
+    setTab: handleTabChange,
     cardLayoutClasses,
     tabSize,
     searchTerm,
     categories,
-    locale: { getLocalizedText, currentLocale },
-  } = useSkillsContext();
+    locale,
+  } = useSkillsStore();
+
+  if (!locale) return null;
+
+  const getLocalizedText = locale.getLocalizedText;
+  const currentLocale = locale.currentLocale;
 
   return (
     <Tabs value={activeTab} className="space-y-8" onValueChange={handleTabChange}>

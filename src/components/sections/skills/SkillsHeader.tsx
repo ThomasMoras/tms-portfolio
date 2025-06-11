@@ -2,17 +2,18 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SKILL_LEVELS } from "@/constants/skillsConstants";
-import { useSkillsContext } from "@/contexts/SkillsContext";
+import { useSkillsStore } from "@/stores/skillsStore";
 import { safeCss } from "@/lib/uiUtils";
 
 export const SkillsHeader: React.FC = () => {
-  const {
-    showLevels,
-    selectedLevel,
-    setSelectedLevel,
-    clearLevelFilter,
-    locale: { t, getLocalizedText, currentLocale },
-  } = useSkillsContext();
+  const { showLevels, selectedLevel, setSelectedLevel, clearLevelFilter, locale } =
+    useSkillsStore();
+
+  if (!locale) return null;
+
+  const t = locale.t;
+  const getLocalizedText = locale.getLocalizedText;
+  const currentLocale = locale.currentLocale;
 
   if (!showLevels) return null;
 
