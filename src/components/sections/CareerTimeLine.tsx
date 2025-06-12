@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 import { EXPERIENCES } from "@/constants/careerConstants";
 import { Experience } from "@/types/careerTypes";
 
-const GlobalTimeLine = () => {
+const CareerTimeLine = () => {
   const t = useTranslations("Career");
 
   // Function to get the appropriate icon component
@@ -84,4 +84,4 @@ const GlobalTimeLine = () => {
   );
 };
 
-export default GlobalTimeLine;
+export default CareerTimeLine;

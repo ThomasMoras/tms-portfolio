@@ -194,13 +194,9 @@ const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
                   {PROJECT_CHALLENGES[project.id].map((item, index) => (
                     <div key={index} className="bg-card border border-border rounded-lg p-5">
                       <h3 className="font-semibold text-lg mb-2">
-                        {t("challenge")}:{" "}
                         <span className="text-primary">{getLocalizedText(item.challenge)}</span>
                       </h3>
                       <div className="pl-4 border-l-2 border-primary/30 mt-3">
-                        <h4 className="font-medium mb-1 text-sm uppercase tracking-wide">
-                          {t("solution")}:
-                        </h4>
                         <p className="text-muted-foreground">{getLocalizedText(item.solution)}</p>
                       </div>
                     </div>

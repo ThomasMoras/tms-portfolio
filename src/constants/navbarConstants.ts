@@ -20,7 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
   {
     key: "github",
     type: "section",
-    order: 2,
+    order: 5,
     threshold: 0.3,
   },
   {
@@ -32,13 +32,13 @@ export const NAV_ITEMS: NavItem[] = [
   {
     key: "career",
     type: "section",
-    order: 4,
+    order: 2,
     threshold: 0.3,
   },
   {
     key: "projects",
     type: "section",
-    order: 5,
+    order: 4,
     threshold: 1,
   },
 ];

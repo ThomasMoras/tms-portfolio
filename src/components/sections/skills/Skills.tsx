@@ -9,7 +9,7 @@ import { SkillsHeader } from "./SkillsHeader";
 import { SkillsTabs } from "./SkillsTabs";
 
 // Types for the component props
-import { TabSize } from '@/hooks/useSkillsDisplay';
+import { TabSize } from "@/hooks/useSkillsDisplay";
 
 export interface SkillsProps {
   tabSize?: TabSize;
@@ -32,7 +32,7 @@ const Skills: React.FC<SkillsProps> = ({
 
   // Initialize store
   const store = useSkillsStore();
-  
+
   // Set initial values
   React.useEffect(() => {
     store.setTab(defaultTab);
@@ -40,10 +40,12 @@ const Skills: React.FC<SkillsProps> = ({
     store.setShowLevels(showLevels);
     store.setShowFilters(showFilters);
     store.setAnimate(animate);
-    store.setLocale(createLocalizationUtils(locale, {
-      title: t("title"),
-      description: t("description"),
-    }));
+    store.setLocale(
+      createLocalizationUtils(locale, {
+        title: t("title"),
+        description: t("description"),
+      })
+    );
   }, [defaultTab, initialTabSize, showLevels, showFilters, animate, locale, t]);
 
   return (

@@ -3,6 +3,7 @@ import { ProjectType, ProjectFeature, ProjectChallenge } from "@/types/projectTy
 export const PROJECT_CATEGORIES = {
   FULL_STACK: "Full Stack",
   BLOCKCHAIN: "Blockchain",
+  WEB3: "Web3",
 } as const;
 
 export const PROJECT_TECHNOLOGIES = {
@@ -29,9 +30,99 @@ export const PROJECT_TECHNOLOGIES = {
   AUTH_JS: "Auth.js",
   ZOD: "Zod",
   RADIX_UI: "Radix UI",
+  HARDHAT: "Hardhat",
+  OPENZEPPELIN: "OpenZeppelin",
+  VERCEL: "Vercel",
+  SHADCN_UI: "Shadcn/UI",
+  RAINBOW_KIT: "Rainbow Kit",
+  LIT_PROTOCOL: "Lit Protocol",
+  WAGMI: "Wagmi",
+  WORLD_ID: "World ID",
 } as const;
 
 export const PROJECT_FEATURES: Record<string, ProjectFeature[]> = {
+  "pulse": [
+    {
+      title: {
+        fr: "Gestion de profil utilisateur (SBT)",
+        en: "User Profile Management (SBT)",
+      },
+      description: {
+        fr: "Création et modification de profils utilisateur en connectant les portefeuilles, avec stockage d'images sur IPFS et implémentation de Soulbound Token (SBT) pour une vérification unique du profil.",
+        en: "Create and modify user profiles by connecting wallets, with IPFS-based image storage and Soulbound Token (SBT) implementation for unique profile verification.",
+      },
+    },
+    {
+      title: {
+        fr: "Recherche avancée d'utilisateurs",
+        en: "Advanced User Search",
+      },
+      description: {
+        fr: "Système de filtrage multi-critères permettant la recherche par genre, intérêts et évaluations avec des combinaisons de filtres personnalisables et des résultats en temps réel.",
+        en: "Multi-criteria filtering system enabling search by gender, interests, and ratings with customizable filter combinations and real-time search results.",
+      },
+    },
+    {
+      title: {
+        fr: "Interactions de profil",
+        en: "Profile Interactions",
+      },
+      description: {
+        fr: "Fonctionnalités J'aime, Je n'aime pas et Super J'aime avec limites d'interaction basées sur le niveau NFT de l'utilisateur et suivi des statistiques d'engagement.",
+        en: "Like, Dislike, and Super Like functionality with interaction limits based on user NFT tier and engagement tracking statistics.",
+      },
+    },
+    {
+      title: {
+        fr: "Messagerie chiffrée",
+        en: "Encrypted Messaging",
+      },
+      description: {
+        fr: "Conversations chiffrées de bout en bout utilisant le protocole Lit avec stockage des messages on-chain et capacités de messagerie en temps réel.",
+        en: "End-to-end encrypted conversations using Lit Protocol with on-chain message storage and real-time messaging capabilities.",
+      },
+    },
+    {
+      title: {
+        fr: "Proof of Personhood (Concept)",
+        en: "Proof of Personhood (Concept)",
+      },
+      description: {
+        fr: "Système de vérification unique des utilisateurs avec World ID conçu et planifié pour éliminer les faux profils, mais non implémenté dans cette version du projet.",
+        en: "Unique user verification system with World ID designed and planned to eliminate fake profiles, but not implemented in this version of the project.",
+      },
+    },
+    {
+      title: {
+        fr: "Preuves de connaissance zéro (Concept)",
+        en: "Zero Knowledge Proofs (Concept)",
+      },
+      description: {
+        fr: "Architecture planifiée pour la vérification d'informations privées sans divulgation, conçue pour les données sensibles mais non développée dans l'implémentation actuelle.",
+        en: "Planned architecture for private information verification without disclosure, designed for sensitive data but not developed in the current implementation.",
+      },
+    },
+    {
+      title: {
+        fr: "Niveaux d'abonnement NFT",
+        en: "NFT Subscription Tiers",
+      },
+      description: {
+        fr: "Plusieurs niveaux d'abonnement via NFT avec système de bénéfices échelonnés, déverrouillage de fonctionnalités premium et contrôle d'accès basé sur NFT.",
+        en: "Multiple subscription levels via NFTs with tiered benefits system, premium features unlock, and NFT-based access control.",
+      },
+    },
+    {
+      title: {
+        fr: "Programme partenaire",
+        en: "Partner Program",
+      },
+      description: {
+        fr: "Rôle utilisateur partenaire dédié avec capacités de création d'événements, accès aux événements protégés par NFT et outils de tableau de bord partenaire.",
+        en: "Dedicated partner user role with event creation capabilities, NFT-gated event access, and partner dashboard management tools.",
+      },
+    },
+  ],
   "lyonmarquage": [
     {
       title: {
@@ -94,93 +185,61 @@ export const PROJECT_FEATURES: Record<string, ProjectFeature[]> = {
       },
     },
   ],
-  "nft-marketplace": [
-    {
-      title: {
-        fr: "Création et minting de NFT",
-        en: "NFT Creation and Minting",
-      },
-      description: {
-        fr: "Interface conviviale pour créer et déployer des NFT sur la blockchain sans connaissances techniques.",
-        en: "User-friendly interface for creating and deploying NFTs on the blockchain without technical knowledge.",
-      },
-    },
-    {
-      title: {
-        fr: "Enchères et ventes fixes",
-        en: "Auctions and Fixed Sales",
-      },
-      description: {
-        fr: "Support pour les enchères temporisées et les ventes à prix fixe avec notifications en temps réel.",
-        en: "Support for timed auctions and fixed-price sales with real-time notifications.",
-      },
-    },
-    {
-      title: {
-        fr: "Galeries personnalisées",
-        en: "Customizable Galleries",
-      },
-      description: {
-        fr: "Les utilisateurs peuvent créer et personnaliser leurs propres galeries pour présenter leurs collections.",
-        en: "Users can create and customize their own galleries to showcase their collections.",
-      },
-    },
-    {
-      title: {
-        fr: "Royalties pour les créateurs",
-        en: "Creator Royalties",
-      },
-      description: {
-        fr: "Système automatisé de paiement de royalties aux créateurs lors des ventes secondaires.",
-        en: "Automated royalty payment system to creators on secondary sales.",
-      },
-    },
-  ],
-  "defi-platform": [
-    {
-      title: {
-        fr: "Système de prêts et d'emprunts",
-        en: "Lending and Borrowing System",
-      },
-      description: {
-        fr: "Permet aux utilisateurs de déposer des actifs comme garantie et d'emprunter d'autres tokens avec des taux d'intérêt dynamiques.",
-        en: "Allows users to deposit assets as collateral and borrow other tokens with dynamic interest rates.",
-      },
-    },
-    {
-      title: {
-        fr: "Staking de tokens",
-        en: "Token Staking",
-      },
-      description: {
-        fr: "Les utilisateurs peuvent staker leurs tokens pour recevoir des récompenses générées par les frais de la plateforme.",
-        en: "Users can stake their tokens to receive rewards generated by platform fees.",
-      },
-    },
-    {
-      title: {
-        fr: "Échange décentralisé",
-        en: "Decentralized Exchange",
-      },
-      description: {
-        fr: "Interface intuitive pour échanger des tokens sans intermédiaire avec un minimum de slippage.",
-        en: "Intuitive interface for exchanging tokens without intermediaries with minimal slippage.",
-      },
-    },
-    {
-      title: {
-        fr: "Tableaux de bord analytiques",
-        en: "Analytical Dashboards",
-      },
-      description: {
-        fr: "Visualisation des performances des actifs, historique des transactions et positions actuelles.",
-        en: "Visualization of asset performance, transaction history, and current positions.",
-      },
-    },
-  ],
 };
 
 export const PROJECT_CHALLENGES: Record<string, ProjectChallenge[]> = {
+  "pulse": [
+    {
+      challenge: {
+        fr: "Sécurité des smart contracts et gestion des données sensibles",
+        en: "Smart contract security and sensitive data management",
+      },
+      solution: {
+        fr: "Implémentation de tests unitaires exhaustifs avec audit externe, utilisation d'OpenZeppelin pour les contrats sécurisés, et intégration du protocole Lit pour le chiffrement de bout en bout des messages.",
+        en: "Implementation of comprehensive unit tests with external audit, use of OpenZeppelin for secure contracts, and Lit Protocol integration for end-to-end message encryption.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Conception d'un système de vérification d'identité robuste",
+        en: "Designing a robust identity verification system",
+      },
+      solution: {
+        fr: "Architecture conceptuelle développée pour intégrer World ID et les preuves de connaissance zéro, avec documentation technique détaillée pour une implémentation future.",
+        en: "Conceptual architecture developed to integrate World ID and Zero Knowledge proofs, with detailed technical documentation for future implementation.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Expérience utilisateur fluide dans un environnement décentralisé",
+        en: "Smooth user experience in a decentralized environment",
+      },
+      solution: {
+        fr: "Utilisation de Rainbow Kit pour une connexion wallet simplifiée, Wagmi pour les hooks React optimisés, et Shadcn/UI pour une interface moderne et accessible.",
+        en: "Use of Rainbow Kit for simplified wallet connection, Wagmi for optimized React hooks, and Shadcn/UI for a modern and accessible interface.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Scalabilité et performance des interactions utilisateur",
+        en: "Scalability and performance of user interactions",
+      },
+      solution: {
+        fr: "Architecture hybride combinant stockage on-chain pour les données critiques et IPFS pour les images, avec système de cache intelligent et optimisation des requêtes blockchain.",
+        en: "Hybrid architecture combining on-chain storage for critical data and IPFS for images, with intelligent caching system and blockchain query optimization.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Monétisation et système de niveaux équitable",
+        en: "Fair monetization and tier system",
+      },
+      solution: {
+        fr: "Système d'abonnement basé sur NFT avec niveaux progressifs, programme partenaire pour les créateurs d'événements, et limites d'interaction ajustables selon le niveau de l'utilisateur.",
+        en: "NFT-based subscription system with progressive tiers, partner program for event creators, and adjustable interaction limits based on user level.",
+      },
+    },
+  ],
   "lyonmarquage": [
     {
       challenge: {
@@ -223,77 +282,12 @@ export const PROJECT_CHALLENGES: Record<string, ProjectChallenge[]> = {
       },
     },
   ],
-  "nft-marketplace": [
-    {
-      challenge: {
-        fr: "Coûts de gas élevés pour le minting",
-        en: "High gas costs for minting",
-      },
-      solution: {
-        fr: "Implémentation du lazy minting permettant de différer les coûts de déploiement jusqu'à la première vente du NFT.",
-        en: "Implementation of lazy minting to defer deployment costs until the first sale of the NFT.",
-      },
-    },
-    {
-      challenge: {
-        fr: "Stockage décentralisé des métadonnées",
-        en: "Decentralized metadata storage",
-      },
-      solution: {
-        fr: "Utilisation d'IPFS avec pinning redondant pour garantir la persistance des métadonnées des NFT indépendamment de la plateforme.",
-        en: "Use of IPFS with redundant pinning to ensure persistence of NFT metadata independently of the platform.",
-      },
-    },
-    {
-      challenge: {
-        fr: "Vérification de l'authenticité",
-        en: "Authentication verification",
-      },
-      solution: {
-        fr: "Système de vérification des créateurs avec badges de confiance et historique transparent de provenance pour chaque NFT.",
-        en: "Creator verification system with trust badges and transparent provenance history for each NFT.",
-      },
-    },
-  ],
-  "defi-platform": [
-    {
-      challenge: {
-        fr: "Sécurité des smart contracts",
-        en: "Smart contract security",
-      },
-      solution: {
-        fr: "Implémentation de tests unitaires exhaustifs, audit externe par une entreprise spécialisée en sécurité blockchain, et utilisation de bibliothèques éprouvées comme OpenZeppelin.",
-        en: "Implementation of comprehensive unit tests, external audit by a blockchain security specialized company, and use of proven libraries like OpenZeppelin.",
-      },
-    },
-    {
-      challenge: {
-        fr: "Gestion des taux d'intérêt dynamiques",
-        en: "Dynamic interest rate management",
-      },
-      solution: {
-        fr: "Développement d'un algorithme basé sur l'utilisation des pools de liquidité avec des courbes de rendement ajustables selon l'offre et la demande.",
-        en: "Development of an algorithm based on liquidity pool utilization with yield curves adjustable according to supply and demand.",
-      },
-    },
-    {
-      challenge: {
-        fr: "Expérience utilisateur simplifiée",
-        en: "Simplified user experience",
-      },
-      solution: {
-        fr: "Abstraction de la complexité blockchain via une interface intuitive avec estimation des frais de gaz et confirmation en une étape.",
-        en: "Abstraction of blockchain complexity via an intuitive interface with gas fee estimation and one-step confirmation.",
-      },
-    },
-  ],
 };
 
 // Project related projects mapping
 export const RELATED_PROJECTS: Record<string, string[]> = {
   "lyonmarquage": [],
-  "nft-marketplace": [],
-  "defi-platform": [],
+  "pulse": [],
 };
 
 // Get related projects
@@ -314,6 +308,46 @@ export const getRelatedProjects = (projectId: string) => {
 };
 
 export const PROJECTS: ProjectType[] = [
+  {
+    id: "pulse",
+    title: "Pulse - Decentralized Dating App",
+    shortDescription: {
+      fr: "Application de rencontres décentralisée avec preuve d'humanité et messagerie chiffrée",
+      en: "Decentralized dating application with proof of personhood and encrypted messaging",
+    },
+    fullDescription: {
+      fr: "Pulse est une application de rencontres décentralisée qui redéfinit les interactions en ligne en préservant la vie privée des utilisateurs tout en garantissant l'authenticité de leur identité. Construite sur la blockchain Ethereum, Pulse utilise des technologies de pointe pour créer un écosystème de rencontres sécurisé et transparent.\n\nL'application intègre un système de Proof of Personhood via World ID pour s'assurer qu'un seul compte par personne existe, éliminant ainsi les faux profils et les comptes multiples. Les utilisateurs peuvent créer des profils authentifiés stockés dans des Soulbound Tokens (SBT), garantissant l'unicité et la persistance des identités.\n\nLa messagerie utilise le protocole Lit pour un chiffrement de bout en bout, assurant que seuls les utilisateurs concernés peuvent lire leurs conversations. Le système de niveaux basé sur NFT offre différents avantages selon l'engagement de l'utilisateur, tandis que le programme partenaire permet aux organisateurs d'événements de créer des expériences exclusives.\n\nAvec son architecture moderne combinant Next.js, TypeScript et les dernières innovations Web3, Pulse offre une expérience utilisateur fluide tout en maintenant les principes de décentralisation et de confidentialité.",
+      en: "Pulse is a decentralized dating application that redefines online interactions by preserving user privacy while ensuring the authenticity of their identity. Built on the Ethereum blockchain, Pulse uses cutting-edge technologies to create a secure and transparent dating ecosystem.\n\nThe application integrates a Proof of Personhood system via World ID to ensure only one account per person exists, eliminating fake profiles and multiple accounts. Users can create authenticated profiles stored in Soulbound Tokens (SBT), guaranteeing the uniqueness and persistence of identities.\n\nMessaging uses the Lit protocol for end-to-end encryption, ensuring that only the concerned users can read their conversations. The NFT-based tier system offers different benefits based on user engagement, while the partner program allows event organizers to create exclusive experiences.\n\nWith its modern architecture combining Next.js, TypeScript, and the latest Web3 innovations, Pulse provides a smooth user experience while maintaining the principles of decentralization and privacy.",
+    },
+    category: PROJECT_CATEGORIES.BLOCKCHAIN,
+    technologies: [
+      PROJECT_TECHNOLOGIES.NEXT_JS,
+      PROJECT_TECHNOLOGIES.REACT,
+      PROJECT_TECHNOLOGIES.TYPESCRIPT,
+      PROJECT_TECHNOLOGIES.TAILWIND,
+      PROJECT_TECHNOLOGIES.NODE_JS,
+      PROJECT_TECHNOLOGIES.SOLIDITY,
+      PROJECT_TECHNOLOGIES.HARDHAT,
+      PROJECT_TECHNOLOGIES.OPENZEPPELIN,
+      PROJECT_TECHNOLOGIES.VERCEL,
+      PROJECT_TECHNOLOGIES.SHADCN_UI,
+      PROJECT_TECHNOLOGIES.RAINBOW_KIT,
+      PROJECT_TECHNOLOGIES.LIT_PROTOCOL,
+      PROJECT_TECHNOLOGIES.WAGMI,
+      PROJECT_TECHNOLOGIES.IPFS,
+    ],
+    thumbnailImage: "/projects/pulse/home.png",
+    images: [
+      "/projects/pulse/home.png",
+      "/projects/pulse/profile.png",
+      "/projects/pulse/conversation.png",
+      "/projects/pulse/dashboard.png",
+    ],
+    demoUrl: "https://pulse-dapp.vercel.app",
+    repoUrl: "https://github.com/ThomasMoras/pulse",
+    featured: true,
+    completionDate: "2025-06",
+  },
   {
     id: "lyonmarquage",
     title: "Lyon Marquage Website",
@@ -350,64 +384,6 @@ export const PROJECTS: ProjectType[] = [
     repoUrl: "https://github.com/ThomasMoras/lyon-marquage-services",
     featured: true,
     completionDate: "2025-04",
-  },
-  {
-    id: "nft-marketplace",
-    title: "NFT Marketplace",
-    shortDescription: {
-      fr: "Une plateforme pour créer, acheter et vendre des NFT",
-      en: "A platform for creating, buying and selling NFTs",
-    },
-    fullDescription: {
-      fr: "Une marketplace complète pour les NFT permettant aux créateurs de mint leurs œuvres digitales, de les mettre en vente et aux collectionneurs d'acheter, d'enchérir et de revendre des tokens non fongibles. La plateforme intègre un système de portefeuille numérique et supporte plusieurs collections et standards de NFT.",
-      en: "A complete NFT marketplace allowing creators to mint their digital works, list them for sale, and collectors to buy, bid on, and resell non-fungible tokens. The platform integrates a digital wallet system and supports multiple NFT collections and standards.",
-    },
-    category: PROJECT_CATEGORIES.BLOCKCHAIN,
-    technologies: [
-      PROJECT_TECHNOLOGIES.ETHEREUM,
-      PROJECT_TECHNOLOGIES.IPFS,
-      PROJECT_TECHNOLOGIES.REACT,
-      PROJECT_TECHNOLOGIES.SOLIDITY,
-    ],
-    thumbnailImage: "/projects/nft-marketplace/thumbnail.jpg",
-    images: [
-      "/projects/nft-marketplace/screenshot-1.jpg",
-      "/projects/nft-marketplace/screenshot-2.jpg",
-      "/projects/nft-marketplace/screenshot-3.jpg",
-    ],
-    demoUrl: "https://nft-marketplace-demo.example.com",
-    repoUrl: "https://github.com/yourusername/nft-marketplace",
-    featured: false,
-    completionDate: "2025-05",
-  },
-  {
-    id: "defi-platform",
-    title: "DeFi Platform",
-    shortDescription: {
-      fr: "Une plateforme de finance décentralisée pour la gestion d'actifs crypto",
-      en: "A decentralized finance platform for crypto assets management",
-    },
-    fullDescription: {
-      fr: "Une plateforme de finance décentralisée permettant aux utilisateurs de gérer, échanger et faire fructifier leurs actifs cryptographiques avec un système de prêts et d'emprunts intégré. L'application offre une interface intuitive pour interagir avec différents smart contracts sur la blockchain Ethereum.",
-      en: "A decentralized finance platform allowing users to manage, exchange, and grow their cryptographic assets with an integrated lending and borrowing system. The application offers an intuitive interface for interacting with various smart contracts on the Ethereum blockchain.",
-    },
-    category: PROJECT_CATEGORIES.BLOCKCHAIN,
-    technologies: [
-      PROJECT_TECHNOLOGIES.SOLIDITY,
-      PROJECT_TECHNOLOGIES.REACT,
-      PROJECT_TECHNOLOGIES.WEB3_JS,
-      PROJECT_TECHNOLOGIES.ETHEREUM,
-    ],
-    thumbnailImage: "/projects/defi-platform/thumbnail.jpg",
-    images: [
-      "/projects/defi-platform/screenshot-1.jpg",
-      "/projects/defi-platform/screenshot-2.jpg",
-      "/projects/defi-platform/screenshot-3.jpg",
-    ],
-    demoUrl: "https://defi-platform-demo.example.com",
-    repoUrl: "https://github.com/yourusername/defi-platform",
-    featured: false,
-    completionDate: "2025-05",
   },
 ];
 

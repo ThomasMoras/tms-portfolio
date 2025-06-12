@@ -24,9 +24,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${inter.className} ${robotoMono.className} antialiased`}
-      >
+      <body className={`${inter.className} ${robotoMono.className} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"

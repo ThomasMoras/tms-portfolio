@@ -12,7 +12,7 @@ const Projects = () => {
   return (
     <div className="container max-w-6xl mx-auto px-4">
       <div className="mb-8 md:mb-12 text-center">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t("title")}</h2>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">{t("title")}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
           {t("subtitle")}
         </p>
