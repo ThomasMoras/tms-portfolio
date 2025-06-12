@@ -36,9 +36,7 @@ const HomePage: React.FC = () => {
 
       {/* Projects Section Preview */}
       <SectionLayout id="projects-section" ref={refs.projects} nextSectionId="github-section">
-        <div className="container max-w-6xl mx-auto px-4 md:px-6">
-          <Projects />
-        </div>
+        <Projects />
       </SectionLayout>
 
       {/* GitHub Activity Section */}
