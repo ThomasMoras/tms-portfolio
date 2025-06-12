@@ -1,7 +1,7 @@
 export type ProfileData = {
   Location: string;
   FullName: string;
-  Title: string;
+  Titles: string[];
   GhibliProfileUrl: string;
   AvatarUrl: string;
   GitHubUrl: string;
@@ -17,7 +17,7 @@ export type TypewriterItem = {
 
 export const PROFILE: ProfileData = {
   FullName: "Thomas Moras",
-  Title: "Full Stack Developer",
+  Titles: ["Software Engineer", "Full Stack Developer", "Web3 Enthusiast"],
   Location: "Toronto, Canada, UTC-4",
   AvatarUrl: "/images/profile.jpg",
   GhibliProfileUrl: "/images/ghibli/profile/2.jpg",

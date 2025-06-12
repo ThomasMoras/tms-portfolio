@@ -3,8 +3,10 @@
 import React from "react";
 import { PROFILE } from "@/constants/profileConstants";
 import { MapPin } from "lucide-react";
+import { useTypeWriter } from "@/hooks/useTypeWriter";
 
 const ProfileHeader: React.FC = () => {
+  const displayText = useTypeWriter(PROFILE.Titles);
   return (
     <div className="w-full py-2 sm:py-3 md:py-4">
       <div className="w-full">
@@ -14,7 +16,7 @@ const ProfileHeader: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{PROFILE.FullName}</h1>
 
             <p className="text-lg sm:text-xl text-primary ml-2 pl-2 border-l border-border">
-              {PROFILE.Title}
+              {displayText}
             </p>
           </div>
 
