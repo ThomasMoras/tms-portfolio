@@ -185,8 +185,8 @@ export const PROJECT_FEATURES: Record<string, ProjectFeature[]> = {
     },
     {
       title: {
-        fr: "Niveaux d'abonnement NFT",
-        en: "NFT Subscription Tiers",
+        fr: "Niveaux d'abonnement NFT (Concept)",
+        en: "NFT Subscription Tiers (Concept)",
       },
       description: {
         fr: "Plusieurs niveaux d'abonnement via NFT avec système de bénéfices échelonnés, déverrouillage de fonctionnalités premium et contrôle d'accès basé sur NFT.",
@@ -195,8 +195,8 @@ export const PROJECT_FEATURES: Record<string, ProjectFeature[]> = {
     },
     {
       title: {
-        fr: "Programme partenaire",
-        en: "Partner Program",
+        fr: "Programme partenaire (Concept)",
+        en: "Partner Program (Concept)",
       },
       description: {
         fr: "Rôle utilisateur partenaire dédié avec capacités de création d'événements, accès aux événements protégés par NFT et outils de tableau de bord partenaire.",
@@ -494,7 +494,7 @@ export const getRelatedProjects = (projectId: string) => {
 export const PROJECTS: ProjectType[] = [
   {
     id: "portfolio",
-    title: "Personal Portfolio Website",
+    title: "Portfolio",
     shortDescription: {
       fr: "Site web portfolio personnel moderne avec animations et interface multilingue",
       en: "Modern personal portfolio website with animations and multilingual interface",
@@ -522,14 +522,14 @@ export const PROJECTS: ProjectType[] = [
   },
   {
     id: "pulse",
-    title: "Pulse - Decentralized Dating App",
+    title: "Pulse DApp",
     shortDescription: {
-      fr: "Application de rencontres décentralisée avec preuve d'humanité et messagerie chiffrée",
-      en: "Decentralized dating application with proof of personhood and encrypted messaging",
+      fr: "Application de rencontres décentralisée avec messagerie chiffrée",
+      en: "Decentralized dating application with encrypted messaging",
     },
     fullDescription: {
-      fr: "Pulse est une application de rencontres décentralisée révolutionnaire qui redéfinit les interactions en ligne en préservant la vie privée des utilisateurs tout en garantissant l'authenticité de leur identité. Construite sur la blockchain Ethereum, Pulse utilise des technologies de pointe pour créer un écosystème de rencontres sécurisé et transparent.\n\nL'application intègre un système de Proof of Personhood via World ID pour s'assurer qu'un seul compte par personne existe, éliminant ainsi les faux profils et les comptes multiples. Les utilisateurs peuvent créer des profils authentifiés stockés dans des Soulbound Tokens (SBT), garantissant l'unicité et la persistance des identités.\n\nLa messagerie utilise le protocole Lit pour un chiffrement de bout en bout, assurant que seuls les utilisateurs concernés peuvent lire leurs conversations. Le système de niveaux basé sur NFT offre différents avantages selon l'engagement de l'utilisateur, tandis que le programme partenaire permet aux organisateurs d'événements de créer des expériences exclusives.\n\nAvec son architecture moderne combinant Next.js, TypeScript et les dernières innovations Web3, Pulse offre une expérience utilisateur fluide tout en maintenant les principes de décentralisation et de confidentialité.",
-      en: "Pulse is a revolutionary decentralized dating application that redefines online interactions by preserving user privacy while ensuring the authenticity of their identity. Built on the Ethereum blockchain, Pulse uses cutting-edge technologies to create a secure and transparent dating ecosystem.\n\nThe application integrates a Proof of Personhood system via World ID to ensure only one account per person exists, eliminating fake profiles and multiple accounts. Users can create authenticated profiles stored in Soulbound Tokens (SBT), guaranteeing the uniqueness and persistence of identities.\n\nMessaging uses the Lit protocol for end-to-end encryption, ensuring that only the concerned users can read their conversations. The NFT-based tier system offers different benefits based on user engagement, while the partner program allows event organizers to create exclusive experiences.\n\nWith its modern architecture combining Next.js, TypeScript, and the latest Web3 innovations, Pulse provides a smooth user experience while maintaining the principles of decentralization and privacy.",
+      fr: "Pulse est une application de rencontres décentralisée deployé sur Base Sepolia qui redéfinit les interactions en ligne en préservant la vie privée des utilisateurs tout en garantissant l'authenticité de leur identité. Construite sur la blockchain Ethereum, Pulse utilise des technologies de pointe pour créer un écosystème de rencontres sécurisé et transparent.\n\nL'application intègre un système de Proof of Personhood via World ID pour s'assurer qu'un seul compte par personne existe, éliminant ainsi les faux profils et les comptes multiples. Les utilisateurs peuvent créer des profils authentifiés stockés dans des Soulbound Tokens (SBT), garantissant l'unicité et la persistance des identités.\n\nLa messagerie utilise le protocole Lit pour un chiffrement de bout en bout, assurant que seuls les utilisateurs concernés peuvent lire leurs conversations. Le système de niveaux basé sur NFT offre différents avantages selon l'engagement de l'utilisateur, tandis que le programme partenaire permet aux organisateurs d'événements de créer des expériences exclusives.\n\nAvec son architecture moderne combinant Next.js, TypeScript et les dernières innovations Web3, Pulse offre une expérience utilisateur fluide tout en maintenant les principes de décentralisation et de confidentialité.",
+      en: "Pulse is a decentralized dating application deployed on Base Sepolia that redefines online interactions by preserving user privacy while ensuring the authenticity of their identity. Built on the Ethereum blockchain, Pulse uses cutting-edge technologies to create a secure and transparent dating ecosystem.\n\nThe application integrates a Proof of Personhood system via World ID to ensure only one account per person exists, eliminating fake profiles and multiple accounts. Users can create authenticated profiles stored in Soulbound Tokens (SBT), guaranteeing the uniqueness and persistence of identities.\n\nMessaging uses the Lit protocol for end-to-end encryption, ensuring that only the concerned users can read their conversations. The NFT-based tier system offers different benefits based on user engagement, while the partner program allows event organizers to create exclusive experiences.\n\nWith its modern architecture combining Next.js, TypeScript, and the latest Web3 innovations, Pulse provides a smooth user experience while maintaining the principles of decentralization and privacy.",
     },
     category: PROJECT_CATEGORIES.BLOCKCHAIN,
     technologies: [
@@ -552,8 +552,8 @@ export const PROJECTS: ProjectType[] = [
     images: [
       "/projects/pulse/home.png",
       "/projects/pulse/profile.png",
-      "/projects/pulse/dashboard.png",
-      "/projects/pulse/messaging.png",
+      // "/projects/pulse/dashboard.png",
+      // "/projects/pulse/messaging.png",
     ],
     demoUrl: "https://pulse-dapp.vercel.app",
     repoUrl: "https://github.com/ThomasMoras/pulse",
