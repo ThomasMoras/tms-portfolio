@@ -3,7 +3,6 @@ import { ProjectType, ProjectFeature, ProjectChallenge } from "@/types/projectTy
 export const PROJECT_CATEGORIES = {
   FULL_STACK: "Full Stack",
   BLOCKCHAIN: "Blockchain",
-  WEB3: "Web3",
 } as const;
 
 export const PROJECT_TECHNOLOGIES = {
@@ -41,6 +40,88 @@ export const PROJECT_TECHNOLOGIES = {
 } as const;
 
 export const PROJECT_FEATURES: Record<string, ProjectFeature[]> = {
+  "portfolio": [
+    {
+      title: {
+        fr: "Interface multilingue",
+        en: "Multilingual Interface",
+      },
+      description: {
+        fr: "Support complet pour le français et l'anglais avec next-intl, permettant une expérience utilisateur localisée et accessible à un public international.",
+        en: "Complete support for French and English with next-intl, providing a localized user experience accessible to an international audience.",
+      },
+    },
+    {
+      title: {
+        fr: "Animations interactives",
+        en: "Interactive Animations",
+      },
+      description: {
+        fr: "Animations fluides et engageantes avec Framer Motion, animations de frappe avec Typed.js, et transitions optimisées pour une expérience utilisateur immersive.",
+        en: "Smooth and engaging animations with Framer Motion, typing animations with Typed.js, and optimized transitions for an immersive user experience.",
+      },
+    },
+    {
+      title: {
+        fr: "Système de thèmes",
+        en: "Theme System",
+      },
+      description: {
+        fr: "Basculement entre thème sombre et clair avec next-themes, préférences utilisateur persistantes et adaptation automatique selon les paramètres système.",
+        en: "Dark and light theme switching with next-themes, persistent user preferences and automatic adaptation based on system settings.",
+      },
+    },
+    {
+      title: {
+        fr: "Timeline interactive",
+        en: "Interactive Timeline",
+      },
+      description: {
+        fr: "Présentation chronologique interactive du parcours professionnel avec react-vertical-timeline-component et animations d'apparition au scroll.",
+        en: "Interactive chronological presentation of professional journey with react-vertical-timeline-component and scroll-triggered animations.",
+      },
+    },
+    {
+      title: {
+        fr: "Formulaire de contact avancé",
+        en: "Advanced Contact Form",
+      },
+      description: {
+        fr: "Formulaire de contact avec validation en temps réel (Zod), gestion d'état avec React Hook Form, et envoi d'emails via l'API Resend.",
+        en: "Contact form with real-time validation (Zod), state management with React Hook Form, and email sending via Resend API.",
+      },
+    },
+    {
+      title: {
+        fr: "Composants UI accessibles",
+        en: "Accessible UI Components",
+      },
+      description: {
+        fr: "Interface construite avec Radix UI pour une accessibilité optimale, tooltips, progress bars, et composants interactifs respectant les standards WCAG.",
+        en: "Interface built with Radix UI for optimal accessibility, tooltips, progress bars, and interactive components following WCAG standards.",
+      },
+    },
+    {
+      title: {
+        fr: "Performance optimisée",
+        en: "Optimized Performance",
+      },
+      description: {
+        fr: "Architecture Next.js optimisée avec SSG/SSR, lazy loading des composants, optimisation des images, et métriques Core Web Vitals excellentes.",
+        en: "Optimized Next.js architecture with SSG/SSR, component lazy loading, image optimization, and excellent Core Web Vitals metrics.",
+      },
+    },
+    {
+      title: {
+        fr: "Design responsive moderne",
+        en: "Modern Responsive Design",
+      },
+      description: {
+        fr: "Interface entièrement responsive utilisant Tailwind CSS avec variants personnalisés, animations CSS optimisées et expérience mobile native.",
+        en: "Fully responsive interface using Tailwind CSS with custom variants, optimized CSS animations and native mobile experience.",
+      },
+    },
+  ],
   "pulse": [
     {
       title: {
@@ -184,10 +265,92 @@ export const PROJECT_FEATURES: Record<string, ProjectFeature[]> = {
         en: "Fully adaptive interface offering an optimal experience on all devices, from mobile to large screens.",
       },
     },
+    {
+      title: {
+        fr: "Optimisation SEO avancée",
+        en: "Advanced SEO Optimization",
+      },
+      description: {
+        fr: "Métadonnées dynamiques par section, Schema.org markup pour LocalBusiness et Services, balises canoniques pour éviter le contenu dupliqué, et optimisation des Core Web Vitals.",
+        en: "Dynamic metadata per section, Schema.org markup for LocalBusiness and Services, canonical tags to avoid duplicate content, and Core Web Vitals optimization.",
+      },
+    },
+    {
+      title: {
+        fr: "Optimisation PageSpeed et performances",
+        en: "PageSpeed and Performance Optimization",
+      },
+      description: {
+        fr: "Optimisations techniques pour PageSpeed Insights : lazy loading, compression d'images automatique, minification CSS/JS, et architecture optimisée pour les Core Web Vitals.",
+        en: "Technical optimizations for PageSpeed Insights: lazy loading, automatic image compression, CSS/JS minification, and architecture optimized for Core Web Vitals.",
+      },
+    },
+    {
+      title: {
+        fr: "Design responsive",
+        en: "Responsive Design",
+      },
+      description: {
+        fr: "Interface entièrement adaptative offrant une expérience optimale sur tous les appareils, du mobile au grand écran.",
+        en: "Fully adaptive interface offering an optimal experience on all devices, from mobile to large screens.",
+      },
+    },
   ],
 };
 
 export const PROJECT_CHALLENGES: Record<string, ProjectChallenge[]> = {
+  "portfolio": [
+    {
+      challenge: {
+        fr: "Optimisation des performances avec animations complexes",
+        en: "Performance optimization with complex animations",
+      },
+      solution: {
+        fr: "Implémentation de Framer Motion avec lazy loading intelligent, optimisation des re-renders avec React.memo, et utilisation de CSS transforms pour les animations performantes.",
+        en: "Implementation of Framer Motion with intelligent lazy loading, render optimization with React.memo, and use of CSS transforms for performant animations.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Gestion efficace de l'internationalisation",
+        en: "Efficient internationalization management",
+      },
+      solution: {
+        fr: "Architecture modulaire avec next-intl, séparation des traductions par namespace, routing automatique selon la langue, et optimisation SEO multilingue.",
+        en: "Modular architecture with next-intl, translation separation by namespace, automatic language-based routing, and multilingual SEO optimization.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Expérience utilisateur cohérente across devices",
+        en: "Consistent user experience across devices",
+      },
+      solution: {
+        fr: "Design system basé sur Tailwind CSS avec variants responsives, tests cross-browser, et optimisation tactile pour mobile avec gestes personnalisés.",
+        en: "Design system based on Tailwind CSS with responsive variants, cross-browser testing, and mobile touch optimization with custom gestures.",
+      },
+    },
+    {
+      challenge: {
+        fr: "État et persistance des préférences utilisateur",
+        en: "State and user preferences persistence",
+      },
+      solution: {
+        fr: "Gestion d'état globale avec Zustand, persistance localStorage avec hydration SSR sécurisée, et synchronisation des préférences cross-tabs.",
+        en: "Global state management with Zustand, localStorage persistence with secure SSR hydration, and cross-tab preference synchronization.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Accessibilité et standards web modernes",
+        en: "Accessibility and modern web standards",
+      },
+      solution: {
+        fr: "Composants Radix UI pour l'accessibilité native, navigation au clavier optimisée, support screen readers, et respect des guidelines WCAG 2.1 AA.",
+        en: "Radix UI components for native accessibility, optimized keyboard navigation, screen reader support, and WCAG 2.1 AA guidelines compliance.",
+      },
+    },
+  ],
   "pulse": [
     {
       challenge: {
@@ -281,13 +444,34 @@ export const PROJECT_CHALLENGES: Record<string, ProjectChallenge[]> = {
         en: "Setup of a complete CI/CD pipeline with automated deployment on Vercel, automatic database migrations, and regular data backup system.",
       },
     },
+    {
+      challenge: {
+        fr: "Optimisation SEO et indexation moteurs de recherche",
+        en: "SEO optimization and search engine indexation",
+      },
+      solution: {
+        fr: "Implémentation de métadonnées dynamiques par section, Schema.org markup complet avec LocalBusiness et Service, balises canoniques pour éviter le contenu dupliqué, et intégration Google Search Console et Bing Webmaster Tools.",
+        en: "Implementation of dynamic metadata per section, complete Schema.org markup with LocalBusiness and Service, canonical tags to avoid duplicate content, and Google Search Console and Bing Webmaster Tools integration.",
+      },
+    },
+    {
+      challenge: {
+        fr: "Déploiement et monitoring des performances",
+        en: "Deployment and performance monitoring",
+      },
+      solution: {
+        fr: "Configuration d'un pipeline CI/CD complet avec déploiement automatisé sur Vercel, migrations de base de données automatiques, intégration Google Analytics pour le suivi du trafic, et monitoring continu des performances web.",
+        en: "Setup of a complete CI/CD pipeline with automated deployment on Vercel, automatic database migrations, Google Analytics integration for traffic tracking, and continuous web performance monitoring.",
+      },
+    },
   ],
 };
 
 // Project related projects mapping
 export const RELATED_PROJECTS: Record<string, string[]> = {
-  "lyonmarquage": [],
-  "pulse": [],
+  "lyonmarquage": ["portfolio"],
+  "pulse": ["portfolio"],
+  "portfolio": ["lyonmarquage"],
 };
 
 // Get related projects
@@ -309,6 +493,34 @@ export const getRelatedProjects = (projectId: string) => {
 
 export const PROJECTS: ProjectType[] = [
   {
+    id: "portfolio",
+    title: "Personal Portfolio Website",
+    shortDescription: {
+      fr: "Site web portfolio personnel moderne avec animations et interface multilingue",
+      en: "Modern personal portfolio website with animations and multilingual interface",
+    },
+    fullDescription: {
+      fr: "Mon site web portfolio personnel est une vitrine moderne et interactive de mes compétences et projets en développement web. Construit avec Next.js 15 et React 19, il utilise les dernières technologies front-end pour offrir une expérience utilisateur exceptionnelle.\n\nLe site intègre des animations fluides avec Framer Motion, un système de thème sombre/clair avec next-themes, et une interface multilingue complète grâce à next-intl. Les composants UI sont construits avec Radix UI pour une accessibilité optimale, stylisés avec Tailwind CSS et des variantes personnalisées.\n\nL'architecture inclut un système de gestion d'état avec Zustand, des animations de frappe avec Typed.js, et une timeline interactive pour présenter mon parcours professionnel. Le formulaire de contact utilise React Hook Form avec validation Zod et l'API Resend pour l'envoi d'emails.\n\nLe site démontre ma maîtrise des technologies modernes de développement web, des bonnes pratiques UX/UI, et de l'architecture d'applications React performantes.",
+      en: "My personal portfolio website is a modern and interactive showcase of my web development skills and projects. Built with Next.js 15 and React 19, it uses the latest front-end technologies to deliver an exceptional user experience.\n\nThe site integrates smooth animations with Framer Motion, a dark/light theme system with next-themes, and a complete multilingual interface using next-intl. UI components are built with Radix UI for optimal accessibility, styled with Tailwind CSS and custom variants.\n\nThe architecture includes a state management system with Zustand, typing animations with Typed.js, and an interactive timeline to showcase my professional journey. The contact form uses React Hook Form with Zod validation and the Resend API for email sending.\n\nThe site demonstrates my mastery of modern web development technologies, UX/UI best practices, and performant React application architecture.",
+    },
+    category: PROJECT_CATEGORIES.FULL_STACK,
+    technologies: [
+      PROJECT_TECHNOLOGIES.NEXT_JS,
+      PROJECT_TECHNOLOGIES.REACT,
+      PROJECT_TECHNOLOGIES.TYPESCRIPT,
+      PROJECT_TECHNOLOGIES.TAILWIND,
+      PROJECT_TECHNOLOGIES.RADIX_UI,
+      PROJECT_TECHNOLOGIES.ZOD,
+      PROJECT_TECHNOLOGIES.VERCEL,
+    ],
+    thumbnailImage: "/projects/portfolio/home.png",
+    images: ["/projects/portfolio/home.png"],
+    demoUrl: "https://thomasmoras.dev",
+    repoUrl: "https://github.com/ThomasMoras/tms-portfolio",
+    featured: true,
+    completionDate: "2025-02-20",
+  },
+  {
     id: "pulse",
     title: "Pulse - Decentralized Dating App",
     shortDescription: {
@@ -316,8 +528,8 @@ export const PROJECTS: ProjectType[] = [
       en: "Decentralized dating application with proof of personhood and encrypted messaging",
     },
     fullDescription: {
-      fr: "Pulse est une application de rencontres décentralisée qui redéfinit les interactions en ligne en préservant la vie privée des utilisateurs tout en garantissant l'authenticité de leur identité. Construite sur la blockchain Ethereum, Pulse utilise des technologies de pointe pour créer un écosystème de rencontres sécurisé et transparent.\n\nL'application intègre un système de Proof of Personhood via World ID pour s'assurer qu'un seul compte par personne existe, éliminant ainsi les faux profils et les comptes multiples. Les utilisateurs peuvent créer des profils authentifiés stockés dans des Soulbound Tokens (SBT), garantissant l'unicité et la persistance des identités.\n\nLa messagerie utilise le protocole Lit pour un chiffrement de bout en bout, assurant que seuls les utilisateurs concernés peuvent lire leurs conversations. Le système de niveaux basé sur NFT offre différents avantages selon l'engagement de l'utilisateur, tandis que le programme partenaire permet aux organisateurs d'événements de créer des expériences exclusives.\n\nAvec son architecture moderne combinant Next.js, TypeScript et les dernières innovations Web3, Pulse offre une expérience utilisateur fluide tout en maintenant les principes de décentralisation et de confidentialité.",
-      en: "Pulse is a decentralized dating application that redefines online interactions by preserving user privacy while ensuring the authenticity of their identity. Built on the Ethereum blockchain, Pulse uses cutting-edge technologies to create a secure and transparent dating ecosystem.\n\nThe application integrates a Proof of Personhood system via World ID to ensure only one account per person exists, eliminating fake profiles and multiple accounts. Users can create authenticated profiles stored in Soulbound Tokens (SBT), guaranteeing the uniqueness and persistence of identities.\n\nMessaging uses the Lit protocol for end-to-end encryption, ensuring that only the concerned users can read their conversations. The NFT-based tier system offers different benefits based on user engagement, while the partner program allows event organizers to create exclusive experiences.\n\nWith its modern architecture combining Next.js, TypeScript, and the latest Web3 innovations, Pulse provides a smooth user experience while maintaining the principles of decentralization and privacy.",
+      fr: "Pulse est une application de rencontres décentralisée révolutionnaire qui redéfinit les interactions en ligne en préservant la vie privée des utilisateurs tout en garantissant l'authenticité de leur identité. Construite sur la blockchain Ethereum, Pulse utilise des technologies de pointe pour créer un écosystème de rencontres sécurisé et transparent.\n\nL'application intègre un système de Proof of Personhood via World ID pour s'assurer qu'un seul compte par personne existe, éliminant ainsi les faux profils et les comptes multiples. Les utilisateurs peuvent créer des profils authentifiés stockés dans des Soulbound Tokens (SBT), garantissant l'unicité et la persistance des identités.\n\nLa messagerie utilise le protocole Lit pour un chiffrement de bout en bout, assurant que seuls les utilisateurs concernés peuvent lire leurs conversations. Le système de niveaux basé sur NFT offre différents avantages selon l'engagement de l'utilisateur, tandis que le programme partenaire permet aux organisateurs d'événements de créer des expériences exclusives.\n\nAvec son architecture moderne combinant Next.js, TypeScript et les dernières innovations Web3, Pulse offre une expérience utilisateur fluide tout en maintenant les principes de décentralisation et de confidentialité.",
+      en: "Pulse is a revolutionary decentralized dating application that redefines online interactions by preserving user privacy while ensuring the authenticity of their identity. Built on the Ethereum blockchain, Pulse uses cutting-edge technologies to create a secure and transparent dating ecosystem.\n\nThe application integrates a Proof of Personhood system via World ID to ensure only one account per person exists, eliminating fake profiles and multiple accounts. Users can create authenticated profiles stored in Soulbound Tokens (SBT), guaranteeing the uniqueness and persistence of identities.\n\nMessaging uses the Lit protocol for end-to-end encryption, ensuring that only the concerned users can read their conversations. The NFT-based tier system offers different benefits based on user engagement, while the partner program allows event organizers to create exclusive experiences.\n\nWith its modern architecture combining Next.js, TypeScript, and the latest Web3 innovations, Pulse provides a smooth user experience while maintaining the principles of decentralization and privacy.",
     },
     category: PROJECT_CATEGORIES.BLOCKCHAIN,
     technologies: [
@@ -340,8 +552,8 @@ export const PROJECTS: ProjectType[] = [
     images: [
       "/projects/pulse/home.png",
       "/projects/pulse/profile.png",
-      "/projects/pulse/conversation.png",
       "/projects/pulse/dashboard.png",
+      "/projects/pulse/messaging.png",
     ],
     demoUrl: "https://pulse-dapp.vercel.app",
     repoUrl: "https://github.com/ThomasMoras/pulse",
